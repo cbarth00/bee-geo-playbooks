@@ -100,15 +100,18 @@
   }
 
   [data-theme="dark"] {
-    --navy: #E8F0FB;
-    --white: #102337;
-    --bg: #0A1929;
-    --slate: #AFC4DC;
-    --slate-2: #8AA1BD;
-    --light: #173258;
-    --hairline: #2A4060;
-    --hairline-soft: #1F3252;
-    --warm: #2E2410;
+    /* Midnight Tech palette */
+    --navy: #E0E8F5;       /* primary text — ice white */
+    --white: #101F42;      /* surface / cards — elevated navy */
+    --bg: #0A1128;         /* page — deep midnight navy */
+    --slate: #829AB1;      /* secondary text — muted blue */
+    --slate-2: #7B93B0;    /* tertiary meta */
+    --light: #1B2D55;      /* hover / inset boxes — brighter navy */
+    --hairline: #2B3D68;   /* visible borders */
+    --hairline-soft: #1D2C4F;
+    --warm: #18254A;       /* highlight panels — slightly elevated navy */
+    --amber: #F2A33C;      /* BEE orange accent (labels on dark) */
+    --bee-blue: #3B82F6;   /* electric-blue CTA accent for dark mode */
 
     /* Signal palettes: keep foreground bright, darken backgrounds */
     --geo-bg: #163026; --geo-bd: #2B4E3A;
@@ -124,6 +127,9 @@
     --mig-fg: #E78A82;
     --loop-fg: #FFC76A;
   }
+
+  /* Dark mode: lift inset boxes (KPI chips) above the page color so they read as distinct boxes */
+  [data-theme="dark"] .sw-kpi-chip { background: var(--light); border-color: var(--hairline); }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -145,18 +151,23 @@
   /* ============================================================
      TOP BAR
      ============================================================ */
-  .topbar {
-    background: var(--surface-dark);
-    color: var(--text-on-dark);
-    padding: 18px 36px 14px;
+  /* Cohesive sticky masthead — topbar + context band + tab nav move as one unit */
+  .site-header {
     position: sticky;
     top: 0;
     z-index: 100;
+    box-shadow: 0 8px 24px -16px rgba(6, 22, 41, 0.45);
+  }
+  .topbar {
+    background: var(--surface-dark);
+    color: var(--text-on-dark);
+    padding: 18px 0 14px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
   }
   .topbar-inner {
     max-width: 1440px;
     margin: 0 auto;
+    padding: 0 36px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -207,12 +218,17 @@
   .topbar-fw {
     background: var(--surface-dark);
     color: var(--text-on-dark-2);
-    padding: 8px 36px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 10.5px;
+  }
+  .topbar-fw-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 36px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    font-size: 10.5px;
     flex-wrap: wrap;
     gap: 12px;
   }
@@ -236,9 +252,6 @@
   .tab-nav {
     background: var(--white);
     border-bottom: 1px solid var(--hairline);
-    position: sticky;
-    top: 96px;
-    z-index: 99;
     transition: background-color var(--t-base), border-color var(--t-base);
   }
   .tab-nav-inner { max-width: 1440px; margin: 0 auto; padding: 0 36px; display: flex; gap: 2px; flex-wrap: wrap; }
@@ -327,7 +340,8 @@
      FILTER BAR
      ============================================================ */
   .filter-bar {
-    background: var(--surface-dark);
+    background: var(--white);
+    border: 1px solid var(--hairline);
     border-radius: 8px;
     padding: 12px 18px;
     margin-bottom: 14px;
@@ -335,19 +349,20 @@
     gap: 8px;
     align-items: center;
     flex-wrap: wrap;
+    transition: background-color var(--t-base), border-color var(--t-base);
   }
   .filter-bar .fb-label {
-    color: #7A9CC0;
+    color: var(--slate);
     font-size: 10px;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-right: 4px;
   }
   .filter-btn {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.14);
-    color: var(--text-on-dark-2);
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    color: var(--slate);
     font-family: inherit;
     font-size: 11.5px;
     font-weight: 400;
@@ -356,20 +371,21 @@
     cursor: pointer;
     transition: background var(--t-fast), border-color var(--t-fast), color var(--t-fast);
   }
-  .filter-btn:hover { background: rgba(255,255,255,0.12); color: var(--text-on-dark); }
-  .filter-btn[aria-pressed="true"] { background: var(--bee-blue); border-color: var(--bee-blue); color: var(--text-on-dark); font-weight: 500; }
-  .fb-sep { width: 1px; height: 18px; background: rgba(255,255,255,0.16); margin: 0 6px; }
+  .filter-btn:hover { background: var(--light); color: var(--bee-blue); border-color: var(--bee-blue); }
+  .filter-btn[aria-pressed="true"] { background: var(--bee-blue); border-color: var(--bee-blue); color: #fff; font-weight: 500; }
+  .fb-sep { width: 1px; height: 18px; background: var(--hairline); margin: 0 6px; }
   .fb-info {
     margin-left: auto;
-    color: #7A9CC0;
+    color: var(--bee-blue);
     font-size: 10.5px;
     cursor: help;
-    border: 1px solid rgba(255,255,255,0.14);
+    background: var(--white);
+    border: 1px solid var(--hairline);
     padding: 4px 10px;
     border-radius: 4px;
-    transition: background var(--t-base);
+    transition: background var(--t-base), border-color var(--t-base);
   }
-  .fb-info:hover { background: rgba(255,255,255,0.08); }
+  .fb-info:hover { background: var(--light); border-color: var(--bee-blue); }
 
   /* ============================================================
      LEGEND
@@ -888,7 +904,12 @@
     border: 1px solid var(--hairline);
     border-radius: 8px;
     padding: 18px 22px;
-    transition: background-color var(--t-base), border-color var(--t-base);
+    transition: background-color var(--t-base), border-color var(--t-base), box-shadow var(--t-base), transform var(--t-base);
+  }
+  .sw-card:hover {
+    border-color: var(--bee-blue);
+    box-shadow: 0 6px 22px -12px rgba(29, 96, 176, 0.22);
+    transform: translateY(-2px);
   }
   .sw-card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
   .sw-badge-lg {
@@ -966,29 +987,41 @@
   }
 
   .gsc-callout {
-    background: var(--surface-dark);
-    color: var(--text-on-dark);
-    border-radius: 8px;
-    padding: 18px 22px;
+    background: var(--warm);
+    color: var(--navy);
+    border: 1px solid var(--hairline);
+    border-left: 3px solid var(--bee-yellow);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
     margin: 22px 0;
     display: flex;
-    gap: 14px;
+    gap: 12px;
     align-items: flex-start;
+    transition: background-color var(--t-base), border-color var(--t-base);
   }
   .gsc-callout .gc-icon {
     flex-shrink: 0;
-    width: 32px; height: 32px;
+    width: 24px; height: 24px;
     border-radius: 999px;
-    background: rgba(255,179,66,0.18);
-    color: var(--bee-yellow);
-    font-size: 18px;
-    font-weight: 600;
+    background: var(--bee-yellow);
+    color: var(--surface-dark);
+    font-size: 14px;
+    font-weight: 700;
     text-align: center;
-    line-height: 32px;
+    line-height: 24px;
   }
-  .gsc-callout .gc-body { font-size: 12.5px; line-height: 1.55; color: var(--text-on-dark-2); }
-  .gsc-callout .gc-body strong { color: var(--text-on-dark); font-weight: 500; }
-  .gsc-callout .gc-body .accent { color: var(--bee-yellow); }
+  .gsc-callout .gc-body { font-size: 12.5px; line-height: 1.6; color: var(--slate); }
+  .gsc-callout .gc-body strong { color: var(--navy); font-weight: 600; }
+  .gsc-callout .gc-body .accent { color: var(--amber); font-weight: 600; }
+
+  /* Workshop form controls — use theme surfaces so they aren't harsh white in dark mode */
+  #addKpiForm input, #addKpiForm select, #addKpiForm textarea,
+  #editKpiForm input, #editKpiForm textarea {
+    background: var(--white);
+    color: var(--navy);
+  }
+  #addKpiForm input::placeholder, #addKpiForm textarea::placeholder,
+  #editKpiForm input::placeholder, #editKpiForm textarea::placeholder { color: var(--slate-2); }
 
   /* ============================================================
      PAGE 5 — HOW IT WORKS
@@ -1231,8 +1264,7 @@
   }
   @media (max-width: 720px) {
     .tab-explainer { grid-template-columns: repeat(2, 1fr); }
-    .topbar, main, .topbar-fw { padding-left: 18px; padding-right: 18px; }
-    .tab-nav-inner { padding: 0 18px; }
+    .topbar-inner, main, .topbar-fw-inner, .tab-nav-inner { padding-left: 18px; padding-right: 18px; }
     .topbar-controls { width: 100%; justify-content: flex-end; }
     .funnel-stage-chip { min-width: 100%; }
   }
@@ -1243,6 +1275,7 @@
 <!-- ============================================================
      TOP BAR with toggles
      ============================================================ -->
+<div class="site-header">
 <header class="topbar">
   <div class="topbar-inner">
     <div class="topbar-brand">
@@ -1266,8 +1299,10 @@
   </div>
 </header>
 <div class="topbar-fw">
-  <span data-i18n="topbar.fw">Verbindliche Grundlage für alle Dashboards und Reports — aligned to BEE Website Structure</span>
-  <span class="tip pri-badge">MoSCoW · North Star hierarchy<span class="tip-bubble" data-i18n="topbar.framework_tip">Priority ranking uses MoSCoW (Must / Should / Could) anchored to the North Star + Input Metrics hierarchy. P1 = Management outcomes and direct leading indicators. P2 = Expert diagnostics. P3 = Optimizer levers.</span></span>
+  <div class="topbar-fw-inner">
+    <span data-i18n="topbar.fw">Verbindliche Grundlage für alle Dashboards und Reports — aligned to BEE Website Structure</span>
+    <span class="tip pri-badge">MoSCoW · North Star hierarchy<span class="tip-bubble" data-i18n="topbar.framework_tip">Priority ranking uses MoSCoW (Must / Should / Could) anchored to the North Star + Input Metrics hierarchy. P1 = Management outcomes and direct leading indicators. P2 = Expert diagnostics. P3 = Optimizer levers.</span></span>
+  </div>
 </div>
 
 <!-- ============================================================
@@ -1282,6 +1317,7 @@
     <button class="tab-btn" role="tab" aria-selected="false" data-tab="5"><span class="tab-num">5</span><span data-i18n="tab.howto">How it works</span></button>
   </div>
 </nav>
+</div>
 
 <main>
 
@@ -1394,11 +1430,85 @@
     <div class="cust-controls">
       <span class="cust-counter"><strong id="custSelectedCount">0</strong> <span data-i18n="cust.of">of</span> <strong id="custTotalCount">0</strong> <span data-i18n="cust.selected">KPIs selected</span></span>
       <button class="btn" id="custReset" data-i18n="cust.reset">Reset to full architecture</button>
+      <button class="btn btn-ghost" id="custUndo" title="Nothing to undo" disabled>Undo</button>
       <span class="btn-row">
         <button class="btn btn-ghost" id="custStarter" data-i18n="cust.starter">Select recommended starter set</button>
         <button class="info-icon" id="starterInfoBtn" aria-label="What is the recommended starter set?" title="Why this starter set?">i</button>
       </span>
       <button class="btn btn-ghost" id="custClear" data-i18n="cust.clear">Clear all</button>
+      <span class="btn-row">
+        <button class="btn btn-ghost" id="custExport">Export session (JSON)</button>
+        <button class="btn btn-ghost" id="custImport">Import session</button>
+      </span>
+      <input type="file" id="custImportFile" accept="application/json,.json" style="display:none;">
+    </div>
+
+    <div class="cust-stage" style="border-left-color: var(--bee-yellow); background: var(--warm); margin-top: 14px;">
+      <h3 style="color: var(--amber); border-bottom-color: #F3D9A4;">Workshop Sandbox · Add Custom Metric</h3>
+      <form id="addKpiForm" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; font-size: 12px;">
+        <div>
+          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);">Short Name</label>
+          <input type="text" id="add_shortName" required style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
+        </div>
+        <div>
+          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);">Full Descriptive Name</label>
+          <input type="text" id="add_fullName" required style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
+        </div>
+        <div>
+          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);">Funnel Stage</label>
+          <select id="add_stage" style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
+            <option value="AI / Organic Visibility">01 AI / Organic Visibility</option>
+            <option value="Traffic Quality">02 Traffic Quality</option>
+            <option value="Engagement">03 Engagement</option>
+            <option value="Lead Conversion">04 Lead Conversion</option>
+            <option value="Pipeline">05 Pipeline</option>
+            <option value="Revenue">06 Revenue</option>
+            <option value="Expansion">07 Expansion</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);">Tier / Department</label>
+          <select id="add_dept" style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
+            <option value="Management">Management (Tier 1)</option>
+            <option value="Expert">Expert (Tier 2)</option>
+            <option value="Optimizer">Optimizer (Tier 3)</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);">Reporting Cadence</label>
+          <select id="add_freq" style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
+            <option value="D">Daily (D)</option>
+            <option value="W">Weekly (W)</option>
+            <option value="M">Monthly (M)</option>
+            <option value="Q">Quarterly (Q)</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);">MoSCoW Priority</label>
+          <select id="add_pri" style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
+            <option value="1">P1 · Must</option>
+            <option value="2">P2 · Should</option>
+            <option value="3">P3 · Could</option>
+          </select>
+        </div>
+        <div style="grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+          <div>
+            <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);">Operational Definition</label>
+            <textarea id="add_def" required style="width:100%; height:44px; padding:6px; border:1px solid var(--hairline); border-radius:4px; font-family:inherit;"></textarea>
+          </div>
+          <div>
+            <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);">Strategic Meaning</label>
+            <textarea id="add_mean" required style="width:100%; height:44px; padding:6px; border:1px solid var(--hairline); border-radius:4px; font-family:inherit;"></textarea>
+          </div>
+          <div>
+            <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);">Downstream Impact</label>
+            <textarea id="add_imp" required style="width:100%; height:44px; padding:6px; border:1px solid var(--hairline); border-radius:4px; font-family:inherit;"></textarea>
+          </div>
+        </div>
+        <div style="grid-column: 1 / -1; margin-top: 4px;">
+          <button type="submit" class="btn" style="background: var(--bee-blue); color:#fff; border-color: var(--bee-blue);">+ Inject KPI Into Active Grid</button>
+        </div>
+      </form>
     </div>
 
     <div id="customizeArea"></div>
@@ -1612,7 +1722,7 @@ const DEPT_META = {
   "Optimizer":  { tier: "Tier 3", desc: "Granular operational levers. Highest cadence, deepest detail." }
 };
 
-const KPIS = [
+const BASELINE_KPIS = [
   {
     id: "ai_visibility",
     shortName: "AI Visibility",
@@ -2698,6 +2808,106 @@ const KPIS = [
   }
 ];
 
+// ── Workshop Sandbox runtime state ──────────────────────────
+let KPIS = JSON.parse(localStorage.getItem('BEE_WORKSHOP_KPIS')) || JSON.parse(JSON.stringify(BASELINE_KPIS));
+
+function saveWorkshopState() {
+  localStorage.setItem('BEE_WORKSHOP_KPIS', JSON.stringify(KPIS));
+}
+
+// ── Undo stack (in-memory, this session only) ───────────────
+const UNDO_STACK = [];
+const UNDO_LIMIT = 50;
+
+function pushUndo(label) {
+  UNDO_STACK.push({ label, kpis: JSON.parse(JSON.stringify(KPIS)), selected: Array.from(STATE.selected) });
+  if (UNDO_STACK.length > UNDO_LIMIT) UNDO_STACK.shift();
+  updateUndoButton();
+}
+
+function undoLastAction() {
+  if (!UNDO_STACK.length) return;
+  const snap = UNDO_STACK.pop();
+  KPIS = JSON.parse(JSON.stringify(snap.kpis));
+  STATE.selected = new Set(snap.selected.filter(id => KPIS.some(k => k.id === id)));
+  saveWorkshopState();
+  renderCustomize();
+  onSelectionChange();
+  applyI18n();
+  updateUndoButton();
+}
+
+function updateUndoButton() {
+  const b = document.getElementById('custUndo');
+  if (!b) return;
+  if (UNDO_STACK.length) {
+    b.disabled = false;
+    b.textContent = `Undo: ${UNDO_STACK[UNDO_STACK.length - 1].label}`;
+    b.title = `Undo last change (${UNDO_STACK.length} step${UNDO_STACK.length > 1 ? 's' : ''} available)`;
+  } else {
+    b.disabled = true;
+    b.textContent = "Undo";
+    b.title = "Nothing to undo";
+  }
+}
+
+function resetToFactoryDefaults() {
+  if (confirm("Reset all custom modifications back to BEE Baseline Standards?")) {
+    pushUndo("Reset to baseline");
+    localStorage.removeItem('BEE_WORKSHOP_KPIS');
+    KPIS = JSON.parse(JSON.stringify(BASELINE_KPIS));
+    STATE.selected = new Set(KPIS.map(k => k.id));
+    renderCustomize();
+    onSelectionChange();
+    applyI18n();
+  }
+}
+
+function exportWorkshopState() {
+  const payload = {
+    schema: "BEE_WORKSHOP_KPIS",
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    selected: Array.from(STATE.selected),
+    kpis: KPIS
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `bee-kpi-workshop-${new Date().toISOString().slice(0, 10)}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function importWorkshopState(file) {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const data = JSON.parse(e.target.result);
+      const kpis = Array.isArray(data) ? data : data.kpis;
+      if (!Array.isArray(kpis) || kpis.some(k => !k || !k.id || !k.shortName)) {
+        alert("That file doesn't look like a valid BEE workshop session.");
+        return;
+      }
+      if (!confirm("Import this session? It replaces the KPIs currently in your sandbox (your last autosave is overwritten).")) return;
+      pushUndo("Import session");
+      KPIS = JSON.parse(JSON.stringify(kpis));
+      const sel = Array.isArray(data.selected) ? data.selected : KPIS.map(k => k.id);
+      STATE.selected = new Set(sel.filter(id => KPIS.some(k => k.id === id)));
+      saveWorkshopState();
+      renderCustomize();
+      onSelectionChange();
+      applyI18n();
+    } catch (err) {
+      alert("Could not read that file — it may be corrupted or not valid JSON.");
+    }
+  };
+  reader.readAsText(file);
+}
+
 /* ============================================================
    SECTION B — CAUSE-EFFECT CHAINS
    Defined only where defensible. Empty chains render an
@@ -3574,12 +3784,24 @@ function renderCustomize() {
       const list = document.createElement("div");
       list.className = "cust-list";
       kpisHere.forEach(k => {
-        const label = document.createElement("label");
+        const label = document.createElement("div");
         label.className = "cust-toggle";
+        label.style.display = "flex";
+        label.style.alignItems = "center";
+        label.style.justifyContent = "space-between";
+        label.style.width = "100%";
         label.innerHTML = `
-          <input type="checkbox" data-kpi-id="${k.id}" ${STATE.selected.has(k.id) ? "checked" : ""}>
-          <span class="ct-name">${escHTML(k.shortName)} <span style="color:var(--slate);font-size:10.5px">· ${escHTML(k.fullName)}</span></span>
-          <span class="ct-meta">${freqBadge(k.frequency)}${srcBadges(k.source)}</span>`;
+          <div style="display:flex; align-items:center; gap:8px; flex:1;">
+            <input type="checkbox" data-kpi-id="${k.id}" ${STATE.selected.has(k.id) ? "checked" : ""}>
+            <span class="ct-name" style="cursor:pointer;">${escHTML(k.shortName)} <span style="color:var(--slate); font-size:10.5px;">· ${escHTML(k.fullName)}</span></span>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            ${freqBadge(k.frequency)}
+            ${srcBadges(k.source)}
+            <button type="button" class="btn btn-ghost" data-edit-id="${k.id}" style="padding:2px 8px; font-size:10px; border-color:var(--hairline);">Edit</button>
+            <button type="button" class="btn btn-ghost" data-delete-id="${k.id}" style="padding:2px 8px; font-size:10px; border-color:var(--hairline); color:#C0392B;">Delete</button>
+          </div>
+        `;
         list.appendChild(label);
       });
       row.appendChild(list);
@@ -3592,6 +3814,32 @@ function renderCustomize() {
       const id = cb.dataset.kpiId;
       if (cb.checked) STATE.selected.add(id); else STATE.selected.delete(id);
       onSelectionChange();
+    });
+  });
+  area.querySelectorAll(".ct-name").forEach(name => {
+    name.addEventListener("click", () => {
+      const cb = name.closest(".cust-toggle").querySelector("input[data-kpi-id]");
+      if (cb) { cb.checked = !cb.checked; cb.dispatchEvent(new Event("change")); }
+    });
+  });
+  area.querySelectorAll("button[data-delete-id]").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const id = btn.dataset.deleteId;
+      pushUndo(`Delete ${KPIS.find(x => x.id === id).shortName}`);
+      KPIS = KPIS.filter(x => x.id !== id);
+      STATE.selected.delete(id);
+      saveWorkshopState();
+      renderCustomize();
+      onSelectionChange();
+    });
+  });
+  area.querySelectorAll("button[data-edit-id]").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const id = btn.dataset.editId;
+      const k = KPIS.find(x => x.id === id);
+      openKpiEditModal(k);
     });
   });
   updateCounters();
@@ -3764,6 +4012,58 @@ function closeModal() {
   document.getElementById('modalOverlay').classList.remove('open');
 }
 
+function openKpiEditModal(k) {
+  const modalHTML = `
+    <form id="editKpiForm" style="display:flex; flex-direction:column; gap:12px; font-size:12px; text-align:left;">
+      <input type="hidden" id="edit_id" value="${k.id}">
+      <div>
+        <label style="font-weight:600; display:block; margin-bottom:4px;">Short Name</label>
+        <input type="text" id="edit_shortName" required value="${escHTML(k.shortName)}" style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
+      </div>
+      <div>
+        <label style="font-weight:600; display:block; margin-bottom:4px;">Full Name</label>
+        <input type="text" id="edit_fullName" required value="${escHTML(k.fullName)}" style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
+      </div>
+      <div>
+        <label style="font-weight:600; display:block; margin-bottom:4px;">Definition</label>
+        <textarea id="edit_def" required style="width:100%; height:50px; padding:6px; border:1px solid var(--hairline); border-radius:4px; font-family:inherit;">${escHTML(k.definition)}</textarea>
+      </div>
+      <div>
+        <label style="font-weight:600; display:block; margin-bottom:4px;">Meaning</label>
+        <textarea id="edit_mean" required style="width:100%; height:50px; padding:6px; border:1px solid var(--hairline); border-radius:4px; font-family:inherit;">${escHTML(k.meaning)}</textarea>
+      </div>
+      <div>
+        <label style="font-weight:600; display:block; margin-bottom:4px;">Impact</label>
+        <textarea id="edit_imp" required style="width:100%; height:50px; padding:6px; border:1px solid var(--hairline); border-radius:4px; font-family:inherit;">${escHTML(k.impact)}</textarea>
+      </div>
+      <div style="margin-top:8px;">
+        <button type="submit" class="btn" style="background:var(--bee-blue); color:#fff; border-color:var(--bee-blue);">Save Structural Realignment</button>
+        <button type="button" class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      </div>
+    </form>
+  `;
+  openModal(`Modify Workshop Metric · ${k.shortName}`, modalHTML);
+
+  document.getElementById('editKpiForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const id = document.getElementById('edit_id').value;
+    const targetKpi = KPIS.find(x => x.id === id);
+    if (targetKpi) {
+      pushUndo(`Edit ${targetKpi.shortName}`);
+      targetKpi.shortName = document.getElementById('edit_shortName').value;
+      targetKpi.fullName = document.getElementById('edit_fullName').value;
+      targetKpi.definition = document.getElementById('edit_def').value;
+      targetKpi.meaning = document.getElementById('edit_mean').value;
+      targetKpi.impact = document.getElementById('edit_imp').value;
+      saveWorkshopState();
+      closeModal();
+      renderCustomize();
+      onSelectionChange();
+      applyI18n();
+    }
+  });
+}
+
 function starterSetModalBody() {
   // Build a live list of which KPIs the starter set picks and why.
   const mgmtIds = KPIS.filter(k => k.department === "Management").map(k => k.id);
@@ -3843,11 +4143,9 @@ function bindToggles() {
   document.getElementById('themeToggle').addEventListener('click', toggleTheme);
   document.getElementById('langToggle').addEventListener('click', toggleLanguage);
   document.getElementById('detailsToggle').addEventListener('click', toggleDetails);
-  document.getElementById('custReset').addEventListener('click', () => {
-    STATE.selected = new Set(KPIS.map(k => k.id));
-    renderCustomize();
-    onSelectionChange();
-  });
+  document.getElementById('custReset').addEventListener('click', resetToFactoryDefaults);
+  document.getElementById('custUndo').addEventListener('click', undoLastAction);
+  updateUndoButton();
   document.getElementById('custClear').addEventListener('click', () => {
     STATE.selected = new Set();
     renderCustomize();
@@ -3866,6 +4164,40 @@ function bindToggles() {
   });
   document.getElementById('chainSelect').addEventListener('change', renderChain);
   document.getElementById('glossarySearch').addEventListener('input', e => renderGlossary(e.target.value));
+  document.getElementById('addKpiForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const rawShort = document.getElementById('add_shortName').value;
+    const newId = "custom_" + rawShort.toLowerCase().replace(/[^a-z0-9]/g, "_") + "_" + Date.now();
+    const newKpi = {
+      id: newId,
+      shortName: rawShort,
+      fullName: document.getElementById('add_fullName').value,
+      funnelStage: document.getElementById('add_stage').value,
+      department: document.getElementById('add_dept').value,
+      frequency: document.getElementById('add_freq').value,
+      source: ["HS"],
+      priority: parseInt(document.getElementById('add_pri').value, 10),
+      priorityRationale: "Custom workspace added during interactive strategy workshop session mapping metrics.",
+      signals: [],
+      definition: document.getElementById('add_def').value,
+      meaning: document.getElementById('add_mean').value,
+      impact: document.getElementById('add_imp').value
+    };
+    pushUndo(`Add ${rawShort}`);
+    KPIS.push(newKpi);
+    STATE.selected.add(newId);
+    saveWorkshopState();
+    document.getElementById('addKpiForm').reset();
+    renderCustomize();
+    onSelectionChange();
+    applyI18n();
+  });
+  document.getElementById('custExport').addEventListener('click', exportWorkshopState);
+  document.getElementById('custImport').addEventListener('click', () => document.getElementById('custImportFile').click());
+  document.getElementById('custImportFile').addEventListener('change', (e) => {
+    if (e.target.files && e.target.files[0]) importWorkshopState(e.target.files[0]);
+    e.target.value = "";
+  });
 }
 
 applyTheme();
