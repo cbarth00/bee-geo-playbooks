@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Building the AI-Ready Website: The 2026 Architectural Playbook for AI Crawling &amp; Citation Search Readiness</title>
-<meta name="description" content="A 2026 technical architecture playbook for building AI-ready websites. Crawler accessibility, RAG-friendly chunking, llms.txt deployment, Schema.org entity graphs, and the BEE Guard Audit — the agentic framework that scores readiness and generates remediation cards." />
+<meta name="description" content="A 2026 technical architecture playbook for building AI-ready websites. Crawler accessibility, RAG-friendly chunking, llms.txt deployment, Schema.org entity graphs, and the BEE AI-Readiness Audit — the agentic framework that scores readiness and generates remediation cards." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
   "@type": "Article",
   "headline": "Building the AI-Ready Website: The 2026 Architectural Playbook for AI Crawling & Citation Search Readiness",
   "alternativeHeadline": "How to architect a website that AI crawlers can read, retrieve and cite — the 2026 technical reference",
-  "description": "A 2026 technical architecture playbook for building AI-ready websites. Crawler accessibility, RAG-friendly chunking, llms.txt deployment, Schema.org entity graphs, and the BEE Guard Audit agentic framework.",
+  "description": "A 2026 technical architecture playbook for building AI-ready websites. Crawler accessibility, RAG-friendly chunking, llms.txt deployment, Schema.org entity graphs, and the BEE AI-Readiness Audit agentic framework.",
   "datePublished": "2026-05-28",
   "dateModified": "2026-05-28",
   "inLanguage": ["en", "de"],
@@ -39,7 +39,7 @@
     {"@type": "Thing", "name": "llms.txt standard"},
     {"@type": "Thing", "name": "Schema.org entity graphs"},
     {"@type": "Thing", "name": "Semantic chunking"},
-    {"@type": "Thing", "name": "BEE Guard Audit"}
+    {"@type": "Thing", "name": "BEE AI-Readiness Audit"}
   ],
   "audience": {
     "@type": "BusinessAudience",
@@ -50,7 +50,7 @@
     "The new macro paradigm",
     "Parsing mechanics",
     "Technical infrastructure blueprint",
-    "BEE Guard Audit",
+    "BEE AI-Readiness Audit",
     "Long-term adoption and retraining cycles",
     "FAQ",
     "Glossary",
@@ -251,7 +251,7 @@
   .stack-card li{font-size:13.5px;line-height:1.5;color:var(--slate);margin-bottom:5px}
   @media (max-width:900px){.stack-grid{grid-template-columns:1fr}}
 
-  /* Solution card grid (Guard Audit remediation) */
+  /* Solution card grid (AI-Readiness Audit remediation) */
   .solcard-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:22px 0}
   .solcard{background:#fff;border:1px solid var(--line);border-left:4px solid var(--bee-blue);border-radius:10px;padding:22px 24px}
   .solcard .tag{display:inline-block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;padding:3px 9px;border-radius:999px;margin-bottom:10px}
@@ -326,24 +326,24 @@
         <span lang="en">A website built for human eyes is now invisible to the systems that mediate discovery.</span>
         <span lang="de">Eine Website, die ausschliesslich für menschliche Wahrnehmung konzipiert wurde, bleibt für jene Systeme unsichtbar, die heute den Discovery-Layer kontrollieren.</span>
       </h2>
-      <p class="summary" lang="en">In the web before AI, the metrics that mattered were pageviews and sessions; in the web after AI, the only metrics that protect market share are <strong>machine-readability, token efficiency, and entity trust</strong> <sup>[1]</sup>. The web has shifted from visual, click-driven interfaces designed for human eyes to structured, high-density token landscapes built for LLM retrieval and vector search. The arrival of agentic search—including autonomous agentic e-commerce and agentic lead generation workflows where artificial agents research, qualify, and negotiate directly with other machine interfaces—means the fundamental nature of web interaction has evolved from a human-to-content model to an absolute agent-to-agent interface <sup>[9, 10]</sup>. This playbook explains how to architect a website that survives that shift — and introduces the BEE Guard Audit, our agentic framework for measuring readiness deterministically and generating remediation guidance automatically.</p>
-      <p class="summary" lang="de">Im Web vor AI dominierten Pageviews und Sessions als zentrale Erfolgsmetriken. Im Web nach AI sichern ausschliesslich <strong>Maschinenlesbarkeit, Token-Effizienz und Entity-Vertrauen</strong> den Marktanteil <sup>[1]</sup>. Das Web hat sich von visuell und klickgetriebenen Oberflächen zu strukturierten, hochdichten Token-Landschaften gewandelt, die gezielt auf LLM-Retrieval und Vektor-Suche ausgerichtet sind. Der Einzug der agentischen Suche — einschliesslich autonomer Workflows für agentischen E-Commerce und agentische Lead-Generierung, bei denen künstliche Agenten direkt mit anderen Maschinenschnittstellen interagieren, Angebote prüfen und Kaufentscheidungen treffen — transformiert das Web grundlegend von einer Human-to-Content-Interaktion zu einer reinen Agent-to-Agent-Schnittstelle <sup>[9, 10]</sup>. Dieser Praxisleitfaden zeigt, wie eine Website architektonisch so konzipiert wird, dass sie diese Verschiebung übersteht — und führt das BEE Guard Audit ein: unser agentisches Framework zur deterministischen Messung der Readiness und zur automatisierten Generierung präziser Remediation-Empfehlungen.</p>
+      <p class="summary" lang="en">In the web before AI, the metrics that mattered were pageviews and sessions; in the web after AI, the only metrics that protect market share are <strong>machine-readability, token efficiency, and entity trust</strong> <sup><a href="#ref-1">[1]</a></sup>. The web has shifted from visual, click-driven interfaces designed for human eyes to structured, high-density token landscapes built for LLM retrieval and vector search. The arrival of agentic search—including autonomous agentic e-commerce and agentic lead generation workflows where artificial agents research, qualify, and negotiate directly with other machine interfaces—means the fundamental nature of web interaction has evolved from a human-to-content model to an absolute agent-to-agent interface <sup>[9, 10]</sup>. This playbook explains how to architect a website that survives that shift — and introduces the BEE AI-Readiness Audit, our agentic framework for measuring readiness deterministically and generating remediation guidance automatically.</p>
+      <p class="summary" lang="de">Im Web vor AI dominierten Pageviews und Sessions als zentrale Erfolgsmetriken. Im Web nach AI sichern ausschliesslich <strong>Maschinenlesbarkeit, Token-Effizienz und Entity-Vertrauen</strong> den Marktanteil <sup><a href="#ref-1">[1]</a></sup>. Das Web hat sich von visuell und klickgetriebenen Oberflächen zu strukturierten, hochdichten Token-Landschaften gewandelt, die gezielt auf LLM-Retrieval und Vektor-Suche ausgerichtet sind. Der Einzug der agentischen Suche — einschliesslich autonomer Workflows für agentischen E-Commerce und agentische Lead-Generierung, bei denen künstliche Agenten direkt mit anderen Maschinenschnittstellen interagieren, Angebote prüfen und Kaufentscheidungen treffen — transformiert das Web grundlegend von einer Human-to-Content-Interaktion zu einer reinen Agent-to-Agent-Schnittstelle <sup>[9, 10]</sup>. Dieser Praxisleitfaden zeigt, wie eine Website architektonisch so konzipiert wird, dass sie diese Verschiebung übersteht — und führt das BEE AI-Readiness Audit ein: unser agentisches Framework zur deterministischen Messung der Readiness und zur automatisierten Generierung präziser Remediation-Empfehlungen.</p>
       <ul lang="en">
         <li><strong>The macro shift is structural.</strong> AI agents now consume websites differently than human browsers. They strip CSS, JavaScript and layout wrappers, extract raw text strings, embed them into vector spaces, and rank them by semantic proximity. The site that wins is the one engineered for that pipeline.</li>
-        <li><strong>Direct-answer openers and structured formatting carry measurable lift.</strong> Princeton's foundational GEO research (ACM SIGKDD) found that adding direct-answer openers in the first 60 words lifts citations by 27 %, and authoritative formatting — comparison tables, data points, structured FAQs — increases AI visibility by up to 40 % <sup>[1]</sup>.</li>
+        <li><strong>Direct-answer openers and structured formatting carry measurable lift.</strong> Princeton's foundational GEO research (ACM SIGKDD) found that adding direct-answer openers in the first 60 words lifts citations by 27 %, and authoritative formatting — comparison tables, data points, structured FAQs — increases AI visibility by up to 40 % <sup><a href="#ref-1">[1]</a></sup>.</li>
         <li><strong>RAG ingestion has a sweet spot.</strong> For technical and factoid Q&amp;A, hyper-focused chunk sizes of 256–512 characters yield a 10–15 % increase in precise recall over large, unstructured blocks <sup>[2, 6]</sup>. Architecture decisions made at the template layer determine whether your content lands inside that sweet spot or outside it.</li>
         <li><strong>llms.txt is now the machine sitemap standard.</strong> Located at the root (<code>/llms.txt</code>), it uses clean Markdown, H1 site titles, blockquote abstracts and explicit documentation arrays. Larger estates complement it with <code>/llms-full.txt</code> for absolute markdown passes to agentic workflows <sup>[3, 4]</sup>.</li>
         <li><strong>Entity disambiguation is the new link-graph.</strong> Wiring Schema.org JSON-LD organization nodes to Wikidata Q-IDs and Google Knowledge Graph MIDs via the <code>sameAs</code> property is what separates a brand the AI recognises from a brand the AI confuses with someone else <sup>[5]</sup>.</li>
-        <li><strong>The BEE Guard Audit closes the measurement gap.</strong> An agentic framework that scores AI-readiness deterministically (0–100) across four sub-components and pairs every weak score with a Gemini-generated Solution Card detailing diagnosis, recommendation, assignee, priority, effort and exact location to fix.</li>
+        <li><strong>The BEE AI-Readiness Audit closes the measurement gap.</strong> An agentic framework that scores AI-readiness deterministically (0–100) across four sub-components and pairs every weak score with a Gemini-generated Solution Card detailing diagnosis, recommendation, assignee, priority, effort and exact location to fix.</li>
         <li><strong>Software gives you the map; governance moves the needle.</strong> Automation provides the dashboard. Continuous editorial frameworks and structural validation workflows turn a one-off audit into durable visibility across the consecutive quarters in which models are re-trained <sup>[4]</sup>.</li>
       </ul>
       <ul lang="de">
         <li><strong>Die makro-strukturelle Verschiebung ist technologischer Natur.</strong> AI-Agenten konsumieren Websites grundlegend anders als menschliche Browser: Sie entfernen CSS, JavaScript und Layout-Wrapper, extrahieren reine Text-Strings, betten diese in Vektorräume ein und gewichten sie nach semantischer Nähe. Marktführerschaft sichert sich, wer seine Website exakt auf diese Verarbeitungslogik konstruiert.</li>
-        <li><strong>Direct-Answer-Opener und strukturierte Formate erzielen messbaren Lift.</strong> Die GEO-Grundlagenforschung der Princeton University (ACM SIGKDD) belegt: Eine direkte Antwortformulierung innerhalb der ersten 60 Wörter steigert die Citation-Rate um 27 %, und autoritative Formatierungselemente — Vergleichstabellen, Datenpunkte, strukturierte FAQs — erhöhen die AI-Sichtbarkeit um bis zu 40 % <sup>[1]</sup>.</li>
+        <li><strong>Direct-Answer-Opener und strukturierte Formate erzielen messbaren Lift.</strong> Die GEO-Grundlagenforschung der Princeton University (ACM SIGKDD) belegt: Eine direkte Antwortformulierung innerhalb der ersten 60 Wörter steigert die Citation-Rate um 27 %, und autoritative Formatierungselemente — Vergleichstabellen, Datenpunkte, strukturierte FAQs — erhöhen die AI-Sichtbarkeit um bis zu 40 % <sup><a href="#ref-1">[1]</a></sup>.</li>
         <li><strong>Die RAG-Pipeline besitzt einen klar definierten Sweet Spot.</strong> Bei technischen und faktenbasierten Q&amp;A-Szenarien liefern eng begrenzte Chunk-Grössen von 256–512 Zeichen eine 10–15 % höhere Recall-Präzision als unstrukturierte Blöcke <sup>[2, 6]</sup>. Architektur-Entscheidungen auf Template-Ebene bestimmen, ob Inhalte innerhalb oder ausserhalb dieses Sweet Spots landen.</li>
         <li><strong>llms.txt etabliert sich als verbindlicher Standard für die Maschinen-Sitemap.</strong> Im Root-Verzeichnis abgelegt (<code>/llms.txt</code>) und in sauberem Markdown ausgeführt, transportiert die Spezifikation H1-Site-Titel, Blockquote-Abstracts und explizite Documentation-Arrays. Umfangreichere Estates ergänzen die Architektur durch eine komplementäre <code>/llms-full.txt</code>, welche absolute Markdown-Seitendefinitionen direkt an agentische Workflows übergibt <sup>[3, 4]</sup>.</li>
         <li><strong>Entity-Disambiguation ersetzt den klassischen Link-Graph als zentralen Vertrauensmechanismus.</strong> Die Verknüpfung von Schema.org-JSON-LD-Organization-Knoten via <code>sameAs</code>-Property mit Wikidata-Q-IDs und Google-Knowledge-Graph-MIDs entscheidet, ob ein LLM eine Marke eindeutig identifiziert oder mit Dritten verwechselt <sup>[5]</sup>.</li>
-        <li><strong>Das BEE Guard Audit schliesst die Messlücke.</strong> Als agentisches Framework bewertet es die AI-Readiness deterministisch auf einer Skala von 0–100 über vier Subkomponenten und generiert für jeden schwachen Score eine Gemini-gestützte Solution Card mit Diagnose, Handlungsempfehlung, Verantwortlichkeit, Priorität, Aufwand und exaktem Implementierungs-Ort.</li>
+        <li><strong>Das BEE AI-Readiness Audit schliesst die Messlücke.</strong> Als agentisches Framework bewertet es die AI-Readiness deterministisch auf einer Skala von 0–100 über vier Subkomponenten und generiert für jeden schwachen Score eine Gemini-gestützte Solution Card mit Diagnose, Handlungsempfehlung, Verantwortlichkeit, Priorität, Aufwand und exaktem Implementierungs-Ort.</li>
         <li><strong>Software liefert die Landkarte; Governance bewegt die Nadel.</strong> Automatisierung stellt das Dashboard bereit, doch erst kontinuierliche redaktionelle Frameworks und strukturelle Validierungs-Workflows transformieren ein punktuelles Audit in dauerhafte Sichtbarkeit über die aufeinanderfolgenden Quartale der Modell-Retraining-Zyklen <sup>[4]</sup>.</li>
       </ul>
     </div>
@@ -606,8 +606,13 @@
     <p lang="en">Crawl optimisation begins with <code>robots.txt</code>. Modern AI agents identify themselves via well-documented user-agent strings — GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, Google-Extended, CCBot, OAI-SearchBot. The decision is yours: <strong>allow</strong> them onto the pages you want cited, <strong>disallow</strong> them from regions you do not want indexed (private docs, admin paths, draft templates), and <strong>document</strong> the policy so the editorial team understands the consequence of any rule change.</p>
     <p lang="de">Crawl-Optimierung beginnt mit der <code>robots.txt</code>. Moderne AI-Agenten identifizieren sich über sauber dokumentierte User-Agent-Strings — GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, Google-Extended, CCBot, OAI-SearchBot. Die strategische Entscheidung liegt beim Betreiber: <strong>Allow</strong> für jene Seiten, die zitiert werden sollen; <strong>Disallow</strong> für Bereiche, die nicht indexiert werden dürfen (Private Docs, Admin-Pfade, Draft-Templates); <strong>dokumentiert</strong>, damit das Redaktionsteam die Konsequenz jeder Regeländerung nachvollziehen kann.</p>
 
+    <p style="font-size:13px;color:#4A6080;margin-top:-4px"><span lang="en"><strong>Last updated: 2026-05.</strong> AI crawler classes change quarterly — this list is reviewed annually (Q1).</span><span lang="de"><strong>Zuletzt aktualisiert: 2026-05.</strong> AI-Crawler-Klassen ändern sich quartalsweise — diese Liste wird jährlich (Q1) überprüft.</span></p>
+
     <p lang="en">The second crawl-optimisation lever is <code>llms.txt</code>. The standard has officially been formalised as the machine sitemap. Located at the root (<code>/llms.txt</code>), it uses clean Markdown, an H1 site title, a blockquote site abstract, and explicit documentation arrays pointing to key pages and their Markdown variants <sup>[3, 4]</sup>. Larger estates deploy a complementary <code>/llms-full.txt</code> that passes absolute Markdown page definitions directly to agentic workflows <sup>[4]</sup>.</p>
     <p lang="de">Der zweite Hebel der Crawl-Optimierung ist die <code>llms.txt</code>. Der Standard wurde offiziell als Maschinen-Sitemap formalisiert. Im Root-Verzeichnis platziert (<code>/llms.txt</code>) und in sauberem Markdown ausgeführt, transportiert sie einen H1-Site-Titel, ein Blockquote-Site-Abstract sowie explizite Documentation-Arrays, die auf Schlüsselseiten und deren Markdown-Varianten verweisen <sup>[3, 4]</sup>. Umfangreichere Estates ergänzen die Architektur durch eine komplementäre <code>/llms-full.txt</code>, welche absolute Markdown-Seitendefinitionen direkt an agentische Workflows übergibt <sup>[4]</sup>.</p>
+
+    <p style="font-size:14px"><span lang="en"><strong>Audit alignment:</strong> the BEE AI-Readiness Audit's LLM-guidance check currently verifies the presence of the dedicated <code>/llm-info</code> page.</span><span lang="de"><strong>Audit-Abgleich:</strong> Die LLM-Guidance-Prüfung des BEE AI-Readiness Audits prüft derzeit das Vorhandensein der dedizierten <code>/llm-info</code>-Seite.</span></p>
+    <!-- TODO: confirm with Guard whether /llms.txt and /llms-full.txt presence is also audited by the LLM-Guidance sub-score; align playbook + audit once confirmed. -->
 
     <h3 id="baseline-2-entity-graph"><span lang="en">Baseline 2 · Linked entity graph</span><span lang="de">Baseline 2 · Linked Entity Graph</span></h3>
 
@@ -691,27 +696,28 @@
 
 <section id="chapter-4">
   <div class="wrap">
-    <div class="ch-eyebrow"><span lang="en">Chapter 4 · The BEE Guard Audit</span><span lang="de">Kapitel 4 · Das BEE Guard Audit</span></div>
-    <h2 id="bee-guard-audit"><span lang="en">Measuring readiness — the BEE Guard Audit agentic framework.</span><span lang="de">Readiness messbar machen — das BEE Guard Audit als agentisches Framework.</span></h2>
+    <div class="ch-eyebrow"><span lang="en">Chapter 4 · The BEE AI-Readiness Audit</span><span lang="de">Kapitel 4 · Das BEE AI-Readiness Audit</span></div>
+    <h2 id="bee-guard-audit"><span lang="en">Measuring readiness — the BEE AI-Readiness Audit agentic framework.</span><span lang="de">Readiness messbar machen — das BEE AI-Readiness Audit als agentisches Framework.</span></h2>
+    <p style="font-size:13px;color:#4A6080;margin-top:6px"><span lang="en">Scoring engine and sub-component weightings computed on the Guard platform.</span><span lang="de">Scoring-Engine und Subkomponenten-Gewichtungen berechnet auf der Guard-Plattform.</span></p>
 
     <div class="keypts">
       <div class="lab"><span lang="en">Key context &amp; takeaways</span><span lang="de">Kontext &amp; Kernaussagen</span></div>
       <ul lang="en">
         <li>Enterprise leadership is blind to how readable their digital properties are to machines. Dashboards built for human visitors do not surface the metrics that matter for retrieval.</li>
-        <li>The <strong>BEE Guard Audit</strong> is an agentic framework that evaluates architectural integrity across two native operational layers — a deterministic score layer and a remediation layer — while laying the infrastructure code for autonomous self-fixing protocols.</li>
+        <li>The <strong>BEE AI-Readiness Audit</strong> is an agentic framework that evaluates architectural integrity across two native operational layers — a deterministic score layer and a remediation layer — while laying the infrastructure code for autonomous self-fixing protocols.</li>
         <li><strong>Layer 1</strong> computes an AI-Readiness Composite Score (0–100) from four empirical sub-components.</li>
         <li><strong>Layer 2</strong> generates a Gemini-powered Solution Card for every weak score: diagnosis, recommendation, assignee, priority, effort, and exact fix location.</li>
       </ul>
       <ul lang="de">
         <li>Die Unternehmensführung verfügt in der Regel über keine belastbare Sicht darauf, wie maschinenlesbar ihre digitalen Properties tatsächlich sind. Auf menschlichen Traffic kalibrierte Dashboards bilden die für Retrieval relevanten Metriken schlicht nicht ab.</li>
-        <li>Das <strong>BEE Guard Audit</strong> ist ein agentisches Framework, welches die architektonische Integrität über zwei native operative Ebenen evaluiert — eine deterministische Score-Ebene und eine Remediation-Ebene — und parallel den Infrastruktur-Code für autonome Self-Fixing-Protokolle implementiert.</li>
+        <li>Das <strong>BEE AI-Readiness Audit</strong> ist ein agentisches Framework, welches die architektonische Integrität über zwei native operative Ebenen evaluiert — eine deterministische Score-Ebene und eine Remediation-Ebene — und parallel den Infrastruktur-Code für autonome Self-Fixing-Protokolle implementiert.</li>
         <li><strong>Ebene 1</strong> berechnet einen AI-Readiness-Composite-Score (0–100) aus vier empirischen Subkomponenten.</li>
         <li><strong>Ebene 2</strong> generiert für jeden schwachen Score eine Gemini-gestützte Solution Card mit Diagnose, Handlungsempfehlung, Verantwortlichkeit, Priorität, Aufwand und exaktem Implementierungs-Ort.</li>
       </ul>
     </div>
 
-    <p class="lede" lang="en">Most enterprise web teams cannot answer the simple question, "how readable is our site to an AI agent right now?" Their dashboards were built for human traffic. The infrastructure problem the BEE Guard Audit was designed to solve is exactly that visibility gap.</p>
-    <p class="lede" lang="de">Die wenigsten Enterprise-Web-Teams können die scheinbar einfache Frage beantworten: «Wie lesbar ist unsere Website in diesem Moment für einen AI-Agenten?» Ihre Dashboards sind auf menschlichen Traffic ausgelegt. Genau diese Sichtbarkeits-Lücke adressiert das BEE Guard Audit als Infrastrukturproblem.</p>
+    <p class="lede" lang="en">Most enterprise web teams cannot answer the simple question, "how readable is our site to an AI agent right now?" Their dashboards were built for human traffic. The infrastructure problem the BEE AI-Readiness Audit was designed to solve is exactly that visibility gap.</p>
+    <p class="lede" lang="de">Die wenigsten Enterprise-Web-Teams können die scheinbar einfache Frage beantworten: «Wie lesbar ist unsere Website in diesem Moment für einen AI-Agenten?» Ihre Dashboards sind auf menschlichen Traffic ausgelegt. Genau diese Sichtbarkeits-Lücke adressiert das BEE AI-Readiness Audit als Infrastrukturproblem.</p>
 
     <h3 id="layer-1-deterministic"><span lang="en">Layer 1 · The Deterministic Score Layer — "the what"</span><span lang="de">Ebene 1 · Die deterministische Score-Ebene — «das Was»</span></h3>
 
@@ -787,8 +793,8 @@
 
     <h3 id="layer-2-remediation"><span lang="en">Layer 2 · The Remediation Layer — "the how"</span><span lang="de">Ebene 2 · Die Remediation-Ebene — «das Wie»</span></h3>
 
-    <p lang="en">For every weak score the deterministic layer surfaces, the Guard Audit generates a Gemini-powered <strong>Solution Card</strong>. Each card follows the same strict syntax so engineering, content and SEO teams can route the work without renegotiating format.</p>
-    <p lang="de">Für jeden schwachen Score, den die deterministische Ebene identifiziert, generiert das Guard Audit eine Gemini-gestützte <strong>Solution Card</strong>. Jede Card folgt derselben strikten Syntax, sodass Engineering-, Content- und SEO-Teams die Arbeit ohne Format-Verhandlungen direkt routen können.</p>
+    <p lang="en">For every weak score the deterministic layer surfaces, the AI-Readiness Audit generates a Gemini-powered <strong>Solution Card</strong>. Each card follows the same strict syntax so engineering, content and SEO teams can route the work without renegotiating format.</p>
+    <p lang="de">Für jeden schwachen Score, den die deterministische Ebene identifiziert, generiert das AI-Readiness Audit eine Gemini-gestützte <strong>Solution Card</strong>. Jede Card folgt derselben strikten Syntax, sodass Engineering-, Content- und SEO-Teams die Arbeit ohne Format-Verhandlungen direkt routen können.</p>
 
     <div class="solcard-grid">
       <div class="solcard">
@@ -889,18 +895,21 @@
       </div>
     </div>
 
-    <p lang="en">Each card is generated, ranked and shipped to the right queue automatically. Engineering tickets land in the developer board, content tickets in the editorial workflow, schema tickets in the SEO specialist queue. The Guard Audit becomes the routing layer, not just the scoring one. Moving forward, the framework architecture expands from predictive diagnostics to fully autonomous optimization, enabling a self-healing pipeline where code corrections and metadata updates are executed directly on the estate.</p>
-    <p lang="de">Jede Card wird automatisiert generiert, priorisiert und in die korrekte Queue eingespeist. Engineering-Tickets landen im Developer-Board, Content-Tickets im redaktionellen Workflow, Schema-Tickets in der SEO-Specialist-Queue. Das Guard Audit fungiert damit nicht nur als Scoring-, sondern als vollwertige Routing-Ebene. Zukünftig erweitert sich die Architektur von rein prädiktiver Diagnose zu vollkommen autonomer Optimierung — für eine automatisierte Self-Healing-Pipeline, welche Code-Korrekturen und Metadaten-Updates eigenständig direkt im Estate umsetzt.</p>
+    <p lang="en">Each card is generated and ranked, then exported to your PM tool (Asana, Linear, ClickUp) via the BEE Guard integration layer, with priority, effort and assignee already populated — so engineering, content and schema work lands in the right backlog without re-keying. Direct queue routing happens through that integration rather than Guard pushing into queues unilaterally.</p>
+    <p lang="de">Jede Card wird generiert und priorisiert und anschliessend über die BEE-Guard-Integrationsebene in dein PM-Tool (Asana, Linear, ClickUp) exportiert — inklusive bereits gesetzter Priorität, Aufwand und Verantwortlichkeit, sodass Engineering-, Content- und Schema-Arbeit ohne erneute Erfassung im richtigen Backlog landet. Das Routing in die Queues erfolgt über diese Integration und nicht durch ein einseitiges Einspeisen seitens Guard.</p>
+
+    <p lang="en"><strong>Architecture readiness is only half the discipline.</strong> Whether your pages are actually cited in live AI answers is a separate, measurable question — covered in the companion <a href="bee_geo_field_guide.html">DACH Field Guide</a>, which assesses the live-monitoring platforms for that job. Remediate the architecture here; monitor live visibility there.</p>
+    <p lang="de"><strong>Architektur-Readiness ist nur die halbe Disziplin.</strong> Ob Ihre Seiten in Live-AI-Antworten tatsächlich zitiert werden, ist eine separate, messbare Frage — behandelt im begleitenden <a href="bee_geo_field_guide.html">DACH Field Guide</a>, der die Plattformen für dieses Live-Monitoring bewertet. Die Architektur wird hier behoben, die Live-Sichtbarkeit dort überwacht.</p>
 
     <div class="cta-mini" id="cta-chapter-4">
       <div class="body">
         <div class="lab"><span lang="en">Talk to BEE · Chapter 4 next step</span><span lang="de">Mit BEE sprechen · Nächster Schritt aus Kapitel 4</span></div>
-        <h4 lang="en">Register your corporate domain for a foundational Guard Audit baseline run.</h4>
-        <h4 lang="de">Registriere deine Corporate Domain für einen ersten Guard-Audit-Baseline-Lauf.</h4>
+        <h4 lang="en">Start with a free AI-readiness audit — the entry point to a BEE Growth Retainer.</h4>
+        <h4 lang="de">Starte mit einem kostenlosen AI-Readiness-Audit — dem Einstieg in ein BEE Growth Retainer.</h4>
         <p lang="en">We measure your AI-Readiness Composite Score across the four sub-components, generate the full Solution Card set, and deliver the report with a 30-minute walkthrough — so your team can start the remediation sprint with priorities already sorted.</p>
         <p lang="de">Wir ermitteln deinen AI-Readiness-Composite-Score über alle vier Subkomponenten, generieren das vollständige Solution-Card-Set und übergeben den Report inklusive einem 30-minütigen Walkthrough — damit dein Team den Remediation-Sprint mit bereits priorisierter Agenda starten kann.</p>
       </div>
-      <a href="https://www.bee.digital/" class="btn"><span lang="en">Register the domain</span><span lang="de">Domain registrieren</span></a>
+      <a href="https://bee-digital-growth.ch/ai-audit" class="btn"><span lang="en">Register the domain</span><span lang="de">Domain registrieren</span></a><!-- TODO: confirm final BEE-owned audit landing page URL; keep identical to Field Guide CTA -->
     </div>
   </div>
 </section>
@@ -913,21 +922,27 @@
     <div class="keypts">
       <div class="lab"><span lang="en">Key context &amp; takeaways</span><span lang="de">Kontext &amp; Kernaussagen</span></div>
       <ul lang="en">
-        <li>Foundational AI model training operates on long horizons. To sink deeply into neural network weights, web architecture data must remain perfectly consistent, clean and structured across consecutive quarters <sup>[4]</sup>.</li>
+        <li>Foundational AI model training operates on long horizons. Because major LLM training corpora draw on sources like Common Crawl, architecture that stays consistent across consecutive Common Crawl snapshots is ingested more reliably than architecture that drifts between them <sup>[4]</sup>.</li>
         <li>Single audits expire. Continuous governance does not.</li>
         <li>The deliverable is not a static report — it is an operating model with editorial, technical, and validation cadences that hold the line as engines and standards evolve.</li>
         <li>Without that operating layer, even a perfect baseline score erodes within two quarters of new content publication.</li>
       </ul>
       <ul lang="de">
-        <li>Foundational-AI-Modell-Training operiert auf langen Zeithorizonten. Damit Daten tief in die Gewichte neuronaler Netze einsinken, muss die Web-Architektur über aufeinanderfolgende Quartale hinweg vollständig konsistent, sauber und strukturiert bleiben <sup>[4]</sup>.</li>
+        <li>Foundational-AI-Modell-Training operiert auf langen Zeithorizonten. Da grosse LLM-Trainingskorpora auf Quellen wie Common Crawl zurückgreifen, wird eine Architektur, die über aufeinanderfolgende Common-Crawl-Snapshots konsistent bleibt, zuverlässiger aufgenommen als eine, die zwischen den Snapshots driftet <sup>[4]</sup>.</li>
         <li>Einzelne Audits verfallen mit der Zeit. Kontinuierliche Governance bleibt wirksam.</li>
         <li>Das Lieferobjekt ist kein statischer Report, sondern ein Operating Model mit redaktionellen, technischen und validierenden Kadenzen, die die etablierte Position halten, während Engines und Standards sich weiterentwickeln.</li>
         <li>Ohne diese operative Ebene erodiert selbst ein perfekter Baseline-Score binnen zweier Quartale neuer Content-Publikation.</li>
       </ul>
     </div>
 
-    <p class="lede" lang="en">Generative AI models are retrained on rolling cadences. The web data ingested during each cycle accumulates differently depending on how consistently the source has been structured. A site that maintains its architecture across four consecutive quarters sinks deep into the next training pass; a site that drifts surfaces shallow citations that the next retraining wipes away.</p>
-    <p class="lede" lang="de">Generative AI-Modelle werden in rollierenden Kadenzen retrainiert. Die in jedem Zyklus aufgenommenen Web-Daten akkumulieren je nach struktureller Konsistenz der Quelle unterschiedlich. Eine Website, die ihre Architektur über vier aufeinanderfolgende Quartale beibehält, sinkt tief in den nächsten Trainings-Pass ein; eine driftende Website hinterlässt oberflächliche Citations, die das nachfolgende Retraining wieder entfernt.</p>
+    <p class="lede" lang="en">Generative AI models are retrained on rolling cadences. The web data ingested during each cycle accumulates differently depending on how consistently the source has been structured. Sites whose architecture is consistent across consecutive Common Crawl snapshots appear more reliably in the LLM training datasets that depend on those snapshots; sites that drift between snapshots provide a weaker, less consistent signal for that ingestion.</p>
+    <p class="lede" lang="de">Generative AI-Modelle werden in rollierenden Kadenzen retrainiert. Die in jedem Zyklus aufgenommenen Web-Daten akkumulieren je nach struktureller Konsistenz der Quelle unterschiedlich. Websites, deren Architektur über aufeinanderfolgende Common-Crawl-Snapshots konsistent bleibt, erscheinen zuverlässiger in den LLM-Trainingsdatensätzen, die auf diesen Snapshots beruhen; Websites, die zwischen den Snapshots driften, liefern ein schwächeres, weniger konsistentes Signal für diese Aufnahme.</p>
+
+    <div id="walking-the-talk" style="background:#FFF8EC;border-left:3px solid #FFB342;border-radius:0 10px 10px 0;padding:20px 24px;margin:28px 0">
+      <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#C4860A;font-weight:600;margin-bottom:8px"><span lang="en">Walking the talk · bee.digital relaunch</span><span lang="de">Wir wenden es auf uns selbst an · bee.digital Relaunch</span></div>
+      <p lang="en" style="margin:0">BEE is rebuilding bee.digital on exactly these AI-readiness principles. The relaunched site is re-audited 60+ days after launch, with success measured where it matters — traffic, brand mentions and qualified ICP lead generation, not a technical score in isolation. We will publish the before/after as a case study once the results are in.</p>
+      <p lang="de" style="margin:10px 0 0">BEE baut bee.digital nach genau diesen AI-Readiness-Prinzipien neu auf. Die relaunchte Website wird 60+ Tage nach dem Launch erneut auditiert — der Erfolg wird dort gemessen, wo er zählt: Traffic, Brand Mentions und qualifizierte ICP-Lead-Generierung, nicht an einem isolierten technischen Score. Das Before/After veröffentlichen wir als Case Study, sobald die Ergebnisse vorliegen.</p>
+    </div>
 
     <h3 id="continuous-governance"><span lang="en">From one-off audit to continuous governance</span><span lang="de">Vom Einmal-Audit zur kontinuierlichen Governance</span></h3>
 
@@ -954,12 +969,12 @@
           <td><span lang="en">Monthly</span><span lang="de">Monatlich</span></td>
           <td><span lang="en">SEO specialist</span><span lang="de">SEO Specialist</span></td>
           <td><span lang="en">Schema graph integrity check; <code>llms.txt</code> drift detection; new agent user-agent registry sync</span><span lang="de">Integritätsprüfung des Schema-Graphen; Drift-Detection der <code>llms.txt</code>; Synchronisation der User-Agent-Registry für neue Agenten</span></td>
-          <td><span lang="en">Updated Guard Audit composite score delta</span><span lang="de">Aktualisierter Composite-Score-Delta des Guard Audits</span></td>
+          <td><span lang="en">Updated AI-Readiness Audit composite score delta</span><span lang="de">Aktualisierter Composite-Score-Delta des AI-Readiness Audits</span></td>
         </tr>
         <tr>
           <td><span lang="en">Quarterly</span><span lang="de">Quartalsweise</span></td>
           <td><span lang="en">CTO + BEE engineering squad</span><span lang="de">CTO und BEE-Engineering-Squad</span></td>
-          <td><span lang="en">Full Guard Audit re-run; standards review (new Schema.org types, llms-full.txt adoption); roadmap update</span><span lang="de">Vollständiger Re-Run des Guard Audits; Standards-Review (neue Schema.org-Typen, llms-full.txt-Adoption); Roadmap-Update</span></td>
+          <td><span lang="en">Full AI-Readiness Audit re-run; standards review (new Schema.org types, llms-full.txt adoption); roadmap update</span><span lang="de">Vollständiger Re-Run des AI-Readiness Audits; Standards-Review (neue Schema.org-Typen, llms-full.txt-Adoption); Roadmap-Update</span></td>
           <td><span lang="en">Board-level readiness report</span><span lang="de">Readiness-Report auf Board-Niveau</span></td>
         </tr>
       </tbody>
@@ -973,8 +988,8 @@
         <div class="lab"><span lang="en">Talk to BEE · Chapter 5 next step</span><span lang="de">Mit BEE sprechen · Nächster Schritt aus Kapitel 5</span></div>
         <h4 lang="en">Design a long-term Corporate GEO Governance Roadmap with BEE.</h4>
         <h4 lang="de">Eine langfristige Corporate GEO Governance Roadmap gemeinsam mit BEE entwickeln.</h4>
-        <p lang="en">We define the weekly, monthly and quarterly cadences for your specific organisation, assign owners, instrument the Guard Audit baseline into your reporting line, and embed the editorial framework into your existing content production workflow.</p>
-        <p lang="de">Wir definieren die wöchentlichen, monatlichen und quartalsweisen Kadenzen passgenau für deine Organisation, weisen Verantwortlichkeiten zu, instrumentieren die Guard-Audit-Baseline in deine Reporting-Linie und verankern das redaktionelle Framework in deinem bestehenden Content-Produktions-Workflow.</p>
+        <p lang="en">We define the weekly, monthly and quarterly cadences for your specific organisation, assign owners, instrument the AI-Readiness Audit baseline into your reporting line, and embed the editorial framework into your existing content production workflow.</p>
+        <p lang="de">Wir definieren die wöchentlichen, monatlichen und quartalsweisen Kadenzen passgenau für deine Organisation, weisen Verantwortlichkeiten zu, instrumentieren die AI-Readiness-Audit-Baseline in deine Reporting-Linie und verankern das redaktionelle Framework in deinem bestehenden Content-Produktions-Workflow.</p>
       </div>
       <a href="https://www.bee.digital/" class="btn"><span lang="en">Design the roadmap</span><span lang="de">Roadmap entwickeln</span></a>
     </div>
@@ -1066,8 +1081,8 @@
       </div>
       <div class="term" id="g-agentic-framework">
         <h4><span lang="en">Agentic framework</span><span lang="de">Agentisches Framework</span></h4>
-        <p lang="en">A software system in which autonomous agents — typically LLM-backed — execute multi-step tasks against a target (a website, an API, a knowledge base) and produce a structured output. The BEE Guard Audit is an agentic framework: it scrapes, scores and generates remediation cards without a human in the loop.</p>
-        <p lang="de">Ein Softwaresystem, in dem autonome Agenten — typischerweise LLM-basiert — mehrstufige Aufgaben gegen ein Ziel (Website, API, Knowledge Base) ausführen und einen strukturierten Output produzieren. Das BEE Guard Audit ist ein agentisches Framework: Es scraped, scort und generiert Remediation-Cards vollständig ohne Human-in-the-Loop.</p>
+        <p lang="en">A software system in which autonomous agents — typically LLM-backed — execute multi-step tasks against a target (a website, an API, a knowledge base) and produce a structured output. The BEE AI-Readiness Audit is an agentic framework: it scrapes, scores and generates remediation cards without a human in the loop.</p>
+        <p lang="de">Ein Softwaresystem, in dem autonome Agenten — typischerweise LLM-basiert — mehrstufige Aufgaben gegen ein Ziel (Website, API, Knowledge Base) ausführen und einen strukturierten Output produzieren. Das BEE AI-Readiness Audit ist ein agentisches Framework: Es scraped, scort und generiert Remediation-Cards vollständig ohne Human-in-the-Loop.</p>
       </div>
       <div class="term" id="g-deterministic-score">
         <h4><span lang="en">Deterministic score</span><span lang="de">Deterministischer Score</span></h4>
@@ -1087,21 +1102,21 @@
   <div class="wrap">
     <div class="ch-eyebrow"><span lang="en">End matter · 3 of 3</span><span lang="de">Anhang · 3 von 3</span></div>
     <h2 id="references"><span lang="en">References &amp; sources.</span><span lang="de">Quellen &amp; Belege.</span></h2>
-    <p class="lede" lang="en">Every benchmark, study and technical claim in this playbook traces back to a publicly verifiable source. The ledger below is ordered by reference number in order of first appearance.</p>
-    <p class="lede" lang="de">Jedes Benchmark, jede Studie und jede technische Aussage dieses Praxisleitfadens lässt sich auf eine öffentlich verifizierbare Quelle zurückführen. Das nachfolgende Verzeichnis ist nach Referenznummer in Reihenfolge des ersten Auftretens geordnet.</p>
+    <p class="lede" lang="en">Every benchmark, study and technical claim in this playbook is attributed to its source below; where a public link is available it is included. The ledger is ordered by reference number in order of first appearance.</p>
+    <p class="lede" lang="de">Jedes Benchmark, jede Studie und jede technische Aussage dieses Praxisleitfadens ist nachfolgend ihrer Quelle zugeordnet; sofern ein öffentlicher Link verfügbar ist, wird er angegeben. Das Verzeichnis ist nach Referenznummer in Reihenfolge des ersten Auftretens geordnet.</p>
 
     <ol class="refs">
-      <li>Aggarwal, P., Murahari, V., Rajpurohit, T., et al. (2024). <em>GEO: Generative Engine Optimization.</em> Proceedings of the 30th ACM SIGKDD Conference on Discovery and Data Mining, 5–16. Citation-first optimization lift data; 40% formatting visibility gains.</li>
-      <li>Parihar, D. (2026). <em>RAG Chunking Strategies: What's the Optimal Chunk Size?</em> Medium Technology Analysis. Chunk tuning optimization ranges (256–512 tokens); recursive boundary precision benchmarks.</li>
-      <li>Chrome for Developers (2026). <em>llms.txt | Lighthouse Audit.</em> Chrome Developer Agentic Browsing Protocols. Automated file discovery standards and root validation frameworks.</li>
-      <li>GetMint AI (2026). <em>What Is llms.txt? The New Sitemap for AI Search (2026 Guide).</em> Specification mechanics; markdown indexing; token context window constraints; llms-full.txt use cases.</li>
-      <li>Frase.io (2026). <em>Entity Optimization for GEO: The 2026 Practitioner Guide.</em> JSON-LD organization architecture; resolving identifier ambiguity via sameAs Wikidata Q-IDs and Google Graph MIDs.</li>
-      <li>arXiv:2601.14123v1 (2026). <em>A Systematic Analysis of Chunking Strategies for Reliable Question Answering.</em> Empirical evaluations of sentence vs. semantic parsing; token sequence thresholds; cosine-similarity boundaries.</li>
-      <li>Mersel AI (2026). <em>Generative Engine Optimization (GEO) for B2B: The Complete 2026 Guide.</em> 4 tactical metrics; 60-word opener lift factors; machine-readable infrastructure parameters.</li>
-      <li>Syncronika (2026). <em>GEO: Generative Engine Optimization explained clearly.</em> Zero-click impact matrices; retrieval-augmented generation pipelines; thematic depth metrics.</li>
-      <li>Celum (2026). <em>Making Your Website AI‑Ready: Staying Visible in the Age of AI / Agentic Search.</em> Core frameworks for agentic e-commerce, lead generation, API-first interfaces, and text metadata requirements. <a href="https://www.celum.com/en/blog/making-your-website-ai-ready-staying-visible-in-the-age-of-ai/">celum.com/blog/making-your-website-ai-ready</a></li>
-      <li>Reddit r/DigitalMarketing (2026). <em>Is your website actually ready for AI search? Most aren't.</em> Conversational extraction parameters; 30-second money page audit metrics; structural vs. vague content. <a href="https://www.reddit.com/r/DigitalMarketing/comments/1ssrofj/is_your_website_actually_ready_for_ai_search_most/">reddit.com/r/DigitalMarketing</a></li>
-      <li>121 Web (2026). <em>Is Your Website Ready for AI Search? Try Our Free AI Checker.</em> Technical signals verification; XML sitemap requirements; NAP consistency across external graphs. <a href="https://121web.site/is-your-website-ready-for-ai-search-try-my-free-ai-website-checker">121web.site/ai-checker</a></li>
+      <li id="ref-1">Aggarwal, P., Murahari, V., Rajpurohit, T., et al. (2024). <em>GEO: Generative Engine Optimization.</em> Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining. Citation-first optimization lift data; up to 40% formatting visibility gains. <a href="https://arxiv.org/abs/2311.09735">arxiv.org/abs/2311.09735</a></li>
+      <li id="ref-2">Schwaber-Cohen, R. &amp; Patel, A. (2025). <em>Chunking Strategies for LLM Applications.</em> Pinecone. Chunk-size trade-offs (128 / 256 / 512 / 1024 tokens) for retrieval precision and recall. <a href="https://www.pinecone.io/learn/chunking-strategies">pinecone.io/learn/chunking-strategies</a></li>
+      <li id="ref-3">Howard, J. (2024). <em>The /llms.txt file.</em> Answer.AI (llmstxt.org). The proposal to standardise a root <code>/llms.txt</code> Markdown file as a machine sitemap for LLMs. <a href="https://llmstxt.org/">llmstxt.org</a></li>
+      <li id="ref-4">Answer.AI (2024). <em>llms-txt — specification, CLI and tooling (incl. llms-full / context expansion).</em> GitHub: AnswerDotAI/llms-txt. <a href="https://github.com/AnswerDotAI/llms-txt">github.com/AnswerDotAI/llms-txt</a></li>
+      <li id="ref-5">Google Search Central. <em>Organization (schema.org) structured data — including <code>sameAs</code> entity references.</em> Google for Developers. <a href="https://developers.google.com/search/docs/appearance/structured-data/organization">developers.google.com/search/docs/appearance/structured-data/organization</a></li>
+      <li id="ref-6">arXiv:2601.14123v1 (2026). <em>A Systematic Analysis of Chunking Strategies for Reliable Question Answering.</em> Empirical evaluations of sentence vs. semantic parsing; token sequence thresholds; cosine-similarity boundaries. <a href="https://arxiv.org/abs/2601.14123">arxiv.org/abs/2601.14123</a></li>
+      <li id="ref-7"><em>Generative engine optimization.</em> Wikipedia. Overview of GEO/AEO practitioner metrics — brand mentions, cited URLs and share of voice in AI-generated answers. <a href="https://en.wikipedia.org/wiki/Generative_engine_optimization">en.wikipedia.org/wiki/Generative_engine_optimization</a></li>
+      <li id="ref-8">Maritz, S. (2026). <em>Answer Engine Optimization (AEO): The Comprehensive Guide for 2026.</em> CXL. Zero-click search visibility, AI Overviews and ChatGPT-citation tactics. <a href="https://cxl.com/blog/answer-engine-optimization-aeo-the-comprehensive-guide/">cxl.com/blog/answer-engine-optimization-aeo-the-comprehensive-guide</a></li>
+      <li id="ref-9">Celum (2026). <em>Making Your Website AI‑Ready: Staying Visible in the Age of AI / Agentic Search.</em> Core frameworks for agentic e-commerce, lead generation, API-first interfaces, and text metadata requirements. <a href="https://www.celum.com/en/blog/making-your-website-ai-ready-staying-visible-in-the-age-of-ai/">celum.com/blog/making-your-website-ai-ready</a></li>
+      <li id="ref-10">Reddit r/DigitalMarketing (2026). <em>Is your website actually ready for AI search? Most aren't.</em> Conversational extraction parameters; 30-second money page audit metrics; structural vs. vague content. <a href="https://www.reddit.com/r/DigitalMarketing/comments/1ssrofj/is_your_website_actually_ready_for_ai_search_most/">reddit.com/r/DigitalMarketing</a></li>
+      <li id="ref-11">121 Web (2026). <em>Is Your Website Ready for AI Search? Try Our Free AI Checker.</em> Technical signals verification; XML sitemap requirements; NAP consistency across external graphs. <a href="https://121web.site/is-your-website-ready-for-ai-search-try-my-free-ai-website-checker">121web.site/ai-checker</a></li>
     </ol>
 
     <div class="cta" id="cta-closing" style="margin-top:36px">
@@ -1109,10 +1124,10 @@
         <div class="lab"><span lang="en">Next step</span><span lang="de">Nächster Schritt</span></div>
         <h3 lang="en">Benchmark and secure your web core for the age of generative search.</h3>
         <h3 lang="de">Benchmarken Sie Ihren Web-Core und sichern Sie ihn für das Zeitalter der generativen Suche.</h3>
-        <p lang="en">If this playbook made the architecture clear but exposed gaps in your own estate, talk to us. We open every engagement with a complete BEE Guard Audit integration — deterministic baseline score, full Solution Card set, and an executable remediation sprint — and stay on as the governance partner that holds the line across the next four quarters of model retraining cycles.</p>
-        <p lang="de">Sofern dieser Praxisleitfaden die Architektur transparent gemacht, aber zugleich Lücken in Ihrem eigenen Estate sichtbar werden lassen hat, treten Sie mit uns in den Austausch. Wir beginnen jedes Mandat mit einer vollständigen BEE-Guard-Audit-Integration — deterministischer Baseline-Score, vollständiger Solution-Card-Set und ein direkt ausführbarer Remediation-Sprint — und begleiten Sie anschliessend als Governance-Partner, der die Position über die nächsten vier Quartale der Modell-Retraining-Zyklen verlässlich hält.</p>
+        <p lang="en">If this playbook made the architecture clear but exposed gaps in your own estate, talk to us. We don’t sell one-off audits — the AI-readiness audit is the foot-in-the-door to a BEE Growth Retainer, where the deterministic baseline score and Solution Cards feed an ongoing programme measured on traffic, brand mentions and qualified ICP lead generation.</p>
+        <p lang="de">Sofern dieser Praxisleitfaden die Architektur transparent gemacht, aber zugleich Lücken in Ihrem eigenen Estate sichtbar werden lassen hat, treten Sie mit uns in den Austausch. Wir verkaufen keine Einmal-Audits — das AI-Readiness-Audit ist der Einstieg in ein BEE Growth Retainer, in dem der deterministische Baseline-Score und die Solution Cards ein laufendes Programm speisen, das an Traffic, Brand Mentions und qualifizierter ICP-Lead-Generierung gemessen wird.</p>
         <div class="btnrow">
-          <a href="https://www.bee.digital/" class="btn"><span lang="en">Run a BEE Guard Audit</span><span lang="de">BEE Guard Audit starten</span></a>
+          <a href="https://bee-digital-growth.ch/ai-audit" class="btn"><span lang="en">Start a free AI-readiness audit</span><span lang="de">Kostenloses AI-Readiness-Audit starten</span></a><!-- TODO: confirm final BEE-owned audit landing page URL; keep identical to Field Guide CTA -->
           <a href="https://www.bee.digital/" class="btn ghost"><span lang="en">bee.digital</span><span lang="de">bee.digital</span></a>
         </div>
       </div>
