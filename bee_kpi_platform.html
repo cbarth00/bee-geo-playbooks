@@ -1016,12 +1016,20 @@
 
   /* Workshop form controls — use theme surfaces so they aren't harsh white in dark mode */
   #addKpiForm input, #addKpiForm select, #addKpiForm textarea,
+  #addMeasureForm input, #addMeasureForm select,
   #editKpiForm input, #editKpiForm textarea {
     background: var(--white);
     color: var(--navy);
   }
   #addKpiForm input::placeholder, #addKpiForm textarea::placeholder,
+  #addMeasureForm input::placeholder,
   #editKpiForm input::placeholder, #editKpiForm textarea::placeholder { color: var(--slate-2); }
+  .kpi-measure { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; margin-top: 4px; font-size: 10px; line-height: 1.3; }
+  .kpi-measure .km-label { font-size: 8.5px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--bee-blue); background: var(--light); border-radius: 3px; padding: 1px 5px; }
+  .kpi-measure .km-base { color: var(--slate); }
+  .kpi-measure .km-arrow { color: var(--slate-2); }
+  .kpi-measure .km-target { color: var(--bee-blue); font-weight: 600; }
+  .kpi-measure .km-unit { color: var(--slate-2); }
 
   /* ============================================================
      PAGE 5 — HOW IT WORKS
@@ -1430,83 +1438,112 @@
     <div class="cust-controls">
       <span class="cust-counter"><strong id="custSelectedCount">0</strong> <span data-i18n="cust.of">of</span> <strong id="custTotalCount">0</strong> <span data-i18n="cust.selected">KPIs selected</span></span>
       <button class="btn" id="custReset" data-i18n="cust.reset">Reset to full architecture</button>
-      <button class="btn btn-ghost" id="custUndo" title="Nothing to undo" disabled>Undo</button>
+      <button class="btn btn-ghost" id="custUndo" data-i18n="cust.undo" data-i18n-title="cust.undo_none" disabled>Undo</button>
       <span class="btn-row">
         <button class="btn btn-ghost" id="custStarter" data-i18n="cust.starter">Select recommended starter set</button>
         <button class="info-icon" id="starterInfoBtn" aria-label="What is the recommended starter set?" title="Why this starter set?">i</button>
       </span>
       <button class="btn btn-ghost" id="custClear" data-i18n="cust.clear">Clear all</button>
       <span class="btn-row">
-        <button class="btn btn-ghost" id="custExport">Export session (JSON)</button>
-        <button class="btn btn-ghost" id="custImport">Import session</button>
+        <button class="btn btn-ghost" id="custExport" data-i18n="cust.export">Export session (JSON)</button>
+        <button class="btn btn-ghost" id="custImport" data-i18n="cust.import">Import session</button>
       </span>
       <input type="file" id="custImportFile" accept="application/json,.json" style="display:none;">
     </div>
 
     <div class="cust-stage" style="border-left-color: var(--bee-yellow); background: var(--warm); margin-top: 14px;">
-      <h3 style="color: var(--amber); border-bottom-color: #F3D9A4;">Workshop Sandbox · Add Custom Metric</h3>
+      <h3 style="color: var(--amber); border-bottom-color: #F3D9A4;" data-i18n="ws.add_metric_title">Workshop Sandbox · Add Custom Metric</h3>
       <form id="addKpiForm" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; font-size: 12px;">
         <div>
-          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);">Short Name</label>
+          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);" data-i18n="ws.short_name">Short Name</label>
           <input type="text" id="add_shortName" required style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
         </div>
         <div>
-          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);">Full Descriptive Name</label>
+          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);" data-i18n="ws.full_name">Full Descriptive Name</label>
           <input type="text" id="add_fullName" required style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
         </div>
         <div>
-          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);">Funnel Stage</label>
+          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);" data-i18n="ws.funnel_stage">Funnel Stage</label>
           <select id="add_stage" style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
-            <option value="AI / Organic Visibility">01 AI / Organic Visibility</option>
-            <option value="Traffic Quality">02 Traffic Quality</option>
-            <option value="Engagement">03 Engagement</option>
-            <option value="Lead Conversion">04 Lead Conversion</option>
-            <option value="Pipeline">05 Pipeline</option>
-            <option value="Revenue">06 Revenue</option>
-            <option value="Expansion">07 Expansion</option>
+            <option value="AI / Organic Visibility" data-i18n="ws.opt_stage1">01 AI / Organic Visibility</option>
+            <option value="Traffic Quality" data-i18n="ws.opt_stage2">02 Traffic Quality</option>
+            <option value="Engagement" data-i18n="ws.opt_stage3">03 Engagement</option>
+            <option value="Lead Conversion" data-i18n="ws.opt_stage4">04 Lead Conversion</option>
+            <option value="Pipeline" data-i18n="ws.opt_stage5">05 Pipeline</option>
+            <option value="Revenue" data-i18n="ws.opt_stage6">06 Revenue</option>
+            <option value="Expansion" data-i18n="ws.opt_stage7">07 Expansion</option>
           </select>
         </div>
         <div>
-          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);">Tier / Department</label>
+          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);" data-i18n="ws.tier_dept">Tier / Department</label>
           <select id="add_dept" style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
-            <option value="Management">Management (Tier 1)</option>
-            <option value="Expert">Expert (Tier 2)</option>
-            <option value="Optimizer">Optimizer (Tier 3)</option>
+            <option value="Management" data-i18n="ws.opt_mgmt">Management (Tier 1)</option>
+            <option value="Expert" data-i18n="ws.opt_expert">Expert (Tier 2)</option>
+            <option value="Optimizer" data-i18n="ws.opt_optim">Optimizer (Tier 3)</option>
           </select>
         </div>
         <div>
-          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);">Reporting Cadence</label>
+          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);" data-i18n="ws.cadence">Reporting Cadence</label>
           <select id="add_freq" style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
-            <option value="D">Daily (D)</option>
-            <option value="W">Weekly (W)</option>
-            <option value="M">Monthly (M)</option>
-            <option value="Q">Quarterly (Q)</option>
+            <option value="D" data-i18n="ws.opt_daily">Daily (D)</option>
+            <option value="W" data-i18n="ws.opt_weekly">Weekly (W)</option>
+            <option value="M" data-i18n="ws.opt_monthly">Monthly (M)</option>
+            <option value="Q" data-i18n="ws.opt_quarterly">Quarterly (Q)</option>
           </select>
         </div>
         <div>
-          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);">MoSCoW Priority</label>
+          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);" data-i18n="ws.priority">MoSCoW Priority</label>
           <select id="add_pri" style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
-            <option value="1">P1 · Must</option>
-            <option value="2">P2 · Should</option>
-            <option value="3">P3 · Could</option>
+            <option value="1" data-i18n="ws.opt_p1">P1 · Must</option>
+            <option value="2" data-i18n="ws.opt_p2">P2 · Should</option>
+            <option value="3" data-i18n="ws.opt_p3">P3 · Could</option>
           </select>
         </div>
         <div style="grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
           <div>
-            <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);">Operational Definition</label>
+            <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);" data-i18n="ws.op_def">Operational Definition</label>
             <textarea id="add_def" required style="width:100%; height:44px; padding:6px; border:1px solid var(--hairline); border-radius:4px; font-family:inherit;"></textarea>
           </div>
           <div>
-            <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);">Strategic Meaning</label>
+            <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);" data-i18n="ws.strategic_meaning">Strategic Meaning</label>
             <textarea id="add_mean" required style="width:100%; height:44px; padding:6px; border:1px solid var(--hairline); border-radius:4px; font-family:inherit;"></textarea>
           </div>
           <div>
-            <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);">Downstream Impact</label>
+            <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);" data-i18n="ws.downstream_impact">Downstream Impact</label>
             <textarea id="add_imp" required style="width:100%; height:44px; padding:6px; border:1px solid var(--hairline); border-radius:4px; font-family:inherit;"></textarea>
           </div>
         </div>
         <div style="grid-column: 1 / -1; margin-top: 4px;">
-          <button type="submit" class="btn" style="background: var(--bee-blue); color:#fff; border-color: var(--bee-blue);">+ Inject KPI Into Active Grid</button>
+          <button type="submit" class="btn" style="background: var(--bee-blue); color:#fff; border-color: var(--bee-blue);" data-i18n="ws.inject">+ Inject KPI Into Active Grid</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="cust-stage" style="border-left-color: var(--bee-yellow); background: var(--warm); margin-top: 14px;">
+      <h3 style="color: var(--amber); border-bottom-color: #F3D9A4;" data-i18n="ws.measures_title">Workshop Sandbox · Add Baseline &amp; Target Measures</h3>
+      <p style="font-size:11.5px; color:var(--slate); margin:-2px 0 12px; line-height:1.5;" data-i18n="ws.measures_intro">Attach a measurable objective to any KPI — its current baseline and the target you're driving toward. Values are saved with your session and appear under the KPI on the Dashboard Grid.</p>
+      <form id="addMeasureForm" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; font-size: 12px;">
+        <div style="grid-column: 1 / -1;">
+          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);" data-i18n="ws.kpi">KPI</label>
+          <select id="measure_kpi" required style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
+            <option value="">Select a KPI…</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);" data-i18n="ws.baseline">Baseline (current)</label>
+          <input type="text" id="measure_baseline" data-i18n-placeholder="ws.baseline_ph" placeholder="e.g. 12%" style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
+        </div>
+        <div>
+          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);" data-i18n="ws.target">Target</label>
+          <input type="text" id="measure_target" data-i18n-placeholder="ws.target_ph" placeholder="e.g. 25%" style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
+        </div>
+        <div>
+          <label style="display:block; font-weight:600; margin-bottom:4px; color:var(--navy);" data-i18n="ws.unit">Unit / timeframe (optional)</label>
+          <input type="text" id="measure_unit" data-i18n-placeholder="ws.unit_ph" placeholder="e.g. by Q4 2026" style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
+        </div>
+        <div style="grid-column: 1 / -1; margin-top: 4px; display:flex; gap:8px; flex-wrap:wrap;">
+          <button type="submit" class="btn" style="background: var(--bee-blue); color:#fff; border-color: var(--bee-blue);" data-i18n="ws.set_measures">Set baseline &amp; target</button>
+          <button type="button" id="measure_clear" class="btn btn-ghost" data-i18n="ws.clear_measures">Clear measures on this KPI</button>
         </div>
       </form>
     </div>
@@ -2811,6 +2848,12 @@ const BASELINE_KPIS = [
 // ── Workshop Sandbox runtime state ──────────────────────────
 let KPIS = JSON.parse(localStorage.getItem('BEE_WORKSHOP_KPIS')) || JSON.parse(JSON.stringify(BASELINE_KPIS));
 
+const STAGE_DE = {"AI / Organic Visibility": "AI / Organische Sichtbarkeit", "Traffic Quality": "Traffic-Qualität", "Engagement": "Engagement", "Lead Conversion": "Lead-Conversion", "Pipeline": "Pipeline", "Revenue": "Umsatz", "Expansion": "Expansion"};
+const KPI_DE = {"ai_visibility": {"fullName": "AI Visibility — Anteil der AI-Antworten, in denen die Marke im definierten Prompt-Panel zitiert wird", "definition": "Monatlicher Anteil der AI-Antworten über ein definiertes Prompt-Panel, in denen die Marke mindestens einmal zitiert wird. Von Peec AI als kanonische „Visibility“-Metrik ausgewiesen.", "meaning": "Zeigt, ob die Marke von generativen Engines für die Fragen ausgespielt wird, die Käufer tatsächlich stellen. Bewegung spiegelt Content-Autorität und die Readiness strukturierter Daten wider, nicht Paid-Platzierung.", "impact": "Bestimmt AI-getriebenen Traffic, Marken-Discovery und nachgelagerte qualifizierte Pipeline. Der früheste Frühindikator dafür, dass sich organische Nachfrage von der klassischen Suche zu AI-Antworten verlagert.", "priorityRationale": "MoSCoW Must — Management-North-Star für LLM-Sichtbarkeit, abgestimmt auf die kanonische „Visibility“-Metrik von Peec AI. Das Makro-Ergebnis, auf das jede Expert- und Optimizer-KPI dieser Spalte letztlich einzahlt."}, "organic_visibility_index": {"fullName": "Composite aus organischen Impressionen, Ranking-Verteilung und Markenpräsenz", "definition": "Composite-Index aus den gesamten organischen Impressionen, der Verteilung der Ranking-Positionen (Anteil Top-3, Top-10) und der Präsenz bei Marken-Queries über den indexierten Bestand.", "meaning": "Zeigt die organische Gesamtgesundheit. Ein steigender Index bei stabilem Klick-Anteil bedeutet mehr Impression-Fläche; ein steigender Index bei fallender CTR deutet auf Ranking-Inflation hin.", "impact": "Rahmt jede organisch getriebene Entscheidung: Content-Investitionen, Prioritäten im technischen SEO, Balance zwischen Branded und Non-Branded.", "priorityRationale": "MoSCoW Must — Management-North-Star für die klassische Organik. Ergänzt den AI Share of Voice zu einem vollständigen Sichtbarkeitsbild."}, "branded_nonbranded_mix": {"fullName": "Verhältnis von Branded- zu Non-Branded-Impressionen in der Organik", "definition": "Wöchentliche Aufteilung der organischen Impressionen zwischen Branded-Queries (mit Markenbegriffen) und Non-Branded-Queries (generische thematische Begriffe).", "meaning": "Ein zu hoher Branded-Anteil signalisiert schwache Nachfragegenerierung; ein zu hoher Non-Branded-Anteil signalisiert schwache Markenautorität. Der gesunde Mix hängt von der Reife des Segments ab.", "impact": "Steuert die Content-Investition zwischen Demand-Generation-Inhalten (Non-Branded-Abdeckung) und Demand-Capture-Inhalten (Branded-Conversion-Pfade).", "priorityRationale": "MoSCoW Should — Expert-Diagnose. Eine Schieflage hier erklärt direkt Bewegungen im Organic Visibility Index und in der Quellen-Zusammensetzung der Pipeline."}, "topic_cluster_coverage": {"fullName": "Anteil der Ziel-Themen mit rankenden Inhalten", "definition": "Anteil der vordefinierten Ziel-Themencluster, für die die Website mindestens eine URL in den oberen organischen Positionen ranken hat.", "meaning": "Zeigt die Breite der thematischen Autorität. Geringe Abdeckung bedeutet, dass Wettbewerber ganze Fragekategorien besetzen, in denen die Marke nicht sichtbar ist.", "impact": "Steuert die Planung von Content-Briefings und die Redaktions-Roadmap. Wirkt direkt auf die nachgelagerte AI-Citation-Abdeckung, da LLMs gut abgedeckte thematische Autoritäten zitieren.", "priorityRationale": "MoSCoW Should — Abdeckungslücken erklären, warum ganze Decision-Intent-Journeys keinen Traffic anziehen."}, "ai_sentiment": {"fullName": "AI Sentiment — Tonalität der Markennennungen über das LLM-Prompt-Panel", "definition": "Monatliche Sentiment-Polarität (positiv, neutral, negativ) der Markennennungen über das definierte LLM-Prompt-Panel. Von Peec AI als kanonische „Sentiment“-Metrik ausgewiesen.", "meaning": "Zeigt die Qualität der AI-Präsenz, nicht nur die Menge. Zitiert zu werden und vorteilhaft zitiert zu werden sind unterschiedliche Ergebnisse — Wettbewerber versuchen zunehmend, kritische Zitate zu platzieren.", "impact": "Wirkt auf Marken-Trust-Signale vor dem qualifizierten Traffic. Eine negative Sentiment-Drift bei Decision-Stage-Prompts ist einer der stärksten Frühindikatoren für sinkende Conversion-Raten bei AI-getriebenem Traffic.", "priorityRationale": "MoSCoW Should — Expert-Diagnose für AI Visibility, abgestimmt auf die kanonische „Sentiment“-Metrik von Peec AI. Steigende Visibility bei fallendem Sentiment ist ein wiedererkennbares Warnmuster, das reine Mengenmetriken verbergen."}, "ai_position": {"fullName": "AI Position — durchschnittlicher Rang der Markenzitate in AI-Antworten über das definierte Prompt-Panel", "definition": "Monatlicher Durchschnittsrang, auf dem die Marke unter den zitierten Quellen in AI-generierten Antworten erscheint, über das definierte LLM-Prompt-Panel. Niedrigere Werte sind besser. Von Peec AI als kanonische „Position“-Metrik ausgewiesen.", "meaning": "Zeigt die Prominenz der Zitate. Die Marke kann zitiert werden (Visibility), aber am Ende einer Antwort versteckt sein (hohe Position) — beide Metriken zusammen beschreiben die Qualität der LLM-Sichtbarkeit.", "impact": "Wirkt direkt auf AI-getriebenen Traffic und das Klickverhalten aus AI-Antworten. Zitate an erster Position erzeugen überproportional mehr nachgelagerten Traffic als spätere Zitate.", "priorityRationale": "MoSCoW Should — Expert-Diagnose für AI Visibility, abgestimmt auf die kanonische „Position“-Metrik von Peec AI. Visibility sagt, ob Sie zitiert werden; Position sagt, wie prominent."}, "competitor_visibility_gap": {"fullName": "Delta des Visibility-Anteils zwischen Marke und Wettbewerb in AI-Antworten", "definition": "Monatliches Delta des Visibility-Anteils zwischen der Marke und jedem benannten Wettbewerber über das LLM-Prompt-Panel, gemessen an Zitathäufigkeit und Zitat-Prominenz innerhalb der Antwort.", "meaning": "Zeigt, ob eine Visibility-Bewegung bedeutet, dass die Marke gewinnt, verliert oder sich die gesamte Kategorie verschiebt. Flache Marken-Visibility in einer fallenden Kategorie ist ein stiller Gewinn; flache Visibility in einer steigenden Kategorie ein stiller Verlust.", "impact": "Verankert Entscheidungen zu Wettbewerbs-Content und Positionierung. Das mit Abstand handlungsleitendste Signal dafür, welche Wettbewerberseiten zu analysieren und welche Fragekategorien zu verteidigen sind.", "priorityRationale": "MoSCoW Should — Wettbewerbsdiagnose für AI Visibility. Verhält sich zu AI Visibility wie der Branded-vs-Non-Branded-Mix zum Organic Visibility Index."}, "guard_audit_total_score": {"fullName": "Guard Audit Composite Score — Schema, llms.txt, AI-Crawler-Zugang, Integrität strukturierter Daten, Migrationssicherheit", "definition": "Wöchentlicher AI-Readiness-Composite von Guard Audit = GEO + AEO. GEO (50 %) bündelt AI Crawler Strategy, Entity Recognition, LLM Guidance (Qualität der /llm-info-Seite) und AI Schema, jeweils mit 25 % gewichtet. AEO (50 %) bündelt Answer-Ready Content (30 %), Source Credibility (25 %), FAQ-Optimierung (25 %) und Content-Qualität (20 %). Die /llms.txt wird als eigenständiges Artefakt geführt und ist nicht der LLM-Guidance-Score.", "meaning": "Zeigt, ob die Website für AI-Crawler technisch lesbar ist. Ein Rückgang des Gesamtscores ist ein Ein-Zahl-Auslöser, die zugrunde liegende Guard-Audit-Komponentenaufschlüsselung zu prüfen.", "impact": "Stützt AI Visibility, Sentiment und Position, indem die Website crawlbar, zitierbar und für LLM-Trainings- und Retrieval-Pipelines parsebar bleibt.", "priorityRationale": "MoSCoW Could — Optimizer-Composite. Erfasst das technische Fundament, von dem jede AI-Visibility-Metrik abhängt. Wird als einzelner Composite-Output von Guard Audit ausgewiesen statt als Liste einzelner Komponentenscores."}, "geo_score": {"fullName": "Generative Engine Optimization Score — AI Crawler Strategy, Entity Recognition, LLM Guidance, AI Schema", "definition": "Die GEO-Hälfte der Guard AI Readiness (0–100). Ungewichteter Mittelwert aus vier gleich gewichteten Punkten (je 25 %): AI Crawler Strategy, Entity Recognition, LLM Guidance (Qualität der /llm-info-Seite) und AI Schema.", "meaning": "Zeigt, wie lesbar und parsebar die Website für AI-Crawler und Retrieval-Pipelines ist. Ein fallender GEO-Score deutet auf Crawler-Zugang-, Entity- oder Schema-Regressionen hin, bevor sie sich in der AI Visibility zeigen.", "impact": "Stützt AI Visibility und Position, indem die Website crawlbar, entity-aufgelöst und schema-valide für LLM-Training und -Retrieval bleibt. Einer der beiden Inputs für den Guard Audit Total Score.", "priorityRationale": "MoSCoW Could — Optimizer-Komponente des Guard-AI-Readiness-Composites. Isoliert die GEO-Hälfte, sodass ein Rückgang des Gesamtscores auf die technische Lesbarkeitsebene statt auf die Content-Ebene zurückgeführt werden kann."}, "aeo_score": {"fullName": "Answer Engine Optimization Score — Answer-Ready Content, Source Credibility, FAQ-Optimierung, Content-Qualität", "definition": "Die AEO-Hälfte der Guard AI Readiness (0–100). Gewichtete Mischung aus vier Punkten: Answer-Ready Content (30 %), Source Credibility (25 %), FAQ-Optimierung (25 %) und Content-Qualität (20 %).", "meaning": "Zeigt, ob On-Page-Content so strukturiert ist, dass er direkt in AI-Antworten übernommen und als Quelle vertraut wird. Ein fallender AEO-Score deutet auf Lücken bei Antwortformatierung, E-E-A-T oder FAQ hin.", "impact": "Stützt AI Visibility und Sentiment, indem Inhalte antwortfähig und glaubwürdig genug für Zitate werden. Einer der beiden Inputs für den Guard Audit Total Score.", "priorityRationale": "MoSCoW Could — Optimizer-Komponente des Guard-AI-Readiness-Composites. Isoliert die AEO-Hälfte, sodass ein Rückgang des Gesamtscores auf die Content-Qualität statt auf die technische Lesbarkeit zurückgeführt werden kann."}, "migration_health_score": {"fullName": "Migrationssicherheits-Composite — Redirect-Integrität, Index-Abdeckung, Erkennung von Schema-Regressionen", "definition": "Wöchentlicher Composite-Score von Guard Audit, der migrationsrelevante Signale erfasst: defekte Redirect-Ketten, Regressionen der Index-Abdeckung, verlorene Canonicals, Drift strukturierter Daten und Änderungen der AI-Crawler-Zugänglichkeit.", "meaning": "Ein-Zahl-Zusammenfassung des Migrationsrisikos. Ein Rückgang ohne aktive Migration ist selbst ein Signal für ungesteuerte technische Drift.", "impact": "Direkter Frühindikator für AI Visibility und Organic Visibility Index nach einer Migration. Wird als permanente Baseline-Metrik geführt, da BEEs DACH-Mittelstandskundschaft regelmässig Website-Migrationen durchführt.", "priorityRationale": "MoSCoW Could — Leitplanke für Migrationssicherheit. Ausserhalb von Migrationsfenstern ruhend, währenddessen kritisch. Bündelt Redirect-Integrität, Indexierungsregressionen und Schema-Drift in einem Composite, das als permanente Baseline-Metrik geführt wird."}, "qualified_traffic_share": {"fullName": "Anteil der Sessions, die zu firmografischen / verhaltensbezogenen ICP-Signalen passen", "definition": "Anteil aller Sessions, die definierte firmografische ICP-Signale (Branche, Mitarbeiterzahl, Geografie) und Verhaltenssignale (Decision-Intent-Seitenaufrufe, wiederkehrende Besuche) erfüllen.", "meaning": "Zeigt, ob die Akquise die richtigen Käufer erreicht. Ein flacher oder fallender qualifizierter Anteil bei steigendem Gesamt-Traffic deutet auf verschwendete Reichweite hin.", "impact": "Setzt die Obergrenze für jede nachgelagerte Conversion-Metrik. Ein höherer qualifizierter Anteil bewegt MQL-Volumen, MQL→SQL-Rate und Pipeline-Velocity gleichzeitig.", "priorityRationale": "MoSCoW Must — Management-North-Star für Traffic. Volumen ohne Qualität ist beim Umsatz ein Rundungsfehler."}, "traffic_source_breakdown": {"fullName": "Zusammensetzung der Sessions nach Kanal (Organic, Direct, Paid Search, Paid Social, Organic Social, Referral, E-Mail, GEO/AI-Referral)", "definition": "Wöchentliche Zusammensetzung der Sessions über das kanonische Kanal-Set: Organic Search, Direct, Paid Search, Paid Social, Organic Social, Referral, E-Mail und GEO/AI-Referral.", "meaning": "Reine Zusammensetzungs-Sicht. Zeigt, welche Kanäle im absoluten Session-Volumen wachsen oder schrumpfen.", "impact": "Rahmt Gespräche über Kanal-Investitionen. Muss zusammen mit der Channel Contribution Comparison gelesen werden — Zusammensetzung ohne Gewichtung kann in die Irre führen.", "priorityRationale": "MoSCoW Should — Zusammensetzungs-Sicht. Ergänzt die Channel Contribution Comparison um Mix und relatives Gewicht."}, "channel_contribution_comparison": {"fullName": "Relativer Beitrag von GEO vs. Paid vs. Direct vs. Organic Traffic", "definition": "Monatlicher Vergleich des relativen Beitrags über die grossen Kanalfamilien (GEO/AI, Paid, Direct, Organic), gewichtet nach qualifizierten Sessions statt nach Roh-Sessions.", "meaning": "Zeigt, welche Kanäle bei qualifizierten Ergebnissen ihr Gewicht tragen. Ein Kanal kann im Volumen wachsen und gleichzeitig im Beitrag schrumpfen.", "impact": "Steuert Investitionsentscheidungen zum Kanal-Mix. Häufigste Anwendung ist das Rebalancing zwischen Paid und GEO, während AI-getriebener Traffic skaliert.", "priorityRationale": "MoSCoW Should — abgegrenzt vom Traffic by Source Breakdown. Die Zusammensetzung zeigt den Mix; der Vergleich zeigt den relativen Geschäftsbeitrag."}, "paid_impression_share": {"fullName": "Plattform-nativer Impression Share / Sichtbarkeit auf Paid-Kanälen", "definition": "Anteil der infrage kommenden Auktionen, in denen die Anzeigen der Marke erschienen, nativ gemessen in Google Ads, LinkedIn Campaign Manager und Meta Ads Manager.", "meaning": "Zeigt den Wettbewerbsdruck in der Auktion. Sinkender Impression Share bei gleichem Budget bedeutet, dass Wettbewerber aggressiver bieten oder ihren Quality Score verbessern.", "impact": "Setzt eine Obergrenze für Paid-Klicks und nachgelagerte Paid-Pipeline. Häufig die stille Ursache einer Paid-CAC-Inflation.", "priorityRationale": "MoSCoW Should — Diagnose der Auktionsposition. Plattform-nativ; HubSpot weist sie nicht aus."}, "paid_ctr": {"fullName": "Plattform-native Click-Through-Rate auf Paid-Kanälen", "definition": "Plattform-native Click-Through-Rate, auf Anzeigenebene gemessen in Google Ads, LinkedIn Campaign Manager und Meta Ads Manager.", "meaning": "Zeigt die Passung zwischen Creative und Zielgruppe. Sinkende CTR bei gleichbleibendem Targeting deutet auf Creative-Ermüdung oder Message-Market-Drift hin.", "impact": "Direkter Input für den Quality Score, der den CPC steuert. CTR-Bewegungen gehen CPC-Bewegungen um ein bis drei Wochen voraus.", "priorityRationale": "MoSCoW Should — Signal für Creative-Qualität. Plattform-nativ auf Anzeigenebene; HubSpot sieht nur Aggregate."}, "paid_quality_score": {"fullName": "Plattform-nativer Quality Score (GAds) und Relevance Score (LI / MA)", "definition": "Google Ads Quality Score (1–10) auf Keyword-Ebene; LinkedIn Relevance Score und Meta Quality Ranking auf Anzeigenebene.", "meaning": "Zeigt die Einschätzung der Plattform zur Anzeigenrelevanz für den Nutzer. Ein fallender Quality Score ist der handlungsleitendste Prädiktor einer CPC-Inflation.", "impact": "Wirkt direkt auf CPC, Impression Share und effektive Reichweite bei gegebenem Budget. Ein Quality-Score-Rückgang um einen Punkt kann den CPC in umkämpften Branchen verdoppeln.", "priorityRationale": "MoSCoW Should — Türsteher der Auktionsökonomie. Ausserhalb der Werbeplattformen nicht messbar."}, "abm_account_reach": {"fullName": "Anteil der erreichten benannten Target Accounts im Zeitraum", "definition": "Anteil der benannten Target-Account-Liste, der im Berichtszeitraum mindestens ein Engagement-Signal (Besuch, Ad-Klick, Content-Aufruf, E-Mail-Interaktion) verzeichnet hat.", "meaning": "Zeigt die Abdeckung der ABM-Motion. Geringe Reichweite bei grosser Liste bedeutet, die Liste ist zu breit; hohe Reichweite bei geringem Engagement bedeutet, die Botschaft fehlt.", "impact": "Direkter Input für die nachgelagerte SRA Qualification Rate. Reichweite ohne Engagement-Qualität verschwendet ABM-Budget.", "priorityRationale": "MoSCoW Should — ABM-Diagnose. Entscheidend für jede Account-based-Motion; irrelevant für reine Demand-Gen-Operationen."}, "bounce_rate_by_lp": {"fullName": "Session-Bounce-Rate auf Landingpage-Ebene", "definition": "Tägliche Bounce-Rate je Landingpage, segmentiert nach Akquisitionsquelle.", "meaning": "Eine Quelle-Seite-Diskrepanz zeigt sich hier zuerst. Paid-Traffic mit hoher Bounce-Rate auf einer Landingpage bedeutet meist, dass Anzeigentext und Seiten-Headline nicht zusammenpassen.", "impact": "Wirkt auf jede nachgelagerte Conversion-KPI der Seite. Quick Wins sind meist das Umschreiben von Headline und Above-the-Fold.", "priorityRationale": "MoSCoW Could — Optimizer-Hebel auf Seitenebene."}, "pages_per_session_by_source": {"fullName": "Durchschnittliche Seiten pro Session, aufgeteilt nach Akquisitionsquelle", "definition": "Wöchentlicher Durchschnitt der Seiten pro Session, aufgeschlüsselt nach Akquisitionsquelle.", "meaning": "Zeigt die explorative Absicht. Direct-Traffic mit hohen Seiten pro Session deutet auf starke Markenvertrautheit hin; Paid-Traffic mit niedrigen Werten auf Targeting-Präzision (gut) oder Seitenqualitätsprobleme (schlecht).", "impact": "Informiert die interne Verlinkungsstrategie und das Navigationsdesign. Niedrige Werte auf Decision-Intent-Seiten sind ein bekannter Frühindikator für eine niedrige Form-Start-Rate.", "priorityRationale": "MoSCoW Could — Signal zur Explorationstiefe. Nützlich zur Verfeinerung der Content-Strategie."}, "paid_cpc": {"fullName": "Plattform-nativer Cost per Click auf Paid-Kanälen", "definition": "Täglicher Cost per Click, nativ je Werbeplattform auf Kampagnen- und Anzeigengruppen-Ebene gemessen.", "meaning": "Direktes Mass für die Auktionskosten. Steigt mit dem Auktionsdruck, fällt mit verbessertem Quality Score.", "impact": "Summiert sich vorgelagert in Paid CPL und Paid Cost per Customer. Tägliches Monitoring erkennt Budget-Burn, bevor Wochenreports ihn zeigen.", "priorityRationale": "MoSCoW Could — täglicher Optimizer-Hebel. Wird in den Plattformen geführt, da HubSpot der Echtzeit-Auktionsbewegung hinterherläuft."}, "new_vs_returning_mix": {"fullName": "Zusammensetzung der Sessions nach neuen vs. wiederkehrenden Besuchern", "definition": "Wöchentliche Zusammensetzung der Sessions, aufgeteilt zwischen Erstbesuchern und wiederkehrenden Besuchern.", "meaning": "Der Anteil wiederkehrender Besucher ist ein Proxy für Content-Bindung und Nachfragetiefe. Ein anhaltender Rückgang ist meist ein Problem der Content-Frequenz oder des E-Mail-Programms.", "impact": "Wirkt auf die MQL-Conversion-Rate, da wiederkehrende Besucher bei B2B-Formularen deutlich höher konvertieren.", "priorityRationale": "MoSCoW Could — Kontextsignal zur Interpretation des Traffics."}, "engaged_session_rate": {"fullName": "Anteil der Sessions, die die Engagement-Schwelle erreichen", "definition": "Anteil der Sessions, die eine mehrteilige Engagement-Schwelle erfüllen (Mindestdauer, Mindest-Scrolltiefe oder mindestens eine bedeutsame Interaktion).", "meaning": "Zeigt, ob Traffic tatsächlich mit Inhalten interagiert oder abspringt. Bewegung spiegelt Content-Market-Fit und die Qualität der Informationsarchitektur wider.", "impact": "Prognostiziert Form-Start-Rate, MQL-Volumen und E-Mail-Programm-Performance zwei bis vier Wochen im Voraus.", "priorityRationale": "MoSCoW Must — Management-North-Star für Engagement. Die eine Metrik, die zusammenfasst, ob Traffic die Website als nützlich empfindet."}, "content_engagement_score": {"fullName": "Composite-Score aus Scroll, Verweildauer und Interaktion auf Hero-Content", "definition": "Wöchentlicher Composite-Score, der Scrolltiefe, Verweildauer und bedeutsame Interaktionen (CTA-Klicks, Video-Plays, Form-Starts) auf Hero-Content-Stücken kombiniert.", "meaning": "Zeigt, welcher Hero-Content tatsächlich Resonanz erzeugt. Hohe Gesamtbesuche bei schwachem Engagement-Score sind ein Content-Qualitätsproblem, das sich als Traffic-Erfolg tarnt.", "impact": "Steuert die Priorisierung der Content-Roadmap. Hero-Content mit dauerhaft niedrigem Engagement ist der häufigste versunkene Content-Aufwand.", "priorityRationale": "MoSCoW Should — Expert-Diagnose für die Engaged Session Rate. Zeigt, welcher Hero-Content den Durchschnitt trägt oder drückt."}, "form_start_submit_rate": {"fullName": "Anteil der Form-Starts, die zu einem Absenden führen", "definition": "Wöchentlicher Anteil der Form-Starts (jede Feldinteraktion), die zu einem vollständigen Absenden führen.", "meaning": "Zeigt Reibung im Formular-Erlebnis. Sinkende Submit-Raten deuten meist auf ein konkretes Feld, eine Validierungsregel oder einen Pre-Fill-Fehler hin.", "impact": "Wirkt direkt auf das MQL-Volumen. Die Submit-Rate zu verbessern ist fast immer die hebelstärkste verfügbare CRO-Investition.", "priorityRationale": "MoSCoW Should — Expert-Conversion-Diagnose. Ein Versagen hier liegt näher an der Produkterfahrung als am Marketing."}, "email_engagement_rate": {"fullName": "Open- und Click-Rate in Nurture-Flows", "definition": "Wöchentliche Open-Rate und Click-Through-Rate über alle aktiven Nurture-Flows, segmentiert nach Flow und Zielgruppe.", "meaning": "Zeigt, ob die Zielgruppe den Nurture-Content wertschätzt. Ein anhaltender Rückgang deutet auf Message-Ermüdung oder Audience-Fit-Drift hin.", "impact": "Wirkt direkt auf das MQL-Volumen aus Nurture-getriebener Reaktivierung und indirekt auf die Zustellbarkeit des gesamten Programms.", "priorityRationale": "MoSCoW Should — Expert-Diagnose für die Gesundheit der Nurture-Flows."}, "cta_ctr_by_module": {"fullName": "Click-Through-Rate der CTAs, aufgeschlüsselt nach Seitenmodul", "definition": "Tägliche Click-Through-Rate je CTA, aufgeschlüsselt nach dem Seitenmodul (Hero, Mid-Page, Footer), in dem er steht.", "meaning": "Zeigt, welche Modul-Platzierungen funktionieren. Footer-CTAs, die Hero-CTAs übertreffen, sind ein häufiges, leicht behebbares Problem der Informationsarchitektur.", "impact": "Steuert CRO-Experimente auf Modulebene. Summiert sich in die Form-Start→Submit-Rate.", "priorityRationale": "MoSCoW Could — täglicher Optimizer-Hebel für CRO."}, "scroll_depth_by_template": {"fullName": "Durchschnittliche Scrolltiefe, gruppiert nach Seiten-Template", "definition": "Wöchentliche durchschnittliche Scrolltiefe, gruppiert nach Seiten-Template (Startseite, Produktseite, Lösungsseite, Blogartikel).", "meaning": "Zeigt, wo die Aufmerksamkeit endet. Decision-Intent-Seiten mit einer Scrolltiefe unter dreissig Prozent sind meist zu lang für die Phase des Käufers.", "impact": "Steuert Entscheidungen zu Seitenlänge und Informationsdichte. Ein dauerhaftes Problem auf Template-Ebene signalisiert ein Design-System-Problem, kein Content-Problem.", "priorityRationale": "MoSCoW Could — Optimizer-Aufmerksamkeitssignal."}, "time_on_decision_pages": {"fullName": "Durchschnittliche Verweildauer auf Decision-Intent-URLs", "definition": "Wöchentliche durchschnittliche Verweildauer auf URLs, die als Decision-Intent klassifiziert sind (Pricing, ROI-Rechner, technische Vergleiche, Case Studies).", "meaning": "Zeigt, ob Decision-Intent-Besucher tatsächlich evaluieren oder abspringen. Unter sechzig Sekunden auf einer Pricing-Seite bedeutet fast immer, dass die Seite die Frage des Besuchers nicht beantwortet hat.", "impact": "Direkter Frühindikator für die Form-Start-Rate auf diesen Seiten.", "priorityRationale": "MoSCoW Could — Optimizer-Aufmerksamkeitssignal für High-Intent-Flächen."}, "form_field_dropoff": {"fullName": "Drop-off-Rate auf Ebene einzelner Formularfelder", "definition": "Wöchentliche Drop-off-Rate je Formularfeld, die das konkrete Feld identifiziert, an dem Nutzer das Absenden abbrechen.", "meaning": "Lokalisiert die Reibung. Fast jedes Formular hat ein oder zwei Felder, die für den Grossteil des Drop-offs verantwortlich sind.", "impact": "Steuert Entscheidungen zu Feld-Entfernung, bedingter Feldlogik und Validierungsregeln. Oft ein Plus von 2–3 Punkten bei der Form-Start→Submit-Rate.", "priorityRationale": "MoSCoW Could — Optimizer-CRO-Hebel. Das hebelstärkste verfügbare Signal zur Formularverbesserung."}, "asset_completion_rate": {"fullName": "Completion-Rate für Videos und Gated Assets", "definition": "Wöchentliche Completion-Rate für Videos (Anteil angesehen) und heruntergeladene Gated Assets (Öffnungsrate, ggf. messbare Verweildauer).", "meaning": "Zeigt Content-Qualität und Längen-Passung. Ein Muster niedriger Completion bei Langform-Videos bedeutet meist, dass der Content strukturell zu lang ist.", "impact": "Steuert Entscheidungen zu Content-Länge und -Format. Wirkt auf Lead-Scoring-Gewichte für Asset-Konsum-Signale.", "priorityRationale": "MoSCoW Could — Optimizer-Signal für Content-Qualität."}, "mql_sql_rate": {"fullName": "Conversion-Rate von Marketing Qualified Lead zu Sales Qualified Lead (Board-Sicht)", "definition": "Monatlicher Prozentsatz der MQLs, die von Sales akzeptiert werden und innerhalb des definierten SLA-Fensters in den SQL-Status übergehen.", "meaning": "Zeigt, ob Marketing die richtige Lead-Qualität generiert, nicht nur Menge. Der zuverlässigste einzelne Indikator für die definitorische Abstimmung zwischen Marketing und Sales.", "impact": "Treibt direkt das Pipeline-Volumen und den nachgelagerten Umsatz. Niedrige Werte sind die häufigste Ursache für Umsatzstagnation trotz starkem Top-of-Funnel.", "priorityRationale": "MoSCoW Must — Conversion-North-Star auf Board-Ebene. Die häufigste einzelne Erklärung für Umsatzstagnation."}, "lead_to_customer_rate": {"fullName": "End-to-End-Conversion-Rate von Lead zu Kunde", "definition": "Monatlicher Anteil aller Leads (beliebige Quelle), die innerhalb des Standard-Sales-Cycle-Fensters zu zahlenden Kunden werden.", "meaning": "Ein-Zahl-Zusammenfassung der Full-Funnel-Effizienz. Unempfindlich gegenüber kleinen Mid-Funnel-Anpassungen, empfindlich gegenüber Definitionsänderungen und ICP-Drift.", "impact": "Verankert die Blended-CAC-Modellierung und die ROI-Rechnung für Kanal-Investitionen.", "priorityRationale": "MoSCoW Must — End-to-End-Funnel-Effizienz. Bildet mit der MQL→SQL-Rate die beiden Management-Metriken dieser Spalte."}, "sal_rate": {"fullName": "Sales-Accepted-Lead-Rate innerhalb des SLA-Fensters", "definition": "Wöchentlicher Anteil der MQLs, die von Sales innerhalb des SLA-Fensters explizit als Sales-Accepted-Lead (SAL) akzeptiert werden, vor der SQL-Qualifizierung.", "meaning": "Erstes explizites Sales-Urteil über einen Marketing-Lead. Erfasst die Akzeptanzentscheidung, die die MQL→SQL-Rate verdeckt, indem sie sie in eine einzige Conversion zusammenfasst.", "impact": "Direkter Frühindikator für die MQL→SQL-Rate (zwei Wochen Verzug). Bewegung hier prognostiziert die Board-Conversion-Zahl des Folgemonats.", "priorityRationale": "MoSCoW Should — Expert-Frühindikator für die MQL→SQL-Rate. Schliesst die Lücke zwischen Marketings MQL-Definition und Sales' Akzeptanzkriterien."}, "sra_qualification_rate": {"fullName": "Anteil der benannten Accounts, die die Sales-Ready-Account-Schwelle erreichen", "definition": "Wöchentlicher Anteil der benannten ABM-Target-Accounts, die die definierte Sales-Ready-Schwelle überschritten haben — als Kombination aus firmografischer Passung und Multi-Touch-Engagement-Signalen über das Buying Committee.", "meaning": "Zeigt, wann ein ABM-Account genug Intent gezeigt hat, um Sales-Kontakt zu rechtfertigen. Abgegrenzt vom MQL: auf Account-Ebene, nicht auf Kontaktebene.", "impact": "Direkter Input für die ABM-getriebene Pipeline. Die Schwellenlogik sollte quartalsweise überprüft werden, während sich die Muster der Buying Committees verändern.", "priorityRationale": "MoSCoW Should — Expert-KPI für ABM-Motions. Kombiniert ICP-Passung mit einer Schwellenlogik zur Engagement-Tiefe."}, "paid_conversion_rate": {"fullName": "Conversion-Rate auf Anzeigenebene (Form-Fill / Demo-Request) bei Paid-Traffic", "definition": "Wöchentliche Conversion-Rate auf Anzeigenebene (Form-Fill, Demo-Request, Content-Download), nativ in den Werbeplattformen gemessen.", "meaning": "Diagnostiziert die Übergabe von Anzeige zu Seite. Starke CTR bei schwacher Conversion-Rate bedeutet, dass die Landingpage ein von der Anzeige gegebenes Versprechen bricht.", "impact": "Direkter Input für den Paid CPL. Bewegung hier treibt meist innerhalb von vier Wochen eine Bewegung beim Paid Cost per Customer.", "priorityRationale": "MoSCoW Should — plattform-nativ auf Anzeigenebene, für eine Granularität, die HubSpot nicht erreicht."}, "paid_cpl": {"fullName": "Cost per Lead aus Paid-Kanälen (CRM-verknüpft)", "definition": "Wöchentlicher Cost per Lead, der die Werbeplattform-Ausgaben mit der in HubSpot erfassten Lead-Erstellung verknüpft, attribuiert nach Quelle.", "meaning": "Zeigt die ökonomische Paid-Effizienz auf Lead-Ebene. Ergänzt die Paid Conversion Rate, um Auktionskosten von Seiten-Conversion als Ursachen zu trennen.", "impact": "Direkter Input für Paid Cost per Customer und Paid ROAS. Die am meisten beobachtete Paid-Effizienzmetrik in Wochen-Reviews.", "priorityRationale": "MoSCoW Should — CRM-verknüpfte Metrik. Benötigt die HubSpot-Verknüpfung, da Werbeplattformen CRM-Lead-Status-Änderungen nicht sehen."}, "mql_volume_by_source": {"fullName": "Anzahl generierter MQLs, aufgeschlüsselt nach Akquisitionsquelle", "definition": "Wöchentliche Anzahl generierter MQLs, aufgeschlüsselt nach kanonischer Akquisitionsquelle.", "meaning": "Zeigt, welche Kanäle den Funnel tatsächlich mit Leads speisen, nicht nur mit Traffic. Die Quellen-Zerlegung erklärt Bewegungen der MQL→SQL-Rate.", "impact": "Direkter Input für die Pipeline Coverage Ratio. Eine Quelle, die im MQL-Volumen wegbricht, aber im Traffic stabil bleibt, ist ein starkes Signal zur Traffic-Qualität.", "priorityRationale": "MoSCoW Should — Expert-Signal für Pipeline-Inputs. Verschiebungen im Quellen-Mix prognostizieren Verschiebungen im Pipeline-Mix."}, "stage_transition_reasons": {"fullName": "Kodierte Ablehnungsgründe für MQL→SAL- und SAL→SQL-Übergänge", "definition": "Wöchentliche Verteilung der von Sales protokollierten kodierten Ablehnungs- oder Akzeptanzgründe bei jedem MQL→SAL- und SAL→SQL-Übergang.", "meaning": "Der tatsächliche Inhalt der Uneinigkeit zwischen Marketing und Sales. Zeigt, ob Fehler sich um Fit, Timing, Intent oder Kontakt-Rollen-Mismatch häufen.", "impact": "Steuert die Verfeinerung der MQL-Definition, Änderungen der Lead-Scoring-Gewichte und Inputs für Marketing-Briefings. Schliesst die RevOps-Feedback-Schleife.", "priorityRationale": "MoSCoW Could — Optimizer-Zerlegung von Bewegungen der MQL→SQL-Rate."}, "lead_response_time": {"fullName": "SLA-Zeit von der MQL-Erstellung bis zum ersten Sales-Kontakt", "definition": "Tägliche Messung der verstrichenen Zeit vom Zeitstempel der MQL-Erstellung bis zum ersten protokollierten Sales-Kontakt, gegen das vereinbarte SLA.", "meaning": "Zeigt SLA-Disziplin. Branchenforschung ist eindeutig: Reaktionszeit korreliert stark mit der Conversion zur Opportunity.", "impact": "Direkter Input für die SAL Rate und die nachgelagerte MQL→SQL-Rate. Wenn die Reaktionszeit bei eingehenden Demo-Requests über fünf Minuten rutscht, ist das eine bekannte Klippe.", "priorityRationale": "MoSCoW Could — tägliche Optimizer-SLA-Metrik. Summiert sich in die SAL-Rate."}, "form_to_mql_by_source": {"fullName": "Conversion-Rate von Formularabsenden zu MQL, aufgeschlüsselt nach Quelle", "definition": "Täglicher Anteil der Formularabsenden, die die MQL-Scoring-Kriterien erfüllen, segmentiert nach Akquisitionsquelle.", "meaning": "Zeigt, welche Quellen Formulare absenden, aber nicht qualifizieren. Ein Junk-Submission-Muster aus einer bestimmten Quelle ist die häufigste Ursache niedriger Quoten.", "impact": "Steuert Investitionsentscheidungen auf Quellenebene und Prioritäten beim Formularschutz (Anti-Spam, Validierung).", "priorityRationale": "MoSCoW Could — Optimizer-Detail hinter Form Start → Submit und MQL Volume by Source."}, "lead_scoring_distribution": {"fullName": "Populationsverteilung über die Lead-Score-Bänder", "definition": "Wöchentliche Verteilung der Lead-Population über definierte Score-Bänder, überwacht auf Verteilungsform und Drift der Band-Besetzung.", "meaning": "Zeigt die Genauigkeit des Scoring-Modells. Bimodale oder gestauchte Verteilungen deuten meist darauf hin, dass die Scoring-Regeln verfeinert werden müssen.", "impact": "Steuert die Feinjustierung der Lead-Scoring-Gewichte. Wirkt auf die Stabilität der MQL-Definition und damit auf die Volatilität der MQL→SQL-Rate.", "priorityRationale": "MoSCoW Could — Optimizer-Signal für die Gesundheit des Scoring-Modells."}, "pipeline_coverage_ratio": {"fullName": "Offener Pipeline-Wert geteilt durch das Perioden-Quota", "definition": "Monatlicher offener Pipeline-Wert geteilt durch das Umsatz-Quota der Periode, gewichtet oder ungewichtet je nach Reporting-Konvention.", "meaning": "Zeigt, ob genug qualifizierte Opportunity besteht, um das Periodenziel zu erreichen. Unter dem 3-fachen für frühe Funnel-Stufen ist eine im B2B übliche Warnschwelle.", "impact": "Löst Forecast-Confidence-Reviews, Pipeline-Acceleration-Motions und Notfall-Demand-Generation-Programme aus.", "priorityRationale": "MoSCoW Must — Forecasting-Metrik auf Board-Ebene. Die am meisten beobachtete Pipeline-Gesundheitszahl."}, "pipeline_velocity": {"fullName": "Won Deals × ACV × Win Rate ÷ durchschnittliche Cycle-Länge", "definition": "Monatliche Pipeline-Velocity, berechnet als (Anzahl qualifizierter Opportunities × durchschnittlicher Deal-Wert × Win Rate) ÷ durchschnittliche Sales-Cycle-Länge in Tagen.", "meaning": "Ein-Zahl-Zusammenfassung der Bewegung der Pipeline-Gesundheit. Unempfindlich gegenüber kleinen Schwankungen, empfindlich gegenüber strukturellen Verschiebungen.", "impact": "Verankert Umsatz-Forecasting und Headcount-Planung. Bewegung erfordert eine Zerlegung über die vier Komponenten, um die Ursache zu diagnostizieren.", "priorityRationale": "MoSCoW Must — zusammengesetzte Management-Metrik, die Rate, Wert und Cycle gleichzeitig erfasst."}, "sql_to_opportunity_rate": {"fullName": "Conversion-Rate von Sales Qualified Lead zu Opportunity", "definition": "Wöchentlicher Anteil der SQLs, die in den formalen Opportunity-Status übergehen (Deal-Datensatz mit Stage > Prospecting angelegt).", "meaning": "Zeigt, ob SQLs tatsächlich tragfähig sind. Niedrige Conversion hier bedeutet meist, dass die SQL-Definition zu locker ist oder die erste Discovery Disqualifikatoren findet.", "impact": "Direkter Frühindikator für das Pipeline-Volumen. Bewegung löst Reviews der SQL-Definition aus.", "priorityRationale": "MoSCoW Should — Expert-Zerlegung der Pipeline Velocity."}, "win_rate_by_segment": {"fullName": "Closed-Won-Rate, aufgeschlüsselt nach Quelle und Segment", "definition": "Monatliche Closed-Won-Rate, zerlegt nach Akquisitionsquelle und Kundensegment (Branche, Mitarbeiter-Band, Geografie).", "meaning": "Zeigt, wo das Produkt gewinnt und wo nicht. Eine dauerhaft niedrige Win Rate auf Segmentebene ist ein starkes Signal, die ICP-Definition zu überdenken.", "impact": "Steuert ICP-Verfeinerung, Entscheidungen zum Segment-Targeting und Gespräche zum Pricing nach Segment.", "priorityRationale": "MoSCoW Should — Expert-Zerlegung der Pipeline Velocity auf Segmentebene."}, "avg_sales_cycle": {"fullName": "Durchschnittliche Zeit von Opportunity-Erstellung bis Closed-Won", "definition": "Monatliche durchschnittliche Tage von der Opportunity-Erstellung bis zum Closed-Won-Ergebnis, segmentiert nach Deal-Grösse und Segment.", "meaning": "Zeigt Prozess-Reibung und Komplexität. Eine Verlängerung des Cycles geht einem Rückgang der Win Rate meist um ein Quartal voraus.", "impact": "Verankert Kapazitätsplanung und Quota-Festlegung. Ein längerer Cycle ohne ACV-Wachstum ist ein ungesteuerter Margenverlust.", "priorityRationale": "MoSCoW Should — Zerlegung der Cycle-Länge für die Pipeline Velocity."}, "paid_pipeline_contribution": {"fullName": "Von Paid-Kanälen erzeugter und beeinflusster Pipeline-Wert", "definition": "Monatlicher Pipeline-Wert, der Paid-Kanälen sowohl im First-Touch- (sourced) als auch im Multi-Touch-Modell (influenced) zugerechnet wird.", "meaning": "Zeigt, ob Paid-Investition überhaupt Pipeline erzeugt, nicht nur Leads. Starker CPL bei schwachem Pipeline-Beitrag ist ein bekanntes Disqualifikationssignal für Paid-Programme.", "impact": "Verankert Paid-Budget-Entscheidungen. Ergänzt den Paid ROAS um die Sichten Pipeline-Volumen und Umsatzeffizienz.", "priorityRationale": "MoSCoW Should — CRM-verknüpfte Paid-Attribution. Lässt sich nicht allein aus Werbeplattformen ableiten."}, "deal_stage_aging": {"fullName": "Durchschnittliche Verweildauer von Deals je Pipeline-Stage", "definition": "Wöchentliche durchschnittliche Verweildauer von Deals je Pipeline-Stage, mit Ausreisser-Identifikation für Deals weit über den Stage-Normen.", "meaning": "Zeigt stage-spezifische Prozess-Reibung. Eine einzelne Stage mit anhaltendem Aging bedeutet meist ein fehlendes Artefakt (ROI-Modell, Security-Review, technische Validierung).", "impact": "Steuert die Verfeinerung der Stage-Exit-Kriterien und Investitionen in Sales-Prozess-Tooling.", "priorityRationale": "MoSCoW Should — Expert-Prozessdiagnose."}, "stage_conversion_rates": {"fullName": "Conversion-Rate an jedem Pipeline-Stage-Übergang", "definition": "Wöchentliche Stage-zu-Stage-Übergangsraten über die gesamte Pipeline, die zeigen, welche Stages am meisten Volumen verlieren.", "meaning": "Direkte Sicht darauf, wo Deals sterben. Eine Stage macht meist den Grossteil des Schwunds aus.", "impact": "Steuert Sales-Enablement-Prioritäten und stage-spezifischen Coaching-Fokus.", "priorityRationale": "MoSCoW Could — Optimizer-Detail hinter SQL→Opp-Rate und Win Rate."}, "lost_reason_distribution": {"fullName": "Verteilung kodierter Lost-Reasons bei Closed-Lost-Deals", "definition": "Wöchentliche Verteilung kodierter Lost-Reasons (Preis, Feature-Lücke, Wettbewerber, No-Decision, Timing) über alle Closed-Lost-Deals.", "meaning": "Schliesst die Schleife zwischen Sales und Produkt-/Positionierungs-Teams. Häufungen von „No-Decision“-Verlusten deuten auf ein Problem mit Buying Committee oder Champion-Aufbau hin, nicht auf ein Produktproblem.", "impact": "Steuert Produkt-Roadmap, Pricing und Sales-Playbook-Updates. Das wichtigste vorgelagerte RevOps-Feedback-Signal.", "priorityRationale": "MoSCoW Could — Optimizer-Feedback-Signal für Produkt, Pricing und Positionierung."}, "forecast_accuracy": {"fullName": "Abweichung von Forecast vs. Commit vs. tatsächlichem Closed-Won", "definition": "Wöchentliche Abweichung zwischen Forecast, Commit und tatsächlichem Closed-Won auf Rep-, Manager- und Segmentebene.", "meaning": "Zeigt die Reife der Forecast-Disziplin. Dauerhaftes Über- oder Unter-Forecasting auf Rep-Ebene ist Coaching-Feedback; auf Segmentebene ein Problem der Modellkalibrierung.", "impact": "Steuert Verbesserungen der Forecasting-Methodik und Änderungen der Pipeline-Management-Kadenz.", "priorityRationale": "MoSCoW Could — Optimizer-Metrik für Forecast-Disziplin."}, "activity_to_opp_ratio": {"fullName": "Protokollierte Sales-Aktivitäten je erzeugter Opportunity", "definition": "Tägliches Verhältnis protokollierter Sales-Aktivitäten (Calls, E-Mails, Meetings) zu erzeugten Opportunities, auf Rep- und Team-Ebene.", "meaning": "Zeigt die Prospecting-Effizienz. Steigende Verhältnisse bei flacher Opportunity-Erzeugung deuten auf Qualitätsprobleme im Top-of-Funnel hin, nicht auf Aufwandsprobleme.", "impact": "Steuert das Coaching des Prospecting-Prozesses und die Optimierung des Lead-Routings.", "priorityRationale": "MoSCoW Could — tägliches Optimizer-Signal zur Rep-Effizienz."}, "new_logo_revenue": {"fullName": "Aus Neukunden abgeschlossene ARR / MRR", "definition": "Monatliche ARR oder MRR, die aus echten Neukunden (New-Logo) abgeschlossen wird, ohne Expansion- und Renewal-Umsatz.", "meaning": "Das Makro-Ergebnis jeder anderen KPI der Architektur. Ein-Zahl-Zusammenfassung der Gesundheit des Netto-Neuwachstums.", "impact": "Verankert Bewertung, Board-Reporting und Wachstums-Investitionsentscheidungen. Unempfindlich gegenüber kurzfristigen taktischen Erfolgen, empfindlich gegenüber strukturellen Funnel-Veränderungen.", "priorityRationale": "MoSCoW Must — primärer Wachstums-North-Star. Die Metrik, auf die die gesamte Architektur letztlich ausgerichtet ist."}, "blended_cac": {"fullName": "Customer Acquisition Cost über alle Kanäle", "definition": "Monatliche Gesamtausgaben für Sales und Marketing geteilt durch die in der Periode gewonnenen Neukunden, geblendet über alle Kanäle.", "meaning": "Zeigt die gesamte Wachstumseffizienz. Bewegung spiegelt Auktionsdruck, Verschiebungen der Conversion-Rate und Effizienz der Sales-Kapazität gemeinsam wider.", "impact": "Verankert die CAC-Payback-Rechnung und Entscheidungen zum Kanal-Mix. Über mehrere Quartale getrendet, um Einzelperiode-Rauschen zu filtern.", "priorityRationale": "MoSCoW Must — Effizienz-North-Star. Die CFO-Metrik für den ROI von Wachstumsinvestitionen."}, "cac_payback": {"fullName": "Monate bis zur Rückgewinnung der Blended CAC aus dem Bruttoertrag", "definition": "Quartalsweise Berechnung der Monate, die nötig sind, um die Blended CAC aus dem Bruttoertrags-Beitrag je Kunde zurückzugewinnen.", "meaning": "Zeigt die Kapitaleffizienz der Wachstums-Engine. Unter zwölf Monaten ist für die meisten B2B-SaaS gesund; über vierundzwanzig Monaten ist ein strukturelles Problem.", "impact": "Verankert die Governance von Wachstumsinvestitionen, das Fundraising-Narrativ und das Board-Reporting zu effizientem Wachstum.", "priorityRationale": "MoSCoW Must — Management-Metrik zur Kapitaleffizienz. Die quartalsweise Kadenz ist angemessen; die Metrik bewegt sich strukturell langsam."}, "paid_roas": {"fullName": "Return on Ad Spend (Umsatz ÷ Paid-Ausgaben, CRM-verknüpft)", "definition": "Monatliches Verhältnis von CRM-attribuiertem Umsatz zu Paid-Kanal-Ausgaben, berechnet auf Kanal- und Kampagnenebene.", "meaning": "Zeigt den echten ökonomischen Paid-Return. Starker CPL bei schwachem ROAS bedeutet, dass Paid Leads erzeugt, die nicht abschliessen.", "impact": "Verankert Entscheidungen zur Umverteilung des Paid-Budgets. ROAS je Kanal ist das kanonische Gespräch zum Paid-Mix.", "priorityRationale": "MoSCoW Should — CRM-verknüpfte Paid-Umsatz-Attribution. Lässt sich nicht allein aus Werbeplattformen ableiten."}, "paid_cost_per_customer": {"fullName": "CAC auf Kanalebene für Paid-akquirierte Kunden", "definition": "Monatliche Paid-Ausgaben je Kanal geteilt durch die diesem Kanal zugerechneten Neukunden.", "meaning": "Zeigt, welche Paid-Kanäle beim aktuellen Auktionsdruck ökonomisch tragfähig sind. Kanalspezifische CAC ist das, was Investitionsentscheidungen tatsächlich brauchen.", "impact": "Treibt direkt Entscheidungen zu Kanal-Mix und Budgetallokation. Die handlungsleitendste Paid-Metrik für die monatliche Planung.", "priorityRationale": "MoSCoW Should — CAC-Zerlegung auf Kanalebene. Erforderlich für Entscheidungen zum Paid-Kanal-Mix."}, "revenue_by_channel": {"fullName": "Closed-Won-Umsatz, attribuiert nach Akquisitionskanal", "definition": "Monatlicher Closed-Won-Umsatz, attribuiert über das kanonische Kanal-Set nach dem vereinbarten Attributionsmodell (First-Touch, Multi-Touch oder U-förmig).", "meaning": "Zeigt, woher der Umsatz tatsächlich kam. Immer zusammen mit der Channel Contribution Comparison lesen, um Attributionsmodell-Bias zu vermeiden.", "impact": "Verankert das Narrativ der Kanal-Investition. Ergänzt die Paid Pipeline Contribution um die führende und nachlaufende Sicht.", "priorityRationale": "MoSCoW Should — Sicht auf den Umsatzbeitrag je Kanal."}, "acv_on_new_deals": {"fullName": "Durchschnittlicher ACV bei Closed-Won-New-Logo-Deals", "definition": "Monatlicher durchschnittlicher Annual Contract Value bei Closed-Won-New-Logo-Deals, segmentiert nach Deal-Grössen-Band und Kundensegment.", "meaning": "Zeigt die Bewegung der Deal-Qualität. Steigendes Volumen bei fallendem ACV ist oft ein Zeichen für Down-Market-Drift.", "impact": "Direkter Input für Pipeline Velocity und CAC Payback. ACV-Entscheidungen sind auch Pricing-Strategie-Gespräche.", "priorityRationale": "MoSCoW Should — Deal-Grössen-Komponente der Pipeline Velocity."}, "discount_rate": {"fullName": "Durchschnittlich gewährter Rabatt bei Closed-Won-Deals", "definition": "Wöchentlicher durchschnittlicher Rabatt-Prozentsatz bei Closed-Won-Deals, segmentiert nach Segment, Deal-Grösse und Cycle-Länge.", "meaning": "Zeigt eine Drift der Pricing-Disziplin. Schleichend steigende Rabatte sind die häufigste stille Margenerosion.", "impact": "Wirkt auf ACV, Blended-CAC-Payback und Gespräche zur Wettbewerbs-Positionierung.", "priorityRationale": "MoSCoW Could — Optimizer-Signal zum Margenschutz."}, "revenue_leakage": {"fullName": "Wert der Deals, die durch Inaktivität / No-Decision verloren gehen", "definition": "Wöchentlicher Wert der Deals, die mit den Reason-Codes „No-Decision“ oder „inaktiv“ closed-lost werden, getrennt von Wettbewerbsverlusten erfasst.", "meaning": "No-Decision-Verluste sind keine Produktverluste — sie sind Versagen im Kaufprozess. Hohe Leakage signalisiert schwachen Champion-Aufbau oder unzureichende Business-Case-Arbeit im Mid-Funnel.", "impact": "Steuert Sales-Playbook-Updates rund um Mutual Action Plans und das Einbinden des Economic Buyers. Schliesst eine zentrale RevOps-Feedback-Schleife.", "priorityRationale": "MoSCoW Could — Optimizer-Signal für No-Decision-Verluste."}, "closed_won_cycle_by_segment": {"fullName": "Cycle-Zeit von Opportunity zu Closed-Won nach Segment", "definition": "Wöchentliche Cycle-Zeit von der Opportunity-Erstellung bis Closed-Won, aufgeschlüsselt nach Kundensegment.", "meaning": "Zeigt, wo die Kaufbewegung schneller oder langsamer läuft als der Durchschnitt. Cycle-Varianz auf Segmentebene ist oft ein Quota-Setting-Problem, kein Sales-Problem.", "impact": "Verankert Kapazitäts- und Pricing-Entscheidungen auf Segmentebene.", "priorityRationale": "MoSCoW Could — Optimizer-Cycle-Zerlegung auf Segmentebene."}, "grr": {"fullName": "Gross Revenue Retention", "definition": "Quartalsweiser Anteil des Umsatzes, der aus dem Kundenstamm der Vorperiode gehalten wird, ohne jegliche Expansion (Upsell, Cross-Sell).", "meaning": "Zeigt die Gesundheit der Basis-Retention. Bewegung spiegelt Churn und Contraction wider; immun gegenüber Upsell-Rauschen.", "impact": "Setzt die Obergrenze für NRR und die Basis der Wachstumseffizienz. Unter neunzig Prozent ist für SaaS ein strukturelles Problem.", "priorityRationale": "MoSCoW Must — North-Star der Basis-Retention. Der Boden unter jeder Expansions-Rechnung."}, "nrr": {"fullName": "Net Revenue Retention", "definition": "Quartalsweiser Anteil des Umsatzes, der aus dem Kundenstamm der Vorperiode gehalten wird, inklusive Expansion, Contraction und Churn.", "meaning": "Zeigt die Gesundheit des gesamten Kunden. Über 110 Prozent deutet auf eine starke Expansions-Motion hin; unter 100 Prozent signalisiert Netto-Contraction.", "impact": "Verankert Bewertung, Expansions-Investition und die Dimensionierung des Customer-Success-Teams.", "priorityRationale": "MoSCoW Must — Expansions-inklusiver North-Star. Die Metrik, die im SaaS am stärksten mit der Bewertung börsennotierter Unternehmen korreliert."}, "ttv": {"fullName": "Zeit vom Kickoff bis zum ersten messbaren Kundenergebnis", "definition": "Monatliche durchschnittliche Zeit vom Vertrags-Kickoff bis zum ersten messbaren, vereinbarten Ergebnis des Kunden (Use-Case-Abschluss, Schlüssel-Meilenstein, Integration live).", "meaning": "Zeigt die Onboarding-Effizienz. Eine TTV, die das Wertwahrnehmungs-Fenster des Kunden überschreitet, ist der stärkste verfügbare Churn-Vorbote.", "impact": "Direkter Frühindikator für GRR und für die NRR beim ersten Renewal. Die handlungsleitendste Customer-Success-Metrik.", "priorityRationale": "MoSCoW Should — Expert-Frühindikator für GRR. Eine lange TTV prognostiziert Churn zuverlässiger als die meisten Onboarding-Signale."}, "expansion_arr": {"fullName": "Upsell- und Cross-Sell-ARR aus Bestandskunden", "definition": "Monatliche ARR aus Upsell (Seat- oder Volumen-Erhöhungen) und Cross-Sell (zusätzliche Produkte) bei Bestandskunden.", "meaning": "Zeigt die Produktivität der Expansions-Motion. Starke NRR bei schwacher Expansion-ARR bedeutet, dass der Wert von niedrigem Churn statt von Wachstum getragen wird — eine fragile Position.", "impact": "Verankert Investitionen in Product-led Growth, die Vergütungsgestaltung im Account-Management und Pricing-Tier-Entscheidungen.", "priorityRationale": "MoSCoW Should — direkte Zerlegung der NRR."}, "logo_churn_rate": {"fullName": "Anteil der im Zeitraum verlorenen Kunden-Logos", "definition": "Monatlicher Anteil verlorener Kunden-Logos (Kündigung oder Nicht-Verlängerung), ungewichtet nach Deal-Grösse.", "meaning": "Zeigt die Gesundheit von Fit und Erfahrung unabhängig von der Umsatzgewichtung. Wenige grosse Logos können hohen Logo-Churn in Down-Market-Segmenten verdecken.", "impact": "Steuert Customer-Success-Investitionen auf Segmentebene. Ergänzt die GRR, um Logo-Verlust von Umsatzverlust-Mustern zu trennen.", "priorityRationale": "MoSCoW Should — Churn-Signal auf Logo-Ebene. Abgegrenzt vom Umsatz-Churn, da es die Deal-Grösse ignoriert."}, "usage_adoption_signals": {"fullName": "Indikatoren für Produkt- oder Service-Nutzung und Adoption", "definition": "Wöchentliches Tracking definierter Adoption-Events (Feature-Aktivierung, Integration live, Erreichen wiederkehrender Nutzungsschwellen) je Kunden-Account.", "meaning": "Zeigt, ob Kunden tatsächlich Wert aus dem Produkt ziehen. Adoptions-Stillstände gehen Renewal-Risk-Flags um ein bis zwei Quartale voraus.", "impact": "Direkter Input für den Customer Health Score. Steuert die Priorisierung der Customer-Success-Ansprache.", "priorityRationale": "MoSCoW Could — Optimizer-Frühindikatoren für die Gesundheit."}, "health_score_distribution": {"fullName": "Verteilung der Customer Health Scores über den Kundenstamm", "definition": "Wöchentliche Verteilung der Customer Health Scores über den aktiven Kundenstamm, mit Aufschlüsselung auf Kohortenebene.", "meaning": "Zeigt die Konzentration von Renewal-Risiken. Eine sich verbreiternde Verteilung mit mehr Kunden niedriger Gesundheit signalisiert eine entstehende Churn-Kohorte.", "impact": "Steuert die Kapazitätsplanung im Customer Success und die Priorisierung von Renewal-Risk-Interventionen.", "priorityRationale": "MoSCoW Could — Optimizer-Signal für Renewal-Risiken auf Portfolio-Ebene."}, "qbr_completion_rate": {"fullName": "Anteil der Kunden mit fristgerechten Quarterly Business Reviews", "definition": "Quartalsweiser Anteil der Kunden, die ein fristgerechtes, strukturiertes QBR mit den vereinbarten Agenda-Elementen erhalten (Review der Success-Metriken, Exploration von Expansion, Renewal-Positionierung).", "meaning": "Zeigt die Disziplin der Customer-Success-Motion. Eine QBR-Completion unter siebzig Prozent ist meist ein Kapazitätsproblem, das als Kalenderproblem getarnt ist.", "impact": "Direkter Input für die Expansion ARR. Der zuverlässigste proaktive Hebel auf die NRR beim ersten Renewal.", "priorityRationale": "MoSCoW Could — Optimizer-Prozessmetrik für Customer Success."}, "renewal_risk_flag_volume": {"fullName": "Anzahl der Accounts mit einem oder mehreren Renewal-Risk-Flags", "definition": "Wöchentliche Anzahl der Accounts mit mindestens einem definierten Renewal-Risk-Flag (Wechsel auf Führungsebene, Nutzungsrückgang, Anstieg des Support-Volumens, verspätete Zahlung, NPS-Detraktor).", "meaning": "Aggregiertes vorausschauendes Churn-Signal. Der Trend zählt mehr als der absolute Wert; eine steigende Flag-Anzahl geht GRR-Bewegungen meist um ein Quartal voraus.", "impact": "Steuert die Priorisierung von Interventionen. Schliesst die Schleife zwischen operativem Customer Success und der GRR/NRR-Board-Sicht.", "priorityRationale": "MoSCoW Could — Optimizer-Frühwarnsystem für Churn."}};
+function kde(k, field){ return (STATE.lang==='de' && KPI_DE[k.id] && KPI_DE[k.id][field]) ? KPI_DE[k.id][field] : k[field]; }
+function stageDE(s){ return (STATE.lang==='de' && STAGE_DE[s]) ? STAGE_DE[s] : s; }
+
+
 function saveWorkshopState() {
   localStorage.setItem('BEE_WORKSHOP_KPIS', JSON.stringify(KPIS));
 }
@@ -2842,18 +2885,18 @@ function updateUndoButton() {
   if (!b) return;
   if (UNDO_STACK.length) {
     b.disabled = false;
-    b.textContent = `Undo: ${UNDO_STACK[UNDO_STACK.length - 1].label}`;
-    b.title = `Undo last change (${UNDO_STACK.length} step${UNDO_STACK.length > 1 ? 's' : ''} available)`;
+    b.textContent = `${t('cust.undo_prefix')} ${UNDO_STACK[UNDO_STACK.length - 1].label}`;
+    b.title = `${t('cust.undo_avail')} (${UNDO_STACK.length})`;
   } else {
     b.disabled = true;
-    b.textContent = "Undo";
-    b.title = "Nothing to undo";
+    b.textContent = t('cust.undo');
+    b.title = t('cust.undo_none');
   }
 }
 
 function resetToFactoryDefaults() {
-  if (confirm("Reset all custom modifications back to BEE Baseline Standards?")) {
-    pushUndo("Reset to baseline");
+  if (confirm(t('msg.reset_confirm'))) {
+    pushUndo(t('act.reset'));
     localStorage.removeItem('BEE_WORKSHOP_KPIS');
     KPIS = JSON.parse(JSON.stringify(BASELINE_KPIS));
     STATE.selected = new Set(KPIS.map(k => k.id));
@@ -2889,11 +2932,11 @@ function importWorkshopState(file) {
       const data = JSON.parse(e.target.result);
       const kpis = Array.isArray(data) ? data : data.kpis;
       if (!Array.isArray(kpis) || kpis.some(k => !k || !k.id || !k.shortName)) {
-        alert("That file doesn't look like a valid BEE workshop session.");
+        alert(t('msg.invalid_file'));
         return;
       }
-      if (!confirm("Import this session? It replaces the KPIs currently in your sandbox (your last autosave is overwritten).")) return;
-      pushUndo("Import session");
+      if (!confirm(t('msg.import_confirm'))) return;
+      pushUndo(t('act.import'));
       KPIS = JSON.parse(JSON.stringify(kpis));
       const sel = Array.isArray(data.selected) ? data.selected : KPIS.map(k => k.id);
       STATE.selected = new Set(sel.filter(id => KPIS.some(k => k.id === id)));
@@ -2902,7 +2945,7 @@ function importWorkshopState(file) {
       onSelectionChange();
       applyI18n();
     } catch (err) {
-      alert("Could not read that file — it may be corrupted or not valid JSON.");
+      alert(t('msg.bad_json'));
     }
   };
   reader.readAsText(file);
@@ -3066,49 +3109,70 @@ const SOFTWARE_LIMITS = {
     code: "HS",
     surface: "CRM-joined surface",
     description: "Contact, MQL, SQL, deal, revenue, attribution — everything that requires joining marketing data to a CRM record.",
-    limit: "HubSpot connects to ad platforms via OAuth and pulls spend and click aggregates, but cannot surface Quality Score, Impression Share, auction insights, or ad-level diagnostics at the depth the native ad platforms do. HubSpot also cannot distinguish between brand mentions and source citations inside LLM answers — that requires Peec AI."
+    limit: "HubSpot connects to ad platforms via OAuth and pulls spend and click aggregates, but cannot surface Quality Score, Impression Share, auction insights, or ad-level diagnostics at the depth the native ad platforms do. HubSpot also cannot distinguish between brand mentions and source citations inside LLM answers — that requires Peec AI.",
+    surface_de: "CRM-verknüpfte Ebene",
+    description_de: "Kontakte, MQL, SQL, Deals, Umsatz, Attribution — alles, was die Verknüpfung von Marketingdaten mit einem CRM-Datensatz erfordert.",
+    limit_de: "HubSpot bindet Werbeplattformen per OAuth an und zieht Ausgaben- und Klick-Aggregate, kann aber Quality Score, Impression Share, Auktionsdaten oder Diagnosen auf Anzeigenebene nicht in der Tiefe der nativen Werbeplattformen abbilden. HubSpot kann zudem nicht zwischen Markennennungen und Quellenzitaten in LLM-Antworten unterscheiden — das leistet Peec AI."
   },
   "PAI": {
     name: "Peec AI",
     code: "PAI",
     surface: "LLM visibility surface",
     description: "Visibility (share of AI answers citing the brand), Sentiment (polarity of those citations), and Position (average rank within the cited sources) — the canonical Peec AI metric trio — plus competitor visibility comparison and prompt coverage.",
-    limit: "Peec AI cannot pull CRM data (contacts, deals, products, segments) and cannot suggest prompts based on actual buyer behavior in the funnel. Effective prompt panels require HubSpot's CRM-derived buyer-language and use-case data."
+    limit: "Peec AI cannot pull CRM data (contacts, deals, products, segments) and cannot suggest prompts based on actual buyer behavior in the funnel. Effective prompt panels require HubSpot's CRM-derived buyer-language and use-case data.",
+    surface_de: "LLM-Sichtbarkeitsebene",
+    description_de: "Visibility (Anteil der AI-Antworten, die die Marke zitieren), Sentiment (Tonalität dieser Zitate) und Position (durchschnittlicher Rang innerhalb der zitierten Quellen) — das kanonische Peec-AI-Metrik-Trio — sowie Wettbewerbsvergleich der Sichtbarkeit und Prompt-Abdeckung.",
+    limit_de: "Peec AI kann keine CRM-Daten (Kontakte, Deals, Produkte, Segmente) abrufen und keine Prompts auf Basis des tatsächlichen Käuferverhaltens im Funnel vorschlagen. Wirksame Prompt-Panels benötigen die aus dem HubSpot-CRM abgeleiteten Käufersprach- und Use-Case-Daten."
   },
   "GA": {
     name: "Guard Audit",
     code: "GA",
     surface: "Technical GEO surface",
     description: "AI Readiness = GEO + AEO. GEO: AI Crawler Strategy, Entity Recognition, LLM Guidance (/llm-info page), AI Schema. AEO: Answer-Ready Content, Source Credibility, FAQ Optimization, Content Quality (E-E-A-T). Also: Website Speed (Core Web Vitals), Security headers, broken links, technical migration health. Tracks /llm-info and /llms.txt as separate artifacts.",
-    limit: "Guard Audit measures the technical legibility of the site to AI crawlers — it does not measure whether the brand is actually being cited in LLM answers (that's Peec AI), and it does not measure organic rankings (that's GSC). Boundary stops at the crawl-and-validation layer."
+    limit: "Guard Audit measures the technical legibility of the site to AI crawlers — it does not measure whether the brand is actually being cited in LLM answers (that's Peec AI), and it does not measure organic rankings (that's GSC). Boundary stops at the crawl-and-validation layer.",
+    surface_de: "Technische GEO-Ebene",
+    description_de: "AI Readiness = GEO + AEO. GEO: AI Crawler Strategy, Entity Recognition, LLM Guidance (/llm-info-Seite), AI Schema. AEO: antwortfähige Inhalte, Quellen-Glaubwürdigkeit, FAQ-Optimierung, Content-Qualität (E-E-A-T). Zudem: Website-Geschwindigkeit (Core Web Vitals), Security-Header, defekte Links, technische Migrations-Gesundheit. Erfasst /llm-info und /llms.txt als separate Artefakte.",
+    limit_de: "Guard Audit misst die technische Lesbarkeit der Website für AI-Crawler — nicht jedoch, ob die Marke in LLM-Antworten tatsächlich zitiert wird (das leistet Peec AI), und auch keine organischen Rankings (das leistet GSC). Die Grenze endet auf der Crawl- und Validierungsebene."
   },
   "GSC": {
     name: "Google Search Console",
     code: "GSC",
     surface: "Organic Google search",
     description: "Organic impressions, organic clicks, organic CTR, keyword rankings for unpaid results, indexing and crawl status, Core Web Vitals.",
-    limit: "Google Search Console measures organic Google search only. It does not measure Google Ads — paid Google data lives in Google Ads, not GSC. GSC also does not measure search on Bing, DuckDuckGo, or any LLM-powered answer engine."
+    limit: "Google Search Console measures organic Google search only. It does not measure Google Ads — paid Google data lives in Google Ads, not GSC. GSC also does not measure search on Bing, DuckDuckGo, or any LLM-powered answer engine.",
+    surface_de: "Organische Google-Suche",
+    description_de: "Organische Impressionen, organische Klicks, organische CTR, Keyword-Rankings für unbezahlte Ergebnisse, Indexierungs- und Crawl-Status, Core Web Vitals.",
+    limit_de: "Die Google Search Console misst ausschliesslich die organische Google-Suche. Sie misst keine Google Ads — bezahlte Google-Daten liegen in Google Ads, nicht in der GSC. Ebenso erfasst die GSC keine Suche auf Bing, DuckDuckGo oder in AI-gestützten Answer-Engines."
   },
   "GAds": {
     name: "Google Ads",
     code: "GAds",
     surface: "Google paid search and display",
     description: "Platform-native Impression Share, Quality Score, auction insights, ad-level CTR, ad-level CPC, conversion tracking at the ad level.",
-    limit: "Google Ads cannot tie paid spend to CRM pipeline or revenue without HubSpot's join. It also does not measure the organic counterparts of these metrics — even for the same keyword, organic data lives in GSC."
+    limit: "Google Ads cannot tie paid spend to CRM pipeline or revenue without HubSpot's join. It also does not measure the organic counterparts of these metrics — even for the same keyword, organic data lives in GSC.",
+    surface_de: "Bezahlte Google-Suche und Display",
+    description_de: "Plattform-native Impression Share, Quality Score, Auktionsdaten, CTR auf Anzeigenebene, CPC auf Anzeigenebene, Conversion-Tracking auf Anzeigenebene.",
+    limit_de: "Google Ads kann bezahlte Ausgaben ohne die HubSpot-Verknüpfung nicht mit CRM-Pipeline oder Umsatz verbinden. Ebenso werden die organischen Gegenstücke dieser Metriken nicht gemessen — selbst beim selben Keyword liegen die organischen Daten in der GSC."
   },
   "LI": {
     name: "LinkedIn Ads",
     code: "LI",
     surface: "LinkedIn paid social",
     description: "Campaign Manager metrics: ad-level CTR, ad-level CPC, audience match rate, member-level demographics, Relevance Score, conversion tracking at the ad level.",
-    limit: "LinkedIn Ads cannot tie paid spend to CRM pipeline or revenue without HubSpot's join. It also has no visibility into the same audience's behavior on other LinkedIn surfaces (organic posts, Sales Navigator) — those are separate products."
+    limit: "LinkedIn Ads cannot tie paid spend to CRM pipeline or revenue without HubSpot's join. It also has no visibility into the same audience's behavior on other LinkedIn surfaces (organic posts, Sales Navigator) — those are separate products.",
+    surface_de: "Bezahlte LinkedIn-Werbung",
+    description_de: "Campaign-Manager-Metriken: CTR auf Anzeigenebene, CPC auf Anzeigenebene, Audience Match Rate, Mitglieder-Demografie, Relevance Score, Conversion-Tracking auf Anzeigenebene.",
+    limit_de: "LinkedIn Ads kann bezahlte Ausgaben ohne die HubSpot-Verknüpfung nicht mit CRM-Pipeline oder Umsatz verbinden. Zudem besteht kein Einblick in das Verhalten derselben Zielgruppe auf anderen LinkedIn-Oberflächen (organische Beiträge, Sales Navigator) — das sind eigenständige Produkte."
   },
   "MA": {
     name: "Meta Ads",
     code: "MA",
     surface: "Facebook + Instagram paid",
     description: "Ads Manager metrics: ad-level CTR, ad-level CPC, frequency, audience reach, Quality Ranking, conversion tracking at the ad level across Facebook and Instagram.",
-    limit: "Meta Ads cannot tie paid spend to CRM pipeline or revenue without HubSpot's join. iOS privacy changes have also degraded the conversion-tracking accuracy that earlier Ads Manager generations relied on — ROAS measurement at the channel level requires CRM-side reconciliation."
+    limit: "Meta Ads cannot tie paid spend to CRM pipeline or revenue without HubSpot's join. iOS privacy changes have also degraded the conversion-tracking accuracy that earlier Ads Manager generations relied on — ROAS measurement at the channel level requires CRM-side reconciliation.",
+    surface_de: "Bezahlte Werbung auf Facebook + Instagram",
+    description_de: "Ads-Manager-Metriken: CTR auf Anzeigenebene, CPC auf Anzeigenebene, Frequency, Audience Reach, Quality Ranking, Conversion-Tracking auf Anzeigenebene über Facebook und Instagram.",
+    limit_de: "Meta Ads kann bezahlte Ausgaben ohne die HubSpot-Verknüpfung nicht mit CRM-Pipeline oder Umsatz verbinden. Zudem haben die iOS-Datenschutzänderungen die Genauigkeit des Conversion-Trackings, auf das frühere Ads-Manager-Generationen bauten, beeinträchtigt — die ROAS-Messung auf Kanalebene erfordert einen Abgleich auf CRM-Seite."
   }
 };
 
@@ -3310,7 +3374,21 @@ const I18N = {
     "p5.s9.4t":    "Page 4 — KPI ↔ Software:",
     "p5.s9.4d":    "reference when planning instrumentation or when debating which tool owns a measurement.",
     "p5.s9.5t":    "Page 5 — How it works:",
-    "p5.s9.5d":    "this page. Send new team members here first."
+    "p5.s9.5d":    "this page. Send new team members here first.",
+
+    "cust.undo":"Undo","cust.undo_prefix":"Undo:","cust.undo_none":"Nothing to undo","cust.undo_avail":"Undo last change",
+    "cust.export":"Export session (JSON)","cust.import":"Import session","cust.edit":"Edit","cust.delete":"Delete",
+    "ws.add_metric_title":"Workshop Sandbox · Add Custom Metric","ws.short_name":"Short Name","ws.full_name":"Full Descriptive Name",
+    "ws.funnel_stage":"Funnel Stage","ws.tier_dept":"Tier / Department","ws.cadence":"Reporting Cadence","ws.priority":"MoSCoW Priority",
+    "ws.op_def":"Operational Definition","ws.strategic_meaning":"Strategic Meaning","ws.downstream_impact":"Downstream Impact","ws.inject":"+ Inject KPI Into Active Grid",
+    "ws.opt_stage1":"01 AI / Organic Visibility","ws.opt_stage2":"02 Traffic Quality","ws.opt_stage3":"03 Engagement","ws.opt_stage4":"04 Lead Conversion","ws.opt_stage5":"05 Pipeline","ws.opt_stage6":"06 Revenue","ws.opt_stage7":"07 Expansion",
+    "ws.opt_mgmt":"Management (Tier 1)","ws.opt_expert":"Expert (Tier 2)","ws.opt_optim":"Optimizer (Tier 3)",
+    "ws.opt_daily":"Daily (D)","ws.opt_weekly":"Weekly (W)","ws.opt_monthly":"Monthly (M)","ws.opt_quarterly":"Quarterly (Q)",
+    "ws.opt_p1":"P1 · Must","ws.opt_p2":"P2 · Should","ws.opt_p3":"P3 · Could",
+    "modal.edit.title":"Modify Workshop Metric","modal.edit.short":"Short Name","modal.edit.full":"Full Name","modal.edit.def":"Definition","modal.edit.mean":"Meaning","modal.edit.imp":"Impact","modal.edit.save":"Save changes","modal.edit.cancel":"Cancel",
+    "act.add":"Add","act.delete":"Delete","act.edit":"Edit","act.reset":"Reset to baseline","act.import":"Import session",
+    "msg.reset_confirm":"Reset all custom modifications back to BEE Baseline Standards?","msg.delete_confirm":"Are you sure you want to permanently delete \"{name}\" from this sandbox session?","msg.import_confirm":"Import this session? It replaces the KPIs currently in your sandbox (your last autosave is overwritten).","msg.invalid_file":"That file doesn't look like a valid BEE workshop session.","msg.bad_json":"Could not read that file — it may be corrupted or not valid JSON.",
+    "ws.measures_title":"Workshop Sandbox · Add Baseline & Target Measures","ws.measures_intro":"Attach a measurable objective to any KPI — its current baseline and the target you're driving toward. Values are saved with your session and appear under the KPI on the Dashboard Grid.","ws.kpi":"KPI","ws.select_kpi":"Select a KPI…","ws.baseline":"Baseline (current)","ws.target":"Target","ws.unit":"Unit / timeframe (optional)","ws.baseline_ph":"e.g. 12%","ws.target_ph":"e.g. 25%","ws.unit_ph":"e.g. by Q4 2026","ws.set_measures":"Set baseline & target","ws.clear_measures":"Clear measures on this KPI","ws.set_suffix":" · set","grid.obj":"Obj","act.set_measures":"Set measures on","act.clear_measures":"Clear measures on","msg.pick_kpi":"Pick a KPI first."
   },
 
   de: {
@@ -3396,7 +3474,7 @@ const I18N = {
     "legend.signals": "Signale",
     "signal.mktg_sales": "Marketing ↔ Sales-Review",
 
-    "stage.1.name": "KI / Organische<br>Sichtbarkeit",
+    "stage.1.name": "AI / Organische<br>Sichtbarkeit",
     "stage.1.sub":  "GEO · Schema · Crawl",
     "stage.2.name": "Traffic-<br>Qualität",
     "stage.2.sub":  "Quelle · ABM · Paid",
@@ -3472,16 +3550,16 @@ const I18N = {
     "p5.s6.title": "Signale — Spezial-Flags auf bestimmten KPI-Clustern",
     "p5.s6.body":  "Fünf Badges markieren KPI-Cluster mit besonderem operativem Anliegen. Sie sind visuelle Hinweise, keine separaten Kategorien.",
     "p5.s6.mktg_d":"— roter Punkt auf KPIs, die Definitions-Drift zwischen Marketing und Sales sichtbar machen, bevor sie sich in der Pipeline zeigt. Beim Überfahren erscheint das spezifische Übergabe-Risiko der jeweiligen KPI.",
-    "p5.s6.geo_d": "— Generative Engine Optimization. Sichtbarkeit in LLM-Antworten und KI-Suchen.",
+    "p5.s6.geo_d": "— Generative Engine Optimization. Sichtbarkeit in LLM-Antworten und AI-Suchen.",
     "p5.s6.aeo_d": "— Answer Engine Optimization. Bewertungsmetriken für Fragenstrukturen, präzise Direktantworten und Zitationswürdigkeit.",
     "p5.s6.sra_d": "— Sales-Ready Account. Lebt ausschliesslich auf Expert-Ebene in Lead-Conversion. Markiert die Schwelle zwischen Rohleads und ICP-Accounts, die für den Sales-Kontakt bereit sind.",
     "p5.s6.abm_d": "— Account-Based Marketing. Zielaccount-Reichweite und -Bearbeitung.",
-    "p5.s6.mig_d": "— Site-Migration-Fehlerquote. Lebt ausschliesslich auf Optimizer-Ebene in KI / Organische Sichtbarkeit. Ausserhalb von Migrationen ruhend, während ihnen kritisch.",
+    "p5.s6.mig_d": "— Site-Migration-Fehlerquote. Lebt ausschliesslich auf Optimizer-Ebene in AI / Organische Sichtbarkeit. Ausserhalb von Migrationen ruhend, während ihnen kritisch.",
     "p5.s6.loop_d":"— RevOps-Feedback-Schleife. KPIs, die den Kreis zwischen Sales-Ergebnissen und vorgelagerten Marketing-Entscheidungen schliessen.",
     "p5.s7.title": "Tool-Grenzen — welches Tool welche Oberfläche misst",
     "p5.s7.body":  "Sieben Software-Quellen decken die Architektur ab. Die Aufteilung ist bewusst — jedes Tool besitzt einen Bereich, den die anderen nicht erreichen.",
     "p5.s7.hs":    "— CRM-Daten: Kontakte, MQL / SQL, Deals, Umsatz, Attribution.",
-    "p5.s7.pai":   "— Sichtbarkeit in LLMs: Markenzitationen in KI-Antworten, Sentiment, Prompt-Abdeckung.",
+    "p5.s7.pai":   "— Sichtbarkeit in LLMs: Markenzitationen in AI-Antworten, Sentiment, Prompt-Abdeckung.",
     "p5.s7.ga":    "— technische GEO-Crawl- und Schema-Validierung.",
     "p5.s7.gsc":   "— ausschliesslich organische Google-Suche. Misst keine Google Ads.",
     "p5.s7.gads":  "— Plattform-native bezahlte Google-Suche und Display.",
@@ -3502,7 +3580,21 @@ const I18N = {
     "p5.s9.4t":    "Seite 4 — KPI ↔ Software:",
     "p5.s9.4d":    "Referenz beim Planen der Instrumentierung oder bei Streitfragen, welches Tool eine Messung verantwortet.",
     "p5.s9.5t":    "Seite 5 — So funktioniert es:",
-    "p5.s9.5d":    "diese Seite. Neuen Teammitgliedern zuerst diese Seite zeigen."
+    "p5.s9.5d":    "diese Seite. Neuen Teammitgliedern zuerst diese Seite zeigen.",
+
+    "cust.undo":"Rückgängig","cust.undo_prefix":"Rückgängig:","cust.undo_none":"Nichts rückgängig zu machen","cust.undo_avail":"Letzte Änderung rückgängig machen",
+    "cust.export":"Sitzung exportieren (JSON)","cust.import":"Sitzung importieren","cust.edit":"Bearbeiten","cust.delete":"Löschen",
+    "ws.add_metric_title":"Workshop-Sandbox · Eigene Kennzahl hinzufügen","ws.short_name":"Kurzname","ws.full_name":"Vollständige Bezeichnung",
+    "ws.funnel_stage":"Funnel-Stufe","ws.tier_dept":"Ebene / Bereich","ws.cadence":"Reporting-Frequenz","ws.priority":"MoSCoW-Priorität",
+    "ws.op_def":"Operative Definition","ws.strategic_meaning":"Strategische Bedeutung","ws.downstream_impact":"Nachgelagerte Wirkung","ws.inject":"+ KPI ins aktive Grid übernehmen",
+    "ws.opt_stage1":"01 AI / Organische Sichtbarkeit","ws.opt_stage2":"02 Traffic-Qualität","ws.opt_stage3":"03 Engagement","ws.opt_stage4":"04 Lead-Conversion","ws.opt_stage5":"05 Pipeline","ws.opt_stage6":"06 Umsatz","ws.opt_stage7":"07 Expansion",
+    "ws.opt_mgmt":"Management (Ebene 1)","ws.opt_expert":"Expert (Ebene 2)","ws.opt_optim":"Optimizer (Ebene 3)",
+    "ws.opt_daily":"Täglich (D)","ws.opt_weekly":"Wöchentlich (W)","ws.opt_monthly":"Monatlich (M)","ws.opt_quarterly":"Quartalsweise (Q)",
+    "ws.opt_p1":"P1 · Must","ws.opt_p2":"P2 · Should","ws.opt_p3":"P3 · Could",
+    "modal.edit.title":"Workshop-Kennzahl bearbeiten","modal.edit.short":"Kurzname","modal.edit.full":"Vollständige Bezeichnung","modal.edit.def":"Definition","modal.edit.mean":"Bedeutung","modal.edit.imp":"Wirkung","modal.edit.save":"Änderungen speichern","modal.edit.cancel":"Abbrechen",
+    "act.add":"Hinzufügen von","act.delete":"Löschen von","act.edit":"Bearbeiten von","act.reset":"Auf Baseline zurückgesetzt","act.import":"Sitzung importiert",
+    "msg.reset_confirm":"Alle eigenen Anpassungen auf den BEE-Baseline-Standard zurücksetzen?","msg.delete_confirm":"„{name}\" wirklich dauerhaft aus dieser Sandbox-Sitzung löschen?","msg.import_confirm":"Diese Sitzung importieren? Sie ersetzt die aktuell in Ihrer Sandbox enthaltenen KPIs (Ihr letzter automatischer Speicherstand wird überschrieben).","msg.invalid_file":"Diese Datei scheint keine gültige BEE-Workshop-Sitzung zu sein.","msg.bad_json":"Die Datei konnte nicht gelesen werden — sie ist möglicherweise beschädigt oder kein gültiges JSON.",
+    "ws.measures_title":"Workshop-Sandbox · Baseline- und Zielwerte hinzufügen","ws.measures_intro":"Hinterlegen Sie für jede KPI ein messbares Ziel — den aktuellen Ausgangswert und den angestrebten Zielwert. Die Werte werden mit Ihrer Sitzung gespeichert und erscheinen im Dashboard-Grid unter der jeweiligen KPI.","ws.kpi":"KPI","ws.select_kpi":"KPI auswählen…","ws.baseline":"Ausgangswert (aktuell)","ws.target":"Zielwert","ws.unit":"Einheit / Zeitrahmen (optional)","ws.baseline_ph":"z. B. 12 %","ws.target_ph":"z. B. 25 %","ws.unit_ph":"z. B. bis Q4 2026","ws.set_measures":"Baseline & Zielwert setzen","ws.clear_measures":"Werte dieser KPI entfernen","ws.set_suffix":" · gesetzt","grid.obj":"Ziel","act.set_measures":"Zielwerte gesetzt für","act.clear_measures":"Zielwerte entfernt für","msg.pick_kpi":"Bitte zuerst eine KPI auswählen."
   }
 };
 
@@ -3535,6 +3627,7 @@ function applyI18n() {
   renderChainSelector();
   renderChain();
   renderSoftwareGrid();
+  if (typeof updateUndoButton === 'function') updateUndoButton();
 }
 
 /* ============================================================
@@ -3695,14 +3788,15 @@ function renderKpiItem(k) {
     : "";
   const sigBadges = k.signals.filter(s => s !== "Mktg↔Sales").map(signalBadge).join("");
   return `
-    <div class="kpi-item" data-kpi-id="${k.id}" tabindex="0" role="button" aria-label="${escHTML(k.shortName)} — ${escHTML(k.fullName)}">
+    <div class="kpi-item" data-kpi-id="${k.id}" tabindex="0" role="button" aria-label="${escHTML(k.shortName)} — ${escHTML(kde(k,'fullName'))}">
       <div class="kpi-main">
         <div class="kpi-name">
           ${mktgDot}
-          <span class="tip">${escHTML(k.shortName)}<span class="tip-bubble">${escHTML(k.fullName)}</span></span>
+          <span class="tip">${escHTML(k.shortName)}<span class="tip-bubble">${escHTML(kde(k,'fullName'))}</span></span>
         </div>
         <div class="kpi-meta">${freqBadge(k.frequency)}${srcBadges(k.source)}</div>
         ${sigBadges ? `<div class="kpi-signals">${sigBadges}</div>` : ""}
+        ${(k.baseline || k.target) ? `<div class="kpi-measure"><span class="km-label">${escHTML(t('grid.obj'))}</span><span class="km-base">${escHTML(k.baseline || "—")}</span><span class="km-arrow">→</span><span class="km-target">${escHTML(k.target || "—")}</span>${k.measureUnit ? `<span class="km-unit">${escHTML(k.measureUnit)}</span>` : ""}</div>` : ""}
       </div>
     </div>`;
 }
@@ -3738,18 +3832,18 @@ function renderGlossary(filter = "") {
       <div class="gl-entry" id="gl-${k.id}">
         <div class="gl-head">
           <div class="gl-name">${escHTML(k.shortName)}</div>
-          <div class="gl-full">${escHTML(k.fullName)}</div>
+          <div class="gl-full">${escHTML(kde(k,'fullName'))}</div>
           <div class="gl-tags">
             ${freqBadge(k.frequency)}
             ${srcBadges(k.source)}
-            <span class="signal-badge" style="background:var(--light);color:var(--bee-blue);border-color:var(--light)">${escHTML(t('dept.' + k.department.toLowerCase()))} · ${escHTML(k.funnelStage)}</span>
+            <span class="signal-badge" style="background:var(--light);color:var(--bee-blue);border-color:var(--light)">${escHTML(t('dept.' + k.department.toLowerCase()))} · ${escHTML(stageDE(k.funnelStage))}</span>
             <span class="signal-badge" style="background:var(--warm);color:var(--amber);border-color:var(--bee-yellow)">P${k.priority}</span>
           </div>
         </div>
-        <div class="gl-field"><div class="gl-field-label">${t('gloss.def')}</div><div class="gl-field-text">${escHTML(k.definition)}</div></div>
-        <div class="gl-field"><div class="gl-field-label">${t('gloss.mean')}</div><div class="gl-field-text">${escHTML(k.meaning)}</div></div>
-        <div class="gl-field"><div class="gl-field-label">${t('gloss.imp')}</div><div class="gl-field-text">${escHTML(k.impact)}</div></div>
-        <div class="gl-field"><div class="gl-field-label">${t('gloss.why_pri')}</div><div class="gl-field-text" style="font-size:11.5px;color:var(--slate)">${escHTML(k.priorityRationale)}</div></div>
+        <div class="gl-field"><div class="gl-field-label">${t('gloss.def')}</div><div class="gl-field-text">${escHTML(kde(k,'definition'))}</div></div>
+        <div class="gl-field"><div class="gl-field-label">${t('gloss.mean')}</div><div class="gl-field-text">${escHTML(kde(k,'meaning'))}</div></div>
+        <div class="gl-field"><div class="gl-field-label">${t('gloss.imp')}</div><div class="gl-field-text">${escHTML(kde(k,'impact'))}</div></div>
+        <div class="gl-field"><div class="gl-field-label">${t('gloss.why_pri')}</div><div class="gl-field-text" style="font-size:11.5px;color:var(--slate)">${escHTML(kde(k,'priorityRationale'))}</div></div>
       </div>
     `).join("");
 }
@@ -3773,7 +3867,7 @@ function renderCustomize() {
   STAGES.forEach(stage => {
     const stageDiv = document.createElement("div");
     stageDiv.className = "cust-stage";
-    stageDiv.innerHTML = `<h3>${escHTML(stage)}</h3>`;
+    stageDiv.innerHTML = `<h3>${escHTML(stageDE(stage))}</h3>`;
     DEPTS.forEach(dept => {
       const kpisHere = KPIS.filter(k => k.funnelStage === stage && k.department === dept);
       if (kpisHere.length === 0) return;
@@ -3793,13 +3887,13 @@ function renderCustomize() {
         label.innerHTML = `
           <div style="display:flex; align-items:center; gap:8px; flex:1;">
             <input type="checkbox" data-kpi-id="${k.id}" ${STATE.selected.has(k.id) ? "checked" : ""}>
-            <span class="ct-name" style="cursor:pointer;">${escHTML(k.shortName)} <span style="color:var(--slate); font-size:10.5px;">· ${escHTML(k.fullName)}</span></span>
+            <span class="ct-name" style="cursor:pointer;">${escHTML(k.shortName)} <span style="color:var(--slate); font-size:10.5px;">· ${escHTML(kde(k,'fullName'))}</span></span>
           </div>
           <div style="display:flex; align-items:center; gap:8px;">
             ${freqBadge(k.frequency)}
             ${srcBadges(k.source)}
-            <button type="button" class="btn btn-ghost" data-edit-id="${k.id}" style="padding:2px 8px; font-size:10px; border-color:var(--hairline);">Edit</button>
-            <button type="button" class="btn btn-ghost" data-delete-id="${k.id}" style="padding:2px 8px; font-size:10px; border-color:var(--hairline); color:#C0392B;">Delete</button>
+            <button type="button" class="btn btn-ghost" data-edit-id="${k.id}" style="padding:2px 8px; font-size:10px; border-color:var(--hairline);">${escHTML(t('cust.edit'))}</button>
+            <button type="button" class="btn btn-ghost" data-delete-id="${k.id}" style="padding:2px 8px; font-size:10px; border-color:var(--hairline); color:#C0392B;">${escHTML(t('cust.delete'))}</button>
           </div>
         `;
         list.appendChild(label);
@@ -3826,7 +3920,7 @@ function renderCustomize() {
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
       const id = btn.dataset.deleteId;
-      pushUndo(`Delete ${KPIS.find(x => x.id === id).shortName}`);
+      pushUndo(`${t('act.delete')} ${KPIS.find(x => x.id === id).shortName}`);
       KPIS = KPIS.filter(x => x.id !== id);
       STATE.selected.delete(id);
       saveWorkshopState();
@@ -3843,6 +3937,24 @@ function renderCustomize() {
     });
   });
   updateCounters();
+  populateMeasureKpiSelect();
+}
+
+function populateMeasureKpiSelect() {
+  const sel = document.getElementById("measure_kpi");
+  if (!sel) return;
+  const prev = sel.value;
+  const sorted = [...KPIS].sort((a, b) => a.funnelStage.localeCompare(b.funnelStage) || a.shortName.localeCompare(b.shortName));
+  sel.innerHTML = `<option value="">${escHTML(t('ws.select_kpi'))}</option>` +
+    sorted.map(k => `<option value="${k.id}">${escHTML(k.shortName)}${(k.baseline || k.target) ? escHTML(t('ws.set_suffix')) : ""}</option>`).join("");
+  if (prev && KPIS.some(k => k.id === prev)) sel.value = prev;
+}
+
+function fillMeasureInputs() {
+  const k = KPIS.find(x => x.id === document.getElementById("measure_kpi").value);
+  document.getElementById("measure_baseline").value = (k && k.baseline) ? k.baseline : "";
+  document.getElementById("measure_target").value = (k && k.target) ? k.target : "";
+  document.getElementById("measure_unit").value = (k && k.measureUnit) ? k.measureUnit : "";
 }
 
 function updateCounters() {
@@ -3886,12 +3998,12 @@ function renderChainSelector() {
   let html = `<option value="">${escHTML(t('chain.placeholder'))}</option>`;
   if (withChain.length) {
     html += `<optgroup label="${escHTML(t('chain.opt_active'))} (${withChain.length})">`;
-    html += withChain.map(k => `<option value="${k.id}">${escHTML(k.shortName)} · ${escHTML(t('dept.' + k.department.toLowerCase()))} / ${escHTML(k.funnelStage)}</option>`).join("");
+    html += withChain.map(k => `<option value="${k.id}">${escHTML(k.shortName)} · ${escHTML(t('dept.' + k.department.toLowerCase()))} / ${escHTML(stageDE(k.funnelStage))}</option>`).join("");
     html += `</optgroup>`;
   }
   if (withoutChain.length) {
     html += `<optgroup label="${escHTML(t('chain.opt_inactive'))} (${withoutChain.length})">`;
-    html += withoutChain.map(k => `<option value="${k.id}" data-no-chain="1">${escHTML(k.shortName)} · ${escHTML(t('dept.' + k.department.toLowerCase()))} / ${escHTML(k.funnelStage)}</option>`).join("");
+    html += withoutChain.map(k => `<option value="${k.id}" data-no-chain="1">${escHTML(k.shortName)} · ${escHTML(t('dept.' + k.department.toLowerCase()))} / ${escHTML(stageDE(k.funnelStage))}</option>`).join("");
     html += `</optgroup>`;
   }
   sel.innerHTML = html;
@@ -3945,7 +4057,7 @@ function renderChain() {
       <div class="chain-header">
         <div>
           <div class="chain-eyebrow">${escHTML(t('chain.eyebrow'))}</div>
-          <div class="chain-title">${escHTML(k.shortName)} — ${escHTML(k.fullName)}</div>
+          <div class="chain-title">${escHTML(k.shortName)} — ${escHTML(kde(k,'fullName'))}</div>
         </div>
       </div>
       <div class="chain-flow">${nodes}</div>
@@ -3959,6 +4071,8 @@ function renderChain() {
 function renderSoftwareGrid() {
   const grid = document.getElementById("swGrid");
   const order = ["HS", "PAI", "GA", "GSC", "GAds", "LI", "MA"];
+  const deLang = STATE.lang === "de";
+  const tl = (tool, fld) => (deLang && tool[fld + "_de"]) ? tool[fld + "_de"] : tool[fld];
   grid.innerHTML = order.map(code => {
     const tool = SOFTWARE_LIMITS[code];
     const kpisHere = KPIS.filter(k => k.source.includes(code));
@@ -3968,19 +4082,19 @@ function renderSoftwareGrid() {
           <span class="sw-badge-lg src-${code.toLowerCase()}">${code}</span>
           <div>
             <div class="sw-name">${escHTML(tool.name)}</div>
-            <div class="sw-sub">${escHTML(tool.surface)} · ${kpisHere.length} KPI${kpisHere.length === 1 ? "" : "s"}</div>
+            <div class="sw-sub">${escHTML(tl(tool,"surface"))} · ${kpisHere.length} KPI${kpisHere.length === 1 ? "" : "s"}</div>
           </div>
         </div>
         <div class="sw-card-body">
           <div>
             <div class="sw-section-label">${escHTML(t('p4.sw_what'))}</div>
-            <div class="sw-description">${escHTML(tool.description)}</div>
+            <div class="sw-description">${escHTML(tl(tool,"description"))}</div>
           </div>
           <div>
             <div class="sw-section-label">${escHTML(t('p4.sw_kpis'))}</div>
             <div class="sw-kpi-chips">
               ${kpisHere.map(k => `
-                <div class="sw-kpi-chip">${escHTML(k.shortName)}<span class="swc-stage">${escHTML(t('dept.' + k.department.toLowerCase()))} · ${escHTML(k.funnelStage)}</span></div>
+                <div class="sw-kpi-chip">${escHTML(k.shortName)}<span class="swc-stage">${escHTML(t('dept.' + k.department.toLowerCase()))} · ${escHTML(stageDE(k.funnelStage))}</span></div>
               `).join("")}
             </div>
           </div>
@@ -3988,7 +4102,7 @@ function renderSoftwareGrid() {
             <div class="sw-section-label">${escHTML(t('p4.sw_limit'))}</div>
             <div class="sw-limit">
               <span class="sw-limit-label">${escHTML(t('p4.sw_limit'))}</span>
-              ${escHTML(tool.limit)}
+              ${escHTML(tl(tool,"limit"))}
             </div>
           </div>
         </div>
@@ -4017,39 +4131,39 @@ function openKpiEditModal(k) {
     <form id="editKpiForm" style="display:flex; flex-direction:column; gap:12px; font-size:12px; text-align:left;">
       <input type="hidden" id="edit_id" value="${k.id}">
       <div>
-        <label style="font-weight:600; display:block; margin-bottom:4px;">Short Name</label>
+        <label style="font-weight:600; display:block; margin-bottom:4px;">${escHTML(t('modal.edit.short'))}</label>
         <input type="text" id="edit_shortName" required value="${escHTML(k.shortName)}" style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
       </div>
       <div>
-        <label style="font-weight:600; display:block; margin-bottom:4px;">Full Name</label>
+        <label style="font-weight:600; display:block; margin-bottom:4px;">${escHTML(t('modal.edit.full'))}</label>
         <input type="text" id="edit_fullName" required value="${escHTML(k.fullName)}" style="width:100%; padding:6px; border:1px solid var(--hairline); border-radius:4px;">
       </div>
       <div>
-        <label style="font-weight:600; display:block; margin-bottom:4px;">Definition</label>
+        <label style="font-weight:600; display:block; margin-bottom:4px;">${escHTML(t('modal.edit.def'))}</label>
         <textarea id="edit_def" required style="width:100%; height:50px; padding:6px; border:1px solid var(--hairline); border-radius:4px; font-family:inherit;">${escHTML(k.definition)}</textarea>
       </div>
       <div>
-        <label style="font-weight:600; display:block; margin-bottom:4px;">Meaning</label>
+        <label style="font-weight:600; display:block; margin-bottom:4px;">${escHTML(t('modal.edit.mean'))}</label>
         <textarea id="edit_mean" required style="width:100%; height:50px; padding:6px; border:1px solid var(--hairline); border-radius:4px; font-family:inherit;">${escHTML(k.meaning)}</textarea>
       </div>
       <div>
-        <label style="font-weight:600; display:block; margin-bottom:4px;">Impact</label>
+        <label style="font-weight:600; display:block; margin-bottom:4px;">${escHTML(t('modal.edit.imp'))}</label>
         <textarea id="edit_imp" required style="width:100%; height:50px; padding:6px; border:1px solid var(--hairline); border-radius:4px; font-family:inherit;">${escHTML(k.impact)}</textarea>
       </div>
       <div style="margin-top:8px;">
-        <button type="submit" class="btn" style="background:var(--bee-blue); color:#fff; border-color:var(--bee-blue);">Save Structural Realignment</button>
-        <button type="button" class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+        <button type="submit" class="btn" style="background:var(--bee-blue); color:#fff; border-color:var(--bee-blue);">${escHTML(t('modal.edit.save'))}</button>
+        <button type="button" class="btn btn-ghost" onclick="closeModal()">${escHTML(t('modal.edit.cancel'))}</button>
       </div>
     </form>
   `;
-  openModal(`Modify Workshop Metric · ${k.shortName}`, modalHTML);
+  openModal(`${t('modal.edit.title')} · ${k.shortName}`, modalHTML);
 
   document.getElementById('editKpiForm').addEventListener('submit', (e) => {
     e.preventDefault();
     const id = document.getElementById('edit_id').value;
     const targetKpi = KPIS.find(x => x.id === id);
     if (targetKpi) {
-      pushUndo(`Edit ${targetKpi.shortName}`);
+      pushUndo(`${t('act.edit')} ${targetKpi.shortName}`);
       targetKpi.shortName = document.getElementById('edit_shortName').value;
       targetKpi.fullName = document.getElementById('edit_fullName').value;
       targetKpi.definition = document.getElementById('edit_def').value;
@@ -4108,7 +4222,7 @@ function starterSetModalBody() {
 
     <h4>${en ? 'The Expert KPIs included, with reasoning' : 'Die gewählten Expert-KPIs mit Begründung'}</h4>
     <ul>
-      ${expertList.map(k => `<li><strong>${escHTML(k.shortName)}</strong> · <span style="color:var(--slate-2)">${escHTML(k.funnelStage)}</span> — ${escHTML(en ? k.priorityRationale : k.priorityRationale)}</li>`).join('')}
+      ${expertList.map(k => `<li><strong>${escHTML(k.shortName)}</strong> · <span style="color:var(--slate-2)">${escHTML(stageDE(k.funnelStage))}</span> — ${escHTML(en ? k.priorityRationale : kde(k,'priorityRationale'))}</li>`).join('')}
     </ul>
 
     <h4>${en ? 'Why not just pick by gut feel' : 'Warum nicht einfach nach Bauchgefühl wählen'}</h4>
@@ -4183,7 +4297,7 @@ function bindToggles() {
       meaning: document.getElementById('add_mean').value,
       impact: document.getElementById('add_imp').value
     };
-    pushUndo(`Add ${rawShort}`);
+    pushUndo(`${t('act.add')} ${rawShort}`);
     KPIS.push(newKpi);
     STATE.selected.add(newId);
     saveWorkshopState();
@@ -4197,6 +4311,32 @@ function bindToggles() {
   document.getElementById('custImportFile').addEventListener('change', (e) => {
     if (e.target.files && e.target.files[0]) importWorkshopState(e.target.files[0]);
     e.target.value = "";
+  });
+
+  populateMeasureKpiSelect();
+  document.getElementById('measure_kpi').addEventListener('change', fillMeasureInputs);
+  document.getElementById('addMeasureForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const k = KPIS.find(x => x.id === document.getElementById('measure_kpi').value);
+    if (!k) { alert(t('msg.pick_kpi')); return; }
+    pushUndo(`${t('act.set_measures')} ${k.shortName}`);
+    k.baseline = document.getElementById('measure_baseline').value.trim();
+    k.target = document.getElementById('measure_target').value.trim();
+    k.measureUnit = document.getElementById('measure_unit').value.trim();
+    saveWorkshopState();
+    populateMeasureKpiSelect();
+    onSelectionChange();
+    applyI18n();
+  });
+  document.getElementById('measure_clear').addEventListener('click', () => {
+    const k = KPIS.find(x => x.id === document.getElementById('measure_kpi').value);
+    if (!k) { alert(t('msg.pick_kpi')); return; }
+    pushUndo(`${t('act.clear_measures')} ${k.shortName}`);
+    delete k.baseline; delete k.target; delete k.measureUnit;
+    saveWorkshopState();
+    fillMeasureInputs();
+    populateMeasureKpiSelect();
+    onSelectionChange();
   });
 }
 
