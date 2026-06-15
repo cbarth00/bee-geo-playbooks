@@ -281,6 +281,53 @@
     .delta .col + .col{border-left:none;border-top:1px solid var(--line)}
     .wrap{padding:0 22px}
   }
+
+  /* ============ BEE TOC: Progress · Inline Index · Sidebar ============ */
+  #btoc-prog{position:fixed;top:0;left:0;right:0;height:3px;z-index:2000;pointer-events:none}
+  #btoc-prog-fill{height:100%;width:0;background:linear-gradient(90deg,#1D60B0 0%,#FFB342 100%);transition:width 80ms linear}
+  #btoc-inline{background:var(--light);border-bottom:1px solid var(--line);padding:36px 0 30px}
+  .btoc-inhead{display:flex;align-items:baseline;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+  .btoc-inlabel{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bee-blue);font-weight:500}
+  .btoc-incnt{font-size:12px;color:var(--slate)}
+  .btoc-grid{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .btoc-card{background:#fff;border:none;border-bottom:1px solid var(--line);border-radius:0;padding:13px 20px 13px 17px;text-decoration:none;display:flex;flex-direction:row;align-items:center;color:var(--ink);border-left:3px solid transparent;transition:background 140ms var(--ease),border-left-color 140ms var(--ease)}
+  .btoc-card:last-child{border-bottom:none}
+  .btoc-card:hover{background:var(--light);border-left-color:var(--bee-blue)}
+  .btoc-cnum{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);font-weight:600;white-space:nowrap;flex-shrink:0;order:2;margin-left:auto;padding-left:20px}
+  .btoc-ctitle{font-size:13px;font-weight:500;color:var(--ink);line-height:1.35;flex:1;min-width:0;order:1}
+  .btoc-cpills{display:none!important}
+  .btoc-pill{font-size:11.5px;background:none;border:none;color:var(--slate);padding:0;border-radius:0;line-height:1.35;white-space:nowrap;max-width:none}
+  .btoc-pill+.btoc-pill::before{content:' · ';color:var(--slate)}
+  #btoc-sb{position:fixed;top:0;right:0;width:258px;height:100vh;background:var(--navy);border-left:1px solid rgba(255,255,255,.1);z-index:960;display:flex;flex-direction:column;transform:translateX(100%);transition:transform 230ms var(--ease);box-shadow:-10px 0 44px rgba(6,22,41,.38)}
+  #btoc-sb.btoc-open{transform:translateX(0)}
+  .btoc-sbtop{display:flex;align-items:center;justify-content:space-between;padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0;background:var(--navy)}
+  .btoc-sblbl{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);font-weight:500}
+  .btoc-sbx{display:none!important}
+  .btoc-sbprog{height:2px;background:rgba(255,255,255,.07);margin:0 16px;flex-shrink:0}
+  .btoc-sbpf{height:100%;width:0;background:linear-gradient(90deg,var(--bee-blue),var(--bee-yellow));transition:width 100ms linear}
+  .btoc-sbbody{flex:1;overflow-y:auto;padding:4px 0 56px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.1) transparent}
+  .btoc-sbbody::-webkit-scrollbar{width:3px}
+  .btoc-sbbody::-webkit-scrollbar-track{background:transparent}
+  .btoc-sbbody::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
+  .btoc-sba{display:block;padding:7px 16px;font-size:12.5px;color:rgba(255,255,255,.45);text-decoration:none;line-height:1.4;border-left:2px solid transparent;transition:color 140ms var(--ease),background 140ms var(--ease),border-left-color 140ms var(--ease);cursor:pointer}
+  .btoc-sba:hover{color:rgba(255,255,255,.8);background:rgba(255,255,255,.04)}
+  .btoc-sba.btoc-act{color:#fff;background:rgba(255,255,255,.07);border-left-color:var(--bee-yellow)}
+  .btoc-sbh2{color:rgba(255,255,255,.72)!important;font-weight:500;font-size:13px;padding-top:11px!important;margin-top:8px;border-top:1px solid rgba(255,255,255,.06)}
+  .btoc-sbh2.btoc-first{border-top:none!important;margin-top:0}
+  .btoc-sbh3{padding-left:27px!important;font-size:12px}
+  .btoc-chn{color:var(--amber);font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-right:3px}
+  #btoc-toggle{position:fixed;bottom:28px;right:20px;z-index:950;background:var(--navy);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:999px;font-family:'Outfit',sans-serif;font-size:12px;font-weight:500;letter-spacing:.04em;padding:9px 16px 9px 12px;display:flex;align-items:center;gap:8px;cursor:pointer;box-shadow:0 4px 20px rgba(6,22,41,.48);backdrop-filter:blur(10px);transition:transform 160ms var(--ease),box-shadow 160ms var(--ease),background 160ms var(--ease),border-color 160ms var(--ease)}
+  #btoc-toggle:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(6,22,41,.55)}
+  #btoc-toggle.btoc-on{background:var(--bee-blue);border-color:transparent}
+  #btoc-overlay{position:fixed;inset:0;background:rgba(6,22,41,.55);z-index:955;opacity:0;pointer-events:none;transition:opacity 220ms var(--ease)}
+  #btoc-overlay.btoc-ov{opacity:1;pointer-events:all}
+  @media(min-width:1580px){#btoc-sb{transform:translateX(0)!important}#btoc-toggle{display:none!important}#btoc-overlay{display:none!important}}
+  @media(max-width:700px){.btoc-cpills{display:none!important}}
+  @media(max-width:480px){.btoc-cpills{display:none!important}}
+  /* Keep lang-toggle clear of sidebar — smooth slide */
+  .lang-toggle{transition:background 160ms var(--ease),border-color 160ms var(--ease),right 230ms var(--ease)!important}
+  body.btoc-sb-open .lang-toggle{right:278px!important}
+  @media(min-width:1580px){.lang-toggle{right:278px!important}}
 </style>
 </head>
 <body>
@@ -895,8 +942,8 @@
       </div>
     </div>
 
-    <p lang="en">Each card is generated and ranked, then exported to your PM tool (Asana, Linear, ClickUp) via the BEE Guard integration layer, with priority, effort and assignee already populated — so engineering, content and schema work lands in the right backlog without re-keying. Direct queue routing happens through that integration rather than Guard pushing into queues unilaterally.</p>
-    <p lang="de">Jede Card wird generiert und priorisiert und anschliessend über die BEE-Guard-Integrationsebene in dein PM-Tool (Asana, Linear, ClickUp) exportiert — inklusive bereits gesetzter Priorität, Aufwand und Verantwortlichkeit, sodass Engineering-, Content- und Schema-Arbeit ohne erneute Erfassung im richtigen Backlog landet. Das Routing in die Queues erfolgt über diese Integration und nicht durch ein einseitiges Einspeisen seitens Guard.</p>
+    <p lang="en">Each card is generated and ranked, then exported to your PM tool (Asana, Linear, ClickUp) via the BEE AI-Readiness Audit integration layer, with priority, effort and assignee already populated — so engineering, content and schema work lands in the right backlog without re-keying. Direct queue routing happens through that integration rather than the audit pushing into queues unilaterally.</p>
+    <p lang="de">Jede Card wird generiert und priorisiert und anschliessend über die BEE-AI-Readiness-Audit-Integrationsebene in dein PM-Tool (Asana, Linear, ClickUp) exportiert — inklusive bereits gesetzter Priorität, Aufwand und Verantwortlichkeit, sodass Engineering-, Content- und Schema-Arbeit ohne erneute Erfassung im richtigen Backlog landet. Das Routing in die Queues erfolgt über diese Integration und nicht durch ein einseitiges Einspeisen seitens des Audits.</p>
 
     <p lang="en"><strong>Architecture readiness is only half the discipline.</strong> Whether your pages are actually cited in live AI answers is a separate, measurable question — covered in the companion <a href="bee_geo_field_guide.html">DACH Field Guide</a>, which assesses the live-monitoring platforms for that job. Remediate the architecture here; monitor live visibility there.</p>
     <p lang="de"><strong>Architektur-Readiness ist nur die halbe Disziplin.</strong> Ob Ihre Seiten in Live-AI-Antworten tatsächlich zitiert werden, ist eine separate, messbare Frage — behandelt im begleitenden <a href="bee_geo_field_guide.html">DACH Field Guide</a>, der die Plattformen für dieses Live-Monitoring bewertet. Die Architektur wird hier behoben, die Live-Sichtbarkeit dort überwacht.</p>
@@ -1117,7 +1164,7 @@
       <li id="ref-9">Celum (2026). <em>Making Your Website AI‑Ready: Staying Visible in the Age of AI / Agentic Search.</em> Core frameworks for agentic e-commerce, lead generation, API-first interfaces, and text metadata requirements. <a href="https://www.celum.com/en/blog/making-your-website-ai-ready-staying-visible-in-the-age-of-ai/">celum.com/blog/making-your-website-ai-ready</a></li>
       <li id="ref-10">Reddit r/DigitalMarketing (2026). <em>Is your website actually ready for AI search? Most aren't.</em> Conversational extraction parameters; 30-second money page audit metrics; structural vs. vague content. <a href="https://www.reddit.com/r/DigitalMarketing/comments/1ssrofj/is_your_website_actually_ready_for_ai_search_most/">reddit.com/r/DigitalMarketing</a></li>
       <li id="ref-11">121 Web (2026). <em>Is Your Website Ready for AI Search? Try Our Free AI Checker.</em> Technical signals verification; XML sitemap requirements; NAP consistency across external graphs. <a href="https://121web.site/is-your-website-ready-for-ai-search-try-my-free-ai-website-checker">121web.site/ai-checker</a></li>
-      <li id="ref-12">Guard (2026). <em>Guard &mdash; Website Performance &amp; Compliance Platform.</em> The audit platform behind the scoring engine and sub-component weightings referenced in &sect;4 &mdash; technical-audit scope (Core Web Vitals, schema / GEO signals, accessibility, security, llms.txt) and pricing model (free audit, project-based fixing, monitoring from USD 49/mo). <a href="https://guard.freelopers.com/">guard.freelopers.com</a> &middot; <a href="https://guard.freelopers.com/#pricing">pricing</a></li>
+      <li id="ref-12">Guard (2026). <em>Guard — Website Performance &amp; Compliance Platform.</em> The audit platform behind the scoring engine and sub-component weightings referenced in §4 — technical-audit scope (Core Web Vitals, schema / GEO signals, accessibility, security, llms.txt) and pricing model (free audit, project-based fixing, monitoring from USD 49/mo). <a href="https://guard.freelopers.com/">guard.freelopers.com</a> · <a href="https://guard.freelopers.com/#pricing">pricing</a></li>
     </ol>
 
     <div class="cta" id="cta-closing" style="margin-top:36px">
@@ -1161,6 +1208,143 @@
       try { localStorage.setItem('bee-ai-ready-playbook-lang', lang); } catch(e){}
     });
   });
+})();
+</script>
+
+<script>
+/* BEE TOC v1 — Dynamic bilingual Table of Contents */
+(function(){
+'use strict';
+var GL=function(){return document.documentElement.dataset.lang||'en';};
+var GT=function(el){if(!el)return'';var s=el.querySelector('[lang="'+GL()+'"]');return(s||el).textContent.trim();};
+var GS=function(id){var t=document.getElementById(id);if(t)t.scrollIntoView({behavior:'smooth',block:'start'});};
+var items=[],flat=[];
+function collect(){
+  items=[];flat=[];
+  var cur=null;
+  document.querySelectorAll('h2[id],h3[id]').forEach(function(h){
+    var sec=h.closest('section');
+    var ey=sec&&sec.querySelector('.ch-eyebrow');
+    if(h.tagName==='H2'){cur={id:h.id,level:2,el:h,ey:ey,subs:[]};items.push(cur);}
+    else{var e={id:h.id,level:3,el:h};if(cur)cur.subs.push(e);else items.push(e);}
+  });
+  items.forEach(function(i){flat.push(i);if(i.subs)i.subs.forEach(function(s){flat.push(s);});});
+}
+/* --- DOM scaffolding --- */
+var $pg=document.createElement('div');$pg.id='btoc-prog';
+var $pgf=document.createElement('div');$pgf.id='btoc-prog-fill';$pg.appendChild($pgf);
+document.body.insertBefore($pg,document.body.firstChild);
+var $in=document.createElement('section');$in.id='btoc-inline';
+var $inw=document.createElement('div');$inw.className='wrap';$in.appendChild($inw);
+var $sb=document.createElement('nav');$sb.id='btoc-sb';$sb.setAttribute('aria-label','Table of contents');
+var $sbtop=document.createElement('div');$sbtop.className='btoc-sbtop';
+var $sblbl=document.createElement('span');$sblbl.className='btoc-sblbl';
+var $sbx=document.createElement('button');$sbx.className='btoc-sbx';$sbx.innerHTML='&times;';$sbx.setAttribute('aria-label','Close');
+$sbtop.appendChild($sblbl);$sbtop.appendChild($sbx);
+var $sbpw=document.createElement('div');$sbpw.className='btoc-sbprog';
+var $sbpf=document.createElement('div');$sbpf.className='btoc-sbpf';$sbpw.appendChild($sbpf);
+var $sbb=document.createElement('div');$sbb.className='btoc-sbbody';
+$sb.appendChild($sbtop);$sb.appendChild($sbpw);$sb.appendChild($sbb);
+var $tog=document.createElement('button');$tog.id='btoc-toggle';
+$tog.setAttribute('aria-label','Table of contents');
+$tog.innerHTML='<svg width="15" height="13" viewBox="0 0 15 13" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><line x1="0" y1="1" x2="15" y2="1"/><line x1="0" y1="6.5" x2="10.5" y2="6.5"/><line x1="0" y1="12" x2="12.5" y2="12"/></svg><span id="btoc-lbl">Contents</span>';
+var $ov=document.createElement('div');$ov.id='btoc-overlay';
+/* --- Render (runs on init + lang switch) --- */
+function render(){
+  var l=GL();
+  $sblbl.textContent=l==='en'?'In this guide':'Inhaltsverzeichnis';
+  var lbl=document.getElementById('btoc-lbl');if(lbl)lbl.textContent=l==='en'?'Contents':'Inhalt';
+  /* Inline section */
+  $inw.innerHTML='';
+  var hd=document.createElement('div');hd.className='btoc-inhead';
+  var inlbl=document.createElement('div');inlbl.className='btoc-inlabel';
+  inlbl.textContent=l==='en'?'In this guide':'Inhaltsverzeichnis';
+  var nch=items.filter(function(i){return i.level===2;}).length;
+  var cnt=document.createElement('div');cnt.className='btoc-incnt';
+  cnt.textContent=nch+(l==='en'?' chapters':' Kapitel');
+  hd.appendChild(inlbl);hd.appendChild(cnt);$inw.appendChild(hd);
+  var grid=document.createElement('div');grid.className='btoc-grid';
+  items.forEach(function(item){
+    if(item.level!==2)return;
+    var title=GT(item.el),chNum=item.ey?GT(item.ey):'';
+    var card=document.createElement('a');card.className='btoc-card';card.href='#'+item.id;
+    if(chNum){
+      var match=chNum.match(/(?:Chapter|Kapitel)\s*(\d+)/i);
+      var numEl=document.createElement('div');numEl.className='btoc-cnum';
+      numEl.textContent=match?(l==='en'?'Ch.':'Kap.')+match[1]:chNum;
+      card.appendChild(numEl);
+    }
+    var te=document.createElement('div');te.className='btoc-ctitle';te.textContent=title;card.appendChild(te);
+    if(item.subs&&item.subs.length){
+      var pills=document.createElement('div');pills.className='btoc-cpills';
+      item.subs.slice(0,4).forEach(function(sub){
+        var p=document.createElement('span');p.className='btoc-pill';p.textContent=GT(sub.el);pills.appendChild(p);
+      });
+      card.appendChild(pills);
+    }
+    card.addEventListener('click',function(e){e.preventDefault();GS(item.id);history.pushState(null,null,'#'+item.id);});
+    grid.appendChild(card);
+  });
+  $inw.appendChild(grid);
+  /* Sidebar body */
+  $sbb.innerHTML='';var first=true;
+  items.forEach(function(item){
+    if(item.level!==2)return;
+    var title=GT(item.el),chNum=item.ey?GT(item.ey):'';
+    var a=document.createElement('a');
+    a.className='btoc-sba btoc-sbh2'+(first?' btoc-first':'');
+    a.href='#'+item.id;first=false;
+    var match=chNum.match(/(?:Chapter|Kapitel)\s*(\d+)/i);
+    if(match){var ns=document.createElement('span');ns.className='btoc-chn';ns.textContent=(l==='en'?'Ch.':'Kap.')+match[1];a.appendChild(ns);}
+    a.appendChild(document.createTextNode(title));
+    a.addEventListener('click',function(e){e.preventDefault();GS(item.id);if(window.innerWidth<1580)setSb(false);});
+    item._sa=a;$sbb.appendChild(a);
+    if(item.subs)item.subs.forEach(function(sub){
+      var b=document.createElement('a');b.className='btoc-sba btoc-sbh3';b.href='#'+sub.id;
+      b.textContent=GT(sub.el);
+      b.addEventListener('click',function(e){e.preventDefault();GS(sub.id);if(window.innerWidth<1580)setSb(false);});
+      sub._sa=b;$sbb.appendChild(b);
+    });
+  });
+}
+/* --- Sidebar toggle --- */
+function setSb(open){$sb.classList.toggle('btoc-open',open);$ov.classList.toggle('btoc-ov',open);$tog.classList.toggle('btoc-on',open);document.body.classList.toggle('btoc-sb-open',open);}
+/* --- Scroll handler --- */
+var lastAct=null;
+function onScroll(){
+  var dh=document.documentElement.scrollHeight-window.innerHeight;
+  var pct=dh>0?(window.scrollY/dh*100):0;
+  $pgf.style.width=pct+'%';$sbpf.style.width=pct+'%';
+  var top=window.scrollY+110,act=null;
+  flat.forEach(function(item){
+    var el=document.getElementById(item.id);
+    if(el&&(el.getBoundingClientRect().top+window.scrollY)<=top+1)act=item;
+  });
+  if(act!==lastAct){
+    flat.forEach(function(item){if(item._sa)item._sa.classList.toggle('btoc-act',item===act);});
+    if(act&&act._sa){
+      var r=act._sa.getBoundingClientRect(),br=$sbb.getBoundingClientRect();
+      if(r.top<br.top+50||r.bottom>br.bottom-20)act._sa.scrollIntoView({block:'nearest',behavior:'smooth'});
+    }
+    lastAct=act;
+  }
+}
+/* --- Init --- */
+function init(){
+  collect();if(!items.length)return;
+  var hero=document.querySelector('header.hero');
+  if(hero)hero.parentNode.insertBefore($in,hero.nextSibling);
+  document.body.appendChild($sb);document.body.appendChild($ov);document.body.appendChild($tog);
+  render();
+  $tog.addEventListener('click',function(){setSb(!$sb.classList.contains('btoc-open'));});
+  $sbx.addEventListener('click',function(){setSb(false);});
+  $ov.addEventListener('click',function(){setSb(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setSb(false);});
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+  new MutationObserver(function(){render();}).observe(document.documentElement,{attributes:true,attributeFilter:['data-lang']});
+}
+document.readyState==='loading'?document.addEventListener('DOMContentLoaded',init):init();
 })();
 </script>
 </body>
